@@ -9,18 +9,28 @@ import {
     faCar,
     faCheck,
 } from '@fortawesome/free-solid-svg-icons';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 import classNames from 'classnames/bind';
+
 import styles from './Header.module.scss';
 import logoRestaurant from '~/assets/imgs/logo-restaurant1.png';
 import FormAccount from '../FormAccount';
+import CartForm from '../CartForm';
 const cx = classNames.bind(styles);
 
 function Header() {
     const [showLoginForm, setShowLoginForm] = useState(false);
-
-    const handleClick = () => {
+    const [showCartForm, setShowCartForm] = useState(false);
+    function handleClick() {
         setShowLoginForm(!showLoginForm);
-    };
+        if (showCartForm) setShowCartForm(false);
+    }
+
+    function handleClickCart() {
+        setShowCartForm(!showCartForm);
+        if (showLoginForm) setShowLoginForm(false);
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -36,9 +46,9 @@ function Header() {
                             className={cx('header__input-search')}
                             onFocus="script"
                         ></input>
-                        <div className={cx('header__wrap-icon-search')}>
+                        <button className={cx('header__wrap-icon-search')}>
                             <FontAwesomeIcon icon={faSearch} className={cx('header__icon-search')} />
-                        </div>
+                        </button>
                     </div>
                     <div className={cx('header__criteria')}>
                         <div>
@@ -55,10 +65,9 @@ function Header() {
                         </div>
                     </div>
                 </div>
-
                 <div className={cx('header-login')}>
                     <div className={cx('header__wrap-logo-login')}>
-                        <FontAwesomeIcon icon={faUser} className={cx('header__logo-login')} />
+                        <FontAwesomeIcon icon={faUser} className={cx('header__logo-login')} alt="Tài khoản" />
                     </div>
                     <div className={cx('header__account')} onClick={handleClick}>
                         <span>Đăng nhập / Đăng ký</span>
@@ -71,11 +80,13 @@ function Header() {
                     {/* Hiện account Form đăng nhập */}
                     {showLoginForm && <FormAccount />}
                 </div>
-                <div className={cx('header__cart')}>
+                <div className={cx('header__cart')} onClick={handleClickCart}>
                     <div className={cx('header__wrap-cart-logo')}>
                         <FontAwesomeIcon icon={faCartShopping} className={cx('header__wrap-cart-logo')} />
                     </div>
                     <span>Giỏ hàng</span>
+                    {/* Hiện Giỏ hàng sản phẩm */}
+                    {showCartForm && <CartForm />}
                 </div>
             </div>
         </div>

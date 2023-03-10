@@ -10,6 +10,7 @@ function FormAccount() {
             <div className={cx('header__acount-wrap-input')}>
                 <input
                     type="number"
+                    pattern="[0-9]{5}"
                     placeholder="Số điện thoại"
                     className={cx('header__acount-input', 'header__account-phonenumber')}
                 />

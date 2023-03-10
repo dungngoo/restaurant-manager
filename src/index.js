@@ -5,14 +5,12 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import FormAccount from '~/components/Layout/components/FormAccount';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <GlobalStyles>
             <App />
-            {/* <FormAccount /> */}
         </GlobalStyles>
     </React.StrictMode>,
 );
