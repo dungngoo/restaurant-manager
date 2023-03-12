@@ -1,8 +1,41 @@
+.wrapper {
+    --border-radius: 92px;
+    background-color: #ffe3a4;
+    padding: 20px;
+    margin: 6px;
+}
 .title-feature-products {
     display: flex;
+    color: var(--primary);
+    font-size: 30px;
+    font-weight: 600;
+    padding: 10px;
 }
 .title-icon {
     display: flex;
     flex: 1;
     justify-content: flex-end;
+    .icon:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
+}
+.icon + .icon {
+    margin: 0px 6px;
+}
+.wrapper-btn-see-all {
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
+}
+.title-see-all {
+    background-color: var(--primary);
+    color: var(--whitecolor);
+    width: 32%;
+    border-radius: var(--border-radius);
+    font-weight: 300;
+    font-size: 20px;
+    &:hover {
+        opacity: 0.5;
+    }
 }

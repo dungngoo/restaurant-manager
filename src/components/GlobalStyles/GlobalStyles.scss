@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,400;1,500;1,700&display=swap');
 
 :root {
-    --primary: #a20808;
+    --primary: rgb(162, 8, 8);
     --labelColor: #a92625;
     --whitecolor: #fff;
     --text-color: #bebfc0;
@@ -333,8 +333,8 @@ input[type='number']::-webkit-outer-spin-button {
     }
 
     .col {
-        padding-left: 12px;
-        padding-right: 12px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
 
     .row.sm-gutter .col {

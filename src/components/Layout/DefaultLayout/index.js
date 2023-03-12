@@ -16,9 +16,6 @@ function DefaultLayout({ children }) {
             <Header />
             <div className="grid wide container ">
                 <div className="row">
-                    <h3 className={cx('category')}>Danh mục sản phẩm</h3>
-                </div>
-                <div className="row">
                     <div className="col l-3">
                         <Sidebar />
                     </div>

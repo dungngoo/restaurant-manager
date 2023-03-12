@@ -5,12 +5,16 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Sidebar from './components/Layout/components/Sidebar';
+import Home from './pages/Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <GlobalStyles>
             <App />
+            {/* <Sidebar />
+            <Home /> */}
         </GlobalStyles>
     </React.StrictMode>,
 );
