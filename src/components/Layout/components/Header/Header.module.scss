@@ -43,6 +43,9 @@
                         border-top-right-radius: var(--search-border-radius);
                         border-bottom-right-radius: var(--search-border-radius);
                     }
+                    &:active {
+                        opacity: 0.8;
+                    }
                 }
             }
 

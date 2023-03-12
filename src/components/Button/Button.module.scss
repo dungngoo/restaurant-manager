@@ -15,3 +15,10 @@
     background-color: var(--primary);
     color: var(--whitecolor);
 }
+.outline {
+    border: 1px solid var(--primary);
+}
+.small {
+    min-width: 40px;
+    padding: 4px 16px;
+}

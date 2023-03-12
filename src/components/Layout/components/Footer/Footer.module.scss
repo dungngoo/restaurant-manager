@@ -1,3 +1,131 @@
-.wrapper {
-    background-color: #ccc;
+//Footer Heading
+.footer {
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    height: 500px;
+}
+.footer-wrapper {
+    width: 100%;
+    display: block;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footerHeading {
+    margin: 0 70px;
+    padding-top: 35px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+.footerHeadingLeft {
+    height: 60%;
+    align-items: center;
+}
+
+.label {
+    color: black;
+    font-size: 30px;
+    font-weight: 400;
+    padding-right: 20px;
+}
+
+.inputEmail {
+    font-size: 16px;
+    padding: 6px 8px;
+    border-width: 1px;
+    line-height: 1.6;
+    border-radius: 20px;
+    min-width: 300px;
+    border-color: black;
+}
+.btnSubmit {
+    margin-left: 20px;
+    font-size: 18px;
+    padding: 6px 8px;
+    border-width: 1px;
+    line-height: 1.6;
+    border-radius: 20px;
+    min-width: 140px;
+    color: #fff;
+    font-weight: 100;
+    background-color: #a20808;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.6;
+    }
+}
+
+.footerHeadingRight {
+    display: flex;
+    justify-content: end;
+    width: 40%;
+    height: 60%;
+}
+
+.icon {
+    font-size: 25px;
+    margin: 0 5px;
+    color: #333;
+
+    &:hover {
+        cursor: pointer;
+        color: #a20808;
+    }
+}
+
+//Footer Content
+.footerContent {
+    margin: 0 70px;
+    padding-top: 35px;
+    height: 350px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.row {
+    width: 100%;
+    display: flex;
+}
+.col {
+    width: 25%;
+    height: 100%;
+    margin-right: 70px;
+    &:last-child {
+        margin-left: -160px;
+    }
+}
+
+.footerTitle {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.footerListIcon {
+    list-style: none;
+    margin-left: -15px;
+}
+.footerItem {
+    margin: 20px 15px;
+}
+
+.footerItem:hover {
+    cursor: pointer;
+    color: #a20808;
+}
+.footerLast {
+    display: block;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    justify-content: center;
+    background-color: #f2f8fd;
+    padding-top: 10px;
+}
+.lastTitle {
+    line-height: 1.6;
+    font-weight: 500;
+    color: grey;
 }

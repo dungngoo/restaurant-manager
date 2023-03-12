@@ -1,1 +1,39 @@
-
+.wrapper {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 200;
+}
+.row {
+    background-color: var(--primary);
+    color: var(--whitecolor);
+    display: flex;
+    padding: 4px;
+    align-items: center;
+    line-height: 30px;
+    text-transform: uppercase;
+}
+.icon-caterory {
+    padding-left: 8px;
+    color: white;
+    margin-right: 6px;
+    width: 16px;
+    height: 16px;
+}
+.list-item {
+    text-decoration: none;
+    li {
+        border-bottom: 1px solid #ccc;
+        line-height: 30px;
+        width: 100%;
+        list-style: none;
+        &:hover {
+            background-color: #f8f9fa;
+            color: rgba(248, 72, 47, 0.3);
+        }
+        a {
+            padding-left: 36px;
+        }
+    }
+}
