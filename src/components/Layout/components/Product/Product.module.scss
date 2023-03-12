@@ -1,0 +1,149 @@
+.wrapper {
+    width: 100%;
+    background-color: #f1f0ea;
+}
+.row {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+}
+// Col Left
+.colLeft {
+    width: 40%;
+    background-color: #fff;
+}
+.imgProduct {
+    width: 100%;
+}
+.shareLink {
+    padding: 10px 0;
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+}
+.label {
+    font-size: 25px;
+    font-weight: 300;
+}
+.iconShare {
+    margin: 0 5px;
+    font-size: 28px;
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+}
+.iconFacebook {
+    color: #25479b;
+}
+.iconMessenger {
+    color: rgb(0, 132, 255);
+}
+.iconTwitter {
+    color: #55acee;
+}
+
+// col Right
+.colRight {
+    width: 60%;
+    margin-left: 15px;
+    background-color: #fff;
+}
+.productDetails {
+    margin: 20px 15px;
+    display: block;
+}
+
+.productName {
+    color: #a20808;
+}
+.labelPrice {
+    padding-top: 6px;
+    font-size: 25px;
+    font-weight: 500;
+    margin-right: 150px;
+}
+.labelQuantity {
+    padding-top: 6px;
+    font-size: 25px;
+    font-weight: 500;
+    margin-right: 90px;
+}
+.price {
+    color: #a20808;
+    font-weight: 500;
+    font-size: 35px;
+}
+
+.quantity {
+    height: 40px;
+    width: 40px;
+    background: #fff;
+    font-weight: 600;
+    line-height: 40px;
+    padding: 0;
+    text-align: center;
+    border: 1px solid #f3f4f4;
+    border-radius: 1px;
+}
+.quantityControlBtn {
+    background: #fff;
+    border: 1px solid #e0e3e3;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 16px;
+    outline: none;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    text-align: center;
+    border-radius: 0;
+    outline: none;
+}
+.btnAdd {
+    width: 100%;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.6;
+    background-color: #fff;
+    border: 1px solid #ca0808;
+    color: #ca0808;
+    &:hover {
+        cursor: pointer;
+        background-color: #ca0808;
+        color: #fff;
+    }
+}
+.btnBuy {
+    margin-left: 50px;
+    width: 100%;
+    line-height: 1.6;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: #ca0808;
+    color: #fff;
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+}
+
+.description {
+    margin-top: 30px;
+}
+.descriptionHeading {
+    color: #a20808;
+    font-weight: 400;
+}
+.shortDescription {
+    margin: 20px;
+    line-height: 1.6;
+}
+.highlight {
+    padding: 0 4px;
+    font-weight: bold;
+}

@@ -33,11 +33,10 @@
 .inputEmail {
     font-size: 16px;
     padding: 6px 8px;
-    border-width: 1px;
     line-height: 1.6;
     border-radius: 20px;
     min-width: 300px;
-    border-color: black;
+    border: #e0e0e0 1px solid;
 }
 .btnSubmit {
     margin-left: 20px;
