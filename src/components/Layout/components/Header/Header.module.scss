@@ -1,113 +1,58 @@
 .wrapper {
-    --search-border-radius: 40px;
-
-    font-size: 20px;
-    min-height: 150px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 16px;
+    background-color: var(--primary);
+    color: var(--whitecolor);
+    height: 50px;
+}
+.navbar-left-header {
+    height: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: #f5f5f5;
-    padding: 20px;
-    padding-left: 90px;
-
-    .header-container {
-        display: flex;
-        justify-content: space-between;
-        .header-content {
-            min-width: 800px;
-            border: 1.5px solid transparent;
-            border-radius: var(--search-border-radius);
-            .header__wrap-input-search {
-                display: flex;
-                border-radius: 4px;
-                margin-bottom: 10px;
-                border: 2px solid #ececec;
-                border-radius: var(--search-border-radius);
-                .header__input-search {
-                    border-radius: 4px;
-                    padding-left: 14px;
-                    flex-grow: 1;
-                    width: 70px;
-                }
-                .header__wrap-icon-search {
-                    height: 30px;
-                    width: 70px;
-                    background-color: var(--labelColor);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 4px;
-
-                    cursor: pointer;
-                    .header__icon-search {
-                        color: white;
-                        border-top-right-radius: var(--search-border-radius);
-                        border-bottom-right-radius: var(--search-border-radius);
-                    }
-                    &:active {
-                        opacity: 0.8;
-                    }
-                }
-            }
-
-            .header__criteria {
-                display: flex;
-                justify-content: space-around;
-                color: var(--labelColor);
-                font-size: 15px;
-
-                .header__criteria-logo {
-                    margin-right: 6px;
-                }
-            }
-        }
-
-        .header-login {
-            position: relative;
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            min-width: 220px;
-            height: 100%;
-            margin-left: 30px;
-            font-weight: 300;
-            cursor: pointer;
-
-            .header__wrap-logo-login {
-                .header__logo-login {
-                    height: 20px;
-                    margin-right: 10px;
-                }
-            }
-            .header__account {
-                .header__myaccount {
-                    margin-top: 2px;
-                }
-                .header__myaccount-icon {
-                    margin-left: 4px;
-                }
-            }
-        }
-
-        .header__cart {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            height: 20px;
-            line-height: 40px;
-            cursor: pointer;
-
-            .header__wrap-cart-logo {
-                margin-right: 4px;
-            }
-        }
+    list-style: none;
+}
+.list-item {
+    display: inline-block;
+    height: 100%;
+}
+.list-item-link {
+    list-style: none;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 32px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    &:hover {
+        color: rgba(255, 255, 255, 0.8);
     }
 }
-.header-logo {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    cursor: pointer;
+.wrap-img-header {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    background-color: #372c21;
+    .img-header {
+        width: 100%;
+        height: 100%;
+    }
 }
-.header__wrap-logo {
-    padding: 0 20px;
+.icon-socials {
+    .fa-brands fa-youtube {
+        padding-left: 40px;
+    }
+    i + i {
+        padding: 0 4px;
+    }
+}
+.nav-icon {
+    color: rgba(255, 255, 255, 0.4);
+    padding: 6px;
+    &:hover {
+        color: rgba(255, 255, 255, 0.9);
+    }
 }

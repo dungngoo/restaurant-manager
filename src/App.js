@@ -20,6 +20,7 @@ function App() {
                             <Route
                                 key={index}
                                 path={route.path}
+                                to={route.to}
                                 element={
                                     <Layout>
                                         <Page />
