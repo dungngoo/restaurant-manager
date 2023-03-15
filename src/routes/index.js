@@ -1,18 +1,23 @@
 // Layouts
-import { HeaderOnly } from '~/components/Layout';
-import HeaderFooterLayout from '~/components/Layout/HeaderFooterLayout';
+import { DefaultLayout } from '~/components/Layout';
 // Pages
 import Home from '~/pages/Home';
 import News from '~/pages/News';
-import Tables from '~/pages/Orders';
-import Product from '~/components/Layout/components/Product';
+import Discover from '~/pages/Discover';
+import Promotion from '~/pages/Libary';
+import Libary from '~/pages/Promotion';
+import Service from '~/pages/Service';
+import Contact from '~/pages/Contact';
 
 // Không cần login
 const publicRoutes = [
     { path: '/', component: Home },
-    { path: '/news', component: News, layout: HeaderOnly },
-    { path: '/orders', component: Tables, layout: HeaderFooterLayout },
-    { path: '/product', component: Product, layout: HeaderFooterLayout },
+    { path: '/discover', component: Discover },
+    { path: '/service', component: Service },
+    { path: '/promotion', component: Promotion },
+    { path: '/libary', component: Libary },
+    { path: '/news', component: News },
+    { path: '/contact', component: Contact },
 ];
 // Không vào được nếu chưa login
 const privateRoutes = [];
