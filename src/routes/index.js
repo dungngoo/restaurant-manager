@@ -8,6 +8,7 @@ import Promotion from '~/pages/Libary';
 import Libary from '~/pages/Promotion';
 import Service from '~/pages/Service';
 import Contact from '~/pages/Contact';
+import Introduce from '~/pages/Introduce';
 
 // Không cần login
 const publicRoutes = [
@@ -18,6 +19,7 @@ const publicRoutes = [
     { path: '/libary', component: Libary },
     { path: '/news', component: News },
     { path: '/contact', component: Contact },
+    { path: '/introduce', component: Introduce },
 ];
 // Không vào được nếu chưa login
 const privateRoutes = [];

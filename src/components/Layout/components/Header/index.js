@@ -24,7 +24,7 @@ function Header() {
         <div className={cx('wrapper')}>
             <ul className={cx('navbar-left-header')}>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/">
+                    <Link className={cx('list-item-link')} to="/introduce">
                         Giới thiệu
                     </Link>
                 </li>
