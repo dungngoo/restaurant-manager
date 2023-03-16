@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap');
+
+// Footer heading
+
+.footer {
+    background-color: #fff5e8;
+    font-size: 16px;
+}
+.footer-heading {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.footer-logo {
+    width: 80px;
+    padding: 10px;
+    background-color: #372c21;
+}
+.footer-content {
+    display: flex;
+    margin: 30px;
+}
+.footer-content-left {
+    display: flex;
+}
+.title-footer {
+    font-size: 60px;
+    color: var(--primary);
+    font-family: 'Dancing Script', cursive;
+    padding-right: 12px;
+    float: right;
+}
+.service-footer {
+    border-left: 1px solid black;
+}
+.list-service {
+    list-style: none;
+    padding-left: 20px;
+}
+.item-service {
+    cursor: pointer;
+    padding: 2px 0;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.footer-content-right {
+    display: flex;
+    flex-direction: column;
+
+    font-weight: 400;
+}
+.wrap-content-right {
+    padding-bottom: 16px;
+}
+.title-connect {
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+.socials {
+    font-size: 24px;
+    .fa-brands {
+        padding: 200px;
+    }
+    i + i {
+        padding: 6px;
+        cursor: pointer;
+    }
+    i:hover {
+        opacity: 0.7;
+    }
+}
+.facebook {
+    cursor: pointer;
+}

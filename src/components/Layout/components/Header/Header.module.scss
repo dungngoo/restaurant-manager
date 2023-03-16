@@ -7,24 +7,31 @@
     background-color: var(--primary);
     color: var(--whitecolor);
     height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    padding-right: 85px;
 }
 .navbar-left-header {
-    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     list-style: none;
-}
-.list-item {
-    display: inline-block;
     height: 100%;
 }
-.list-item-link {
+.logo-heading {
+}
+.navbar-right-header {
+    display: flex;
     list-style: none;
+    height: 100%;
+}
+
+.list-item-link {
+    display: flex;
     text-decoration: none;
+    line-height: 50px;
     font-size: 12px;
     font-weight: 400;
     padding: 0 32px;
+    width: 100%;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.4);
     &:hover {
@@ -32,7 +39,7 @@
     }
 }
 .wrap-img-header {
-    width: 50px;
+    width: 60px;
     height: 50px;
     padding: 10px;
     background-color: #372c21;
@@ -41,17 +48,11 @@
         height: 100%;
     }
 }
-.icon-socials {
-    .fa-brands fa-youtube {
-        padding-left: 40px;
-    }
-    i + i {
-        padding: 0 4px;
-    }
-}
+
 .nav-icon {
     color: rgba(255, 255, 255, 0.4);
     padding: 6px;
+    line-height: 50px;
     &:hover {
         color: rgba(255, 255, 255, 0.9);
     }

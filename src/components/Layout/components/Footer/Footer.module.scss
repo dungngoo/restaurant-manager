@@ -109,7 +109,10 @@
 .footerItem {
     margin: 20px 15px;
 }
-
+.footerItemLink {
+    text-decoration: none;
+    color: black;
+}
 .footerItem:hover {
     cursor: pointer;
     color: #a20808;
