@@ -26,21 +26,23 @@ function Header() {
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/promotion">
+                    <Link className={cx('list-item-link', 'promotion')} to="/promotion">
                         Khuyến mãi
                     </Link>
                 </li>
-                <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link-img')} to="/">
-                        <div className={cx('wrap-img-header')}>
-                            <img
-                                className={cx('img-header')}
-                                src="https://luxurypalace.vn/wp-content/themes/luxury-palace/image/logo_icon.png"
-                                alt="Ảnh Header"
-                            />
-                        </div>
-                    </Link>
-                </li>
+            </ul>
+            <div clasName={cx('logo-heading')}>
+                <Link className={cx('list-item-link-img')} to="/">
+                    <div className={cx('wrap-img-header')}>
+                        <img
+                            className={cx('img-header')}
+                            src="https://luxurypalace.vn/wp-content/themes/luxury-palace/image/logo_icon.png"
+                            alt="Ảnh Header"
+                        />
+                    </div>
+                </Link>
+            </div>
+            <ul className={cx('navbar-right-header')}>
                 <li clasName={cx('list-item')}>
                     <Link className={cx('list-item-link')} to="/libary">
                         Thư viện
