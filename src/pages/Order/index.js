@@ -1,13 +1,13 @@
 import classNames from 'classnames/bind';
-import styles from './Contact.module.scss';
+import styles from './Order.module.scss';
 const cx = classNames.bind(styles);
 
-function Contact() {
+function Order() {
     return (
         <div className={cx('wrapper')}>
-            <h1>Trang Liên hệ</h1>
+            <h1>Form Đặt tiệc</h1>
         </div>
     );
 }
 
-export default Contact;
+export default Order;

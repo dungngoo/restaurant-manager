@@ -1,17 +1,30 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import { Breadcrumb } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FormAccount from '../FormAccount';
+import { useState } from 'react';
+import { faAngleDown, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
 function Header() {
+    const [showLoginForm, setShowLoginForm] = useState(false);
+    const [showCartForm, setShowCartForm] = useState(false);
+    function handleClick() {
+        setShowLoginForm(!showLoginForm);
+        if (showCartForm) setShowCartForm(false);
+    }
+
+    function handleClickCart() {
+        setShowCartForm(!showCartForm);
+        if (showLoginForm) setShowLoginForm(false);
+    }
     return (
         <div className={cx('wrapper')}>
             <ul className={cx('navbar-left-header')}>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/">
+                    <Link className={cx('list-item-link')} to="/introduce">
                         Giới thiệu
                     </Link>
                 </li>
@@ -59,16 +72,27 @@ function Header() {
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <div className={cx('icon-socials')}>
-                        <a className={cx('nav-icon')} href="">
-                            <i className={cx('fa-brands fa-youtube')} />
-                        </a>
-                        <a className={cx('nav-icon')} href="">
-                            <i className="fa-brands fa-facebook" />
-                        </a>
-                        <a className={cx('nav-icon')} href="">
-                            <i className="fa-brands fa-facebook-messenger" />
-                        </a>
+                    <Link className={cx('list-item-link')} to="/order">
+                        <div className={cx('orders')}>Đặt tiệc</div>
+                    </Link>
+                </li>
+                <li clasName={cx('list-item')}>
+                    <div className={cx('form-login')}>
+                        <div className={cx('header-login')} onClick={handleClick}>
+                            <div className={cx('header__wrap-logo-login')}>
+                                <FontAwesomeIcon icon={faUser} className={cx('header__logo-login')} alt="Tài khoản" />
+                            </div>
+                            <div className={cx('header__account')}>
+                                <span>Đăng nhập / Đăng ký</span>
+
+                                <div className={cx('header__myaccount')}>
+                                    <span>Tài khoản của tôi</span>
+                                    <FontAwesomeIcon icon={faAngleDown} className={cx('header__myaccount-icon')} />
+                                </div>
+                            </div>
+                            {/* Hiện account Form đăng nhập */}
+                            {showLoginForm && <FormAccount />}
+                        </div>
                     </div>
                 </li>
             </ul>

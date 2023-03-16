@@ -9,7 +9,7 @@
     height: 50px;
     display: inline-flex;
     justify-content: center;
-    padding-right: 75px;
+    padding-left: 142px;
 }
 .navbar-left-header {
     display: flex;
@@ -48,12 +48,42 @@
         height: 100%;
     }
 }
-
-.nav-icon {
-    color: rgba(255, 255, 255, 0.4);
-    padding: 6px;
-    line-height: 50px;
+.orders {
+    --ordersColor: rgb(248, 93, 107);
+    font-weight: bold;
+    color: rgba(248, 93, 107, 0.7);
     &:hover {
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(248, 93, 107, 1);
+    }
+}
+
+// Phần header Login
+.header-login {
+    padding-left: 32px;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 300;
+    cursor: pointer;
+    &:hover {
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .header__wrap-logo-login {
+        line-height: 52px;
+        .header__logo-login {
+            height: 20px;
+            margin-right: 10px;
+        }
+    }
+    .header__account {
+        .header__myaccount {
+            margin-top: 2px;
+        }
+        .header__myaccount-icon {
+            margin-left: 4px;
+        }
     }
 }

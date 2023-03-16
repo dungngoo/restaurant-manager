@@ -6,13 +6,13 @@ const cx = classNames.bind(styles);
 function Footer1() {
     return (
         <div className={cx('footer')}>
-            <div className={cx('grid')}>
+            <div className={cx('grid wide')}>
                 <div className={cx('row')}>
                     <div className={cx('col-md-12')}>
                         <div className={cx('footer-heading')}>
                             <img
                                 className={cx('footer-logo')}
-                                src="https://luxurypalace.vn/wp-content/themes/luxury-palace/image/logo_icon.png"
+                                src="https://luxurypalace.vn/wp-content/themes/luxury-palace/image/logo.png"
                                 alt="Logo nhà hàng"
                             />
                         </div>
@@ -52,6 +52,7 @@ function Footer1() {
                     </div>
                 </div>
             </div>
+            <div className={cx('copyright')}>COPYRIGHT © | 2023 LUXURY PALACE</div>
         </div>
     );
 }
