@@ -9,7 +9,7 @@ import Libary from '~/pages/Promotion';
 import Service from '~/pages/Service';
 import Contact from '~/pages/Contact';
 import Introduce from '~/pages/Introduce';
-
+import Order from '~/pages/Order';
 // Không cần login
 const publicRoutes = [
     { path: '/', component: Home },
@@ -20,6 +20,7 @@ const publicRoutes = [
     { path: '/news', component: News },
     { path: '/contact', component: Contact },
     { path: '/introduce', component: Introduce },
+    { path: '/order', component: Order },
 ];
 // Không vào được nếu chưa login
 const privateRoutes = [];

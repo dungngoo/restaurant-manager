@@ -72,6 +72,11 @@ function Header() {
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
+                    <Link className={cx('list-item-link')} to="/order">
+                        <div className={cx('orders')}>Đặt tiệc</div>
+                    </Link>
+                </li>
+                <li clasName={cx('list-item')}>
                     <div className={cx('form-login')}>
                         <div className={cx('header-login')} onClick={handleClick}>
                             <div className={cx('header__wrap-logo-login')}>

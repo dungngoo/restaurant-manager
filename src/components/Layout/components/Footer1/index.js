@@ -12,7 +12,7 @@ function Footer1() {
                         <div className={cx('footer-heading')}>
                             <img
                                 className={cx('footer-logo')}
-                                src="https://luxurypalace.vn/wp-content/themes/luxury-palace/image/logo_icon.png"
+                                src="https://luxurypalace.vn/wp-content/themes/luxury-palace/image/logo.png"
                                 alt="Logo nhà hàng"
                             />
                         </div>

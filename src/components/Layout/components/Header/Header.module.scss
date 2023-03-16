@@ -9,7 +9,7 @@
     height: 50px;
     display: inline-flex;
     justify-content: center;
-    padding-left: 26px;
+    padding-left: 142px;
 }
 .navbar-left-header {
     display: flex;
@@ -48,13 +48,12 @@
         height: 100%;
     }
 }
-
-.nav-icon {
-    color: rgba(255, 255, 255, 0.4);
-    padding: 6px;
-    line-height: 50px;
+.orders {
+    --ordersColor: rgb(248, 93, 107);
+    font-weight: bold;
+    color: rgba(248, 93, 107, 0.7);
     &:hover {
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(248, 93, 107, 1);
     }
 }
 
