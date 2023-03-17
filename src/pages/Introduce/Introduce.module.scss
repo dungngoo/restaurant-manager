@@ -1,3 +1,12 @@
-.banner-news {
-    min-height: 200px;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+}
+.aligncenter {
+    clear: both;
+    display: block;
+    margin: 0 auto 1.75em;
 }
