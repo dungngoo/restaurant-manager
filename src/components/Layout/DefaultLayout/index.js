@@ -11,7 +11,7 @@ function DefaultLayout({ children }) {
     return (
         <div>
             <Header />
-            <div className="grid container ">
+            <div className="grid wide container ">
                 <div className="row">
                     <div className="col l-12">
                         <div className={cx('content')}>{children}</div>

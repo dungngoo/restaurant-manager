@@ -1,3 +1,93 @@
-.banner-news {
-    min-height: 200px;
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-12 {
+}
+.col-3 {
+    margin: 20px 15px;
+    padding: 0;
+    width: 25%;
+    border: 1px solid #000;
+}
+.titlePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: #434343;
+}
+
+.imgCol {
+    width: 100%;
+}
+
+.bodyCol {
+    margin: 20px;
+}
+
+.titleCol {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+
+    &:hover {
+        cursor: pointer;
+        color: #0056b3;
+        text-decoration: underline;
+    }
+}
+
+.paragraph {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.footerCol {
+    width: 100%;
+    height: 60px;
+    margin: 12px 20px;
+    display: flex;
+}
+
+.btnRead {
+    width: 45%;
+    height: 60%;
+    margin-top: 13px;
+    background-color: rgba(78, 64, 45, 0.8);
+    color: white;
+    border-color: white;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: rgba(59, 48, 34, 0.8);
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+.paginationItem {
+    margin: 0 4px;
+}
+.paginationItemLink {
+    --height: 30px;
+    display: block;
+    text-align: center;
+    line-height: var(--height);
+    text-decoration: none;
+    font-size: 14px;
+    color: #000;
+    min-width: 35px;
+    height: var(--height);
+    &:hover {
+        cursor: pointer;
+        background-color: #e9ecef;
+        color: #000;
+    }
 }
