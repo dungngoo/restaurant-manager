@@ -18,15 +18,17 @@ function Promotion() {
             <h2 className={cx('title', 'pb-20')}>Tiệc cưới</h2>
             <div className={cx('grid')}>
                 <div className={cx('row')}>
-                    <div className={cx('col l-4', 'sidebar')}>
-                        <Link className={cx('link')} to="li-xi-dau-nam">
-                            Lì xì đầu năm - nhận ngàn quà tặng
-                        </Link>
-                        <p className={cx('paragraph')}>
-                            QUÀ SIÊU XỊN từ Luxury Palace dành TẶNG RIÊNG cho các cặp đôi cưới trong năm 2023 sẽ là MÓN
-                            QUÀ Ý NGHĨA và THIẾT THỰC NHẤT từ trước đến nay
-                        </p>
-                        <span className={cx('span')}>Cảm ơn quý khách</span>
+                    <div className={cx('col l-4')}>
+                        <div className={cx('sidebar')}>
+                            <Link className={cx('link')} to="li-xi-dau-nam">
+                                Lì xì đầu năm - nhận ngàn quà tặng
+                            </Link>
+                            <p className={cx('paragraph')}>
+                                QUÀ SIÊU XỊN từ Luxury Palace dành TẶNG RIÊNG cho các cặp đôi cưới trong năm 2023 sẽ là
+                                MÓN QUÀ Ý NGHĨA và THIẾT THỰC NHẤT từ trước đến nay
+                            </p>
+                            <span className={cx('span')}>Cảm ơn quý khách</span>
+                        </div>
                     </div>
                     <div className={cx('col l-8')}>
                         <img className={cx('img')} src={img1} alt="" />
