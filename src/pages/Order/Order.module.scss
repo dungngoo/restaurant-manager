@@ -8,6 +8,16 @@
     max-width: 58.33333%;
     margin-bottom: 40px;
 }
+.carousel {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    img {
+        height: 740px;
+        object-fit: cover;
+        object-position: center;
+    }
+}
 .formBooking {
     width: 100%;
     height: 100%;

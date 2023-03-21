@@ -3,7 +3,6 @@ import styles from './DefaultLayout.module.scss';
 import classNames from 'classnames/bind';
 
 import Footer from '../components/Footer';
-import Footer1 from '../components/Footer1';
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +17,7 @@ function DefaultLayout({ children }) {
                     </div>
                 </div>
             </div>
-            <Footer1 />
+            <Footer />
         </div>
     );
 }

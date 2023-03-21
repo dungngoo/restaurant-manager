@@ -1,11 +1,16 @@
 import classNames from 'classnames/bind';
 import styles from './Introduce.module.scss';
+import img1 from '~/assets/imgs/introduce/img1.jpg';
+import img2 from '~/assets/imgs/introduce/img2.jpg';
+import img3 from '~/assets/imgs/introduce/img3.jpg';
+import img4 from '~/assets/imgs/introduce/img4.jpg';
+import HeaderContent from '~/components/Layout/components/HeaderContent';
 const cx = classNames.bind(styles);
 
 function Introduce() {
     return (
         <div className={cx('wrapper')}>
-            <h2>Giới thiệu</h2>
+            <h2 className={cx('title')}>Giới thiệu</h2>
             <p>
                 LUXURY PALACE được biết đến như là một CUNG ĐIỆN tổ chức hội nghị – tiệc cưới đẳng cấp bậc nhất tại
                 thành phố Hồ Chí Minh. Tại đây, chúng tôi sẽ mang đến cho bạn sự trải nghiệm dịch vụ hoàn hảo và chuyên
@@ -15,17 +20,9 @@ function Introduce() {
                 ngàn người, chúng tôi cũng sẽ cam kết chuẩn bị chỉnh chu và tỉ mỉ nhất trong từng chi tiết.
             </p>
 
-            <img
-                className={cx('aligncenter')}
-                src="https://luxurypalace.vn/wp-content/uploads/2022/03/COK_6273.jpg"
-                alt=""
-            />
+            <img className={cx('aligncenter')} src={img1} alt="" />
 
-            <img
-                className={cx('aligncenter')}
-                src="https://luxurypalace.vn/wp-content/uploads/2022/03/COK_6273.jpg"
-                alt=""
-            />
+            <img className={cx('aligncenter')} src={img2} alt="" />
 
             <p>
                 LUXURY PALACE mang trên mình một lối kiến trúc hoàng gia sang trọng, mỗi góc tại CUNG ĐIỆN là một khu
@@ -34,17 +31,9 @@ function Introduce() {
                 nhất cho quan khách.
             </p>
 
-            <img
-                className={cx('aligncenter')}
-                src="https://luxurypalace.vn/wp-content/uploads/2022/03/COK_6273.jpg"
-                alt=""
-            />
+            <img className={cx('aligncenter')} src={img3} alt="" />
 
-            <img
-                className={cx('aligncenter')}
-                src="https://luxurypalace.vn/wp-content/uploads/2022/03/COK_6273.jpg"
-                alt=""
-            />
+            <img className={cx('aligncenter')} src={img4} alt="" />
 
             <p>
                 Luôn đặt mình vào vị trí của khách hàng, lắng nghe và thấu hiểu chính là nền tảng để LUXURY PALACE tạo

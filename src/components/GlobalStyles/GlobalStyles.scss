@@ -34,6 +34,15 @@ ul {
     padding: 0;
 }
 
+// title
+.title {
+    color: var(--primary);
+    opacity: 0.9;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 10px;
+}
+
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
