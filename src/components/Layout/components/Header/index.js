@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FormAccount from '../FormAccount';
 import { useState } from 'react';
 import { faAngleDown, faUser } from '@fortawesome/free-solid-svg-icons';
+import logoHeader from '~/assets/imgs/logonhahang1.png';
 
 const cx = classNames.bind(styles);
 
@@ -23,6 +24,11 @@ function Header() {
     return (
         <div className={cx('wrapper')}>
             <ul className={cx('navbar-left-header')}>
+                <li clasName={cx('list-item')}>
+                    <Link className={cx('list-item-link')} to="/admin">
+                        Admin
+                    </Link>
+                </li>
                 <li clasName={cx('list-item')}>
                     <Link className={cx('list-item-link')} to="/introduce">
                         Giới thiệu
