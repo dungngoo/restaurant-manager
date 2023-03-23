@@ -2,11 +2,17 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: justify;
     align-items: center;
-    padding: 4px;
+
+    h2 {
+        padding: 60px;
+    }
 }
 .aligncenter {
     clear: both;
     display: block;
-    margin: 0 auto 1.75em;
+    padding: 0 20px;
+    margin: 0.75em auto 2em;
+    width: 95%;
 }

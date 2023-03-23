@@ -1,28 +1,19 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import styles from './Libary.module.scss';
+import HeaderContent from '~/components/Layout/components/HeaderContent';
+import styles from './Library.module.scss';
 const cx = classNames.bind(styles);
 
 function Libary() {
     return (
         <div className={cx('container')}>
-            <h2 className={cx('titleContainer')}>Hình ảnh</h2>
-            <div className={cx('navBar')}>
-                <ul className={cx('nav')}>
-                    <li className={cx('navItem')}>
-                        <a className={cx('navLink')}>1. Món ăn</a>
-                    </li>
-                    <li className={cx('navItem')}>
-                        <a className={cx('navLink')}>2. Sự kiện cưới</a>
-                    </li>
-                    <li className={cx('navItem')}>
-                        <a className={cx('navLink')}>3. Sự kiện công ty</a>
-                    </li>
-                    <li className={cx('navItem')}>
-                        <a className={cx('navLink')}>4. Sự kiên cá nhân khác</a>
-                    </li>
-                </ul>
-            </div>
+            <HeaderContent
+                title="Hình ảnh"
+                li1="1. Món ăn"
+                li2="2. Sự kiện cưới"
+                li3="3. Sự kiện công ty"
+                li4="4. Sự kiện cá nhân khác"
+            />
             <div className={cx('wrapper')}>
                 <div className={cx('row')}>
                     <div className={cx('col6')}>

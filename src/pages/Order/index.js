@@ -1,9 +1,16 @@
 import { type } from '@testing-library/user-event/dist/type';
 import classNames from 'classnames/bind';
+import { Carousel } from 'react-responsive-carousel';
 import styles from './Order.module.scss';
+import img1 from '~/assets/imgs/orders/img1.jpg';
+import img2 from '~/assets/imgs/orders/img2.jpeg';
+import img3 from '~/assets/imgs/orders/img3.jpg';
+import img4 from '~/assets/imgs/orders/img4.png';
+import img5 from '~/assets/imgs/orders/img5.jpg';
 const cx = classNames.bind(styles);
 
 function Order() {
+    const urls = [`${img1}`, `${img2}`, `${img3}`, `${img4}`, `${img5}`];
     return (
         <div className={cx('row')}>
             <div className={cx('c-5')}>
@@ -55,10 +62,21 @@ function Order() {
                 </form>
             </div>
             <div className={cx('c-7')}>
-                <img
-                    className={cx('img')}
-                    src="https://images2.thanhnien.vn/Uploaded/ttt/images/Content/tin-tuc/cap-nhat/2017_09_w4/luxury_palace/IMG_1778.jpg"
-                ></img>
+                <Carousel
+                    className={cx('carousel')}
+                    showThumbs={false}
+                    centerSlidePercentage={50}
+                    autoPlay
+                    showStatus={false}
+                    infiniteLoop
+                    interval={2000}
+                >
+                    {urls.map((url) => (
+                        <div className={cx('div')}>
+                            <img src={url} />
+                        </div>
+                    ))}
+                </Carousel>
             </div>
         </div>
     );
