@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './Admin.module.scss';
-import logoAdmin from '~/assets/imgs/admin.jpeg';
+import logoAdmin from '~/assets/imgs/thiepcuoi.jpg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Admin() {
@@ -29,9 +30,9 @@ function Admin() {
                     <img src={logoAdmin} alt="IMG" />
                 </div>
                 {/* <!--=====TIÊU ĐỀ======--> */}
-                <form className={cx('form')}>
+                <form className={cx('form-1')}>
                     <span className={cx('span-h1')}>
-                        <b>ĐĂNG NHẬP HỆ THỐNG POS</b>
+                        <b>ĐĂNG NHẬP HỆ THỐNG QUẢN LÝ</b>
                     </span>
                     {/* <!--=====FORM INPUT TÀI KHOẢN VÀ PASSWORD======--> */}
                     <form className={cx('form')} action="">
@@ -82,6 +83,7 @@ function Admin() {
                             <a className={cx('forgot-password')} href="/forgot.html">
                                 Bạn quên mật khẩu?
                             </a>
+                            <Link to="/docs">Hello</Link>
                         </div>
                     </form>
                     {/* <!--=====FOOTER======--> */}

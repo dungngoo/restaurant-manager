@@ -6,11 +6,12 @@
     --labelColor: rgba(78, 64, 45, 1);
     --whitecolor: #fff;
     --text-color: #bebfc0;
+    --black-color: #000;
     // Default layout
     --default-layout-header-hight: 100px;
-}
-
-html {
+    --border-radius-admin: 4px;
+    --hover-color: #c6defd;
+    --active-color: #ffd43b;
 }
 
 * {
@@ -50,6 +51,8 @@ input[type='number']::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
 }
+
+// Animation
 
 // Grid system
 .grid {
