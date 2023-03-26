@@ -12,7 +12,13 @@
     --border-radius-admin: 4px;
     --hover-color: #c6defd;
     --active-color: #ffd43b;
-    --content-color: #e6f1f0;
+    --content-color: #eeeeee;
+    --green-btn: #9df99d;
+    --yellow-btn: #e1ec86;
+    --purple-btn: #bfbeef;
+    --grey-btn: #d0d0d0;
+    --pink-btn: #efcaca;
+    --lightgreen-btn: #a2ecb5;
 }
 
 * {
@@ -61,9 +67,16 @@ input[type='number']::-webkit-outer-spin-button {
     border-radius: 8px;
     border-left: 6px solid var(--active-color);
     background-color: var(--whitecolor);
-    margin: 10px 20px;
+    margin: 20px 0;
     box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
     height: 44px;
+}
+
+// Content doc
+.content-doc {
+    padding-top: 10px;
+    background-color: var(--whitecolor);
+    height: 100%;
 }
 
 // Grid system

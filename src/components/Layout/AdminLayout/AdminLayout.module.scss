@@ -23,6 +23,7 @@
     bottom: 94%;
     width: 50px;
     display: flex;
+    cursor: pointer;
     color: var(--black-color);
     align-items: center;
     justify-content: center;
@@ -36,7 +37,7 @@
     &:hover {
         background-color: transparent;
         color: var(--whitecolor);
-        animation: fadeOut 1s ease;
+        animation: fadeOut 0.25s ease;
     }
 }
 @keyframes fadeOut {
