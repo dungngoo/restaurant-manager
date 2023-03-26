@@ -1,11 +1,16 @@
 import classNames from 'classnames/bind';
 import styles from './Doc4.module.scss';
+import Clock from '~/components/Clock';
+import HeaderDoc from '~/components/Layout/components/HeaderDoc';
 const cx = classNames.bind(styles);
 
 function Doc4() {
     return (
         <div className={cx('wrapper')}>
-            <h1>Hello ae Doc4</h1>
+            <div className={cx('header-clock')}>
+                <HeaderDoc text="Quản lí sảnh" />
+                <Clock />
+            </div>
         </div>
     );
 }
