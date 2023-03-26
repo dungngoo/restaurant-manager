@@ -1,0 +1,51 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    border: 1px solid black;
+    background-color: #001c40;
+    width: 100%;
+    height: 100vh;
+}
+
+.content {
+    position: absolute;
+    background-color: var(--content-color);
+    top: 6%;
+    left: 16%;
+    right: 0;
+    bottom: 0;
+    min-width: 1200px;
+}
+.wrap-i {
+    position: absolute;
+    top: 0;
+    right: 2%;
+    bottom: 94%;
+    width: 50px;
+    display: flex;
+    color: var(--black-color);
+    align-items: center;
+    justify-content: center;
+    background-color: var(--active-color);
+    i {
+        text-align: center;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+    }
+    &:hover {
+        background-color: transparent;
+        color: var(--whitecolor);
+        animation: fadeOut 1s ease;
+    }
+}
+@keyframes fadeOut {
+    0% {
+        background-color: var(--active-color);
+        opacity: 1;
+    }
+    100% {
+        background-color: transparent;
+        color: var(--whitecolor);
+    }
+}
