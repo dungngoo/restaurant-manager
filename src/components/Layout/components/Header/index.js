@@ -51,7 +51,7 @@ function Header() {
                 </li>
             </ul>
             <div clasName={cx('logo-heading')}>
-                <Link className={cx('list-item-link-img')} to="/">
+                <a className={cx('list-item-link-img')} href="/">
                     <div className={cx('wrap-img-header')}>
                         <img
                             className={cx('img-header')}
@@ -59,7 +59,7 @@ function Header() {
                             alt="Ảnh Header"
                         />
                     </div>
-                </Link>
+                </a>
             </div>
             <ul className={cx('navbar-right-header')}>
                 <li clasName={cx('list-item')}>

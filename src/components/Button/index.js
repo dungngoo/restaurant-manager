@@ -15,6 +15,13 @@ function Button({
     rouded,
     small,
     large,
+    green,
+    yellow,
+    purple,
+    pink,
+    grey,
+    lightgreen,
+    lightorange,
     onClick,
     className,
     passProps,
@@ -34,6 +41,13 @@ function Button({
         rouded,
         small,
         large,
+        green,
+        yellow,
+        purple,
+        pink,
+        grey,
+        lightgreen,
+        lightorange,
     });
 
     if (to) {

@@ -1,5 +1,5 @@
 .wrapper {
-    position: relative;
+    position: fixed;
     display: flex;
     border: 1px solid black;
     background-color: #001c40;
@@ -15,6 +15,7 @@
     right: 0;
     bottom: 0;
     min-width: 1200px;
+    overflow-y: scroll;
 }
 .wrap-i {
     position: absolute;
@@ -23,6 +24,7 @@
     bottom: 94%;
     width: 50px;
     display: flex;
+    cursor: pointer;
     color: var(--black-color);
     align-items: center;
     justify-content: center;
@@ -36,7 +38,7 @@
     &:hover {
         background-color: transparent;
         color: var(--whitecolor);
-        animation: fadeOut 1s ease;
+        animation: fadeOut 0.25s ease;
     }
 }
 @keyframes fadeOut {

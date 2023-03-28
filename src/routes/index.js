@@ -12,10 +12,11 @@ import Order from '~/pages/Order';
 import Admin from '~/pages/Admin';
 import { AdminLayout, LoginLayout } from '~/components/Layout';
 import Docs, { Doc1, Doc2, Doc3, Doc4, Doc5 } from '~/pages/Docs';
+import HomeLayout from '~/components/Layout/HomeLayout';
 
 // Không cần login
 const publicRoutes = [
-    { path: '/', component: Home },
+    { path: '/', component: Home, layout: HomeLayout },
     { path: '/discover', component: Discover },
     { path: '/service', component: Service },
     { path: '/promotion', component: Promotion },

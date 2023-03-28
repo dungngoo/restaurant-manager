@@ -83,7 +83,7 @@ function Admin() {
                             <a className={cx('forgot-password')} href="/forgot.html">
                                 Bạn quên mật khẩu?
                             </a>
-                            <Link to="/docs">Hello</Link>
+                            <Link to="/docs">Qua giao diện quản lí</Link>
                         </div>
                     </form>
                     {/* <!--=====FOOTER======--> */}

@@ -60,7 +60,7 @@ function Sidebar() {
                                 <i className="fa-regular fa-user"></i>
                             </div>
                             <span id="p" className={cx('p')}>
-                                ABCDEFGHUJ
+                                trở lại trang chính
                             </span>
                         </Link>
                     </li>
