@@ -21,6 +21,7 @@ function Button({
     pink,
     grey,
     lightgreen,
+    lightorange,
     onClick,
     className,
     passProps,
@@ -46,6 +47,7 @@ function Button({
         pink,
         grey,
         lightgreen,
+        lightorange,
     });
 
     if (to) {

@@ -17,7 +17,7 @@ function DefaultLayout({ children }) {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer className={cx('footer')} />
         </div>
     );
 }

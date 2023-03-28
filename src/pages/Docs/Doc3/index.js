@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 
 function Doc3() {
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper-doc')}>
             <div className={cx('header-clock')}>
                 <HeaderDoc text="Quản lí tiệc" />
                 <Clock />

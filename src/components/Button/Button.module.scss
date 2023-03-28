@@ -1,5 +1,4 @@
 .wrapper {
-    min-width: 100px;
     padding: 9px 16px;
     border-radius: 4px;
     font-size: 1.6rem;
@@ -19,8 +18,7 @@
     border: 1px solid var(--primary);
 }
 .small {
-    padding: 4px 16px;
-    height: 24px;
+    height: 30px;
 }
 .green {
     background-color: var(--green-btn);
@@ -48,4 +46,8 @@
 .grey {
     background-color: var(--grey-btn);
     color: #372c2e;
+}
+.lightorange {
+    background-color: var(--lightorange-btn);
+    color: #f59d4e;
 }

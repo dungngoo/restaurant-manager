@@ -4,7 +4,7 @@ const cx = classNames.bind(styles);
 
 function Docs() {
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper-doc')}>
             <h1>Hello Docs</h1>
         </div>
     );
