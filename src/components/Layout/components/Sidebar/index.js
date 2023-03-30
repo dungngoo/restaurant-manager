@@ -8,7 +8,7 @@ function Sidebar() {
         {
             link: '1',
             iClassname: 'fa-solid fa-house',
-            name: 'Quản lí 1',
+            name: 'Quản lí nhân viên',
         },
         {
             link: '2',
