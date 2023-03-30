@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import Button from '~/components/Button';
 import Clock from '~/components/Clock';
 import HeaderDoc from '~/components/Layout/components/HeaderDoc';
@@ -6,69 +7,56 @@ import styles from './Doc1.module.scss';
 const cx = classNames.bind(styles);
 
 function Doc1() {
-    const listMembers = [
-        {
-            id: '#CD3125',
-            name: 'Ngô Quốc Dũng',
-            img: 'https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-1/331787224_851102829289025_5870547377214840913_n.jpg?stp=dst-jpg_s320x320&_nc_cat=102&ccb=1-7&_nc_sid=7206a8&_nc_ohc=ZDCxySxYszEAX8wcdmp&_nc_ht=scontent.fsgn5-9.fna&oh=00_AfAq67RuqhUvGAhmGK1YttMIdXDnxKoeDC994GrNJQ7xQw&oe=6424090C',
-            address: ' 155-157 Trần Quốc Thảo, Quận 3, Hồ Chí Minh',
-            bird: '04/10/2001',
-            sex: 'Nam',
-            phone: '0328038817',
-            job: 'Bán xe',
-        },
-        {
-            id: '#CD3125',
-            name: 'Ngô Quốc Dũng',
-            img: 'https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-1/331787224_851102829289025_5870547377214840913_n.jpg?stp=dst-jpg_s320x320&_nc_cat=102&ccb=1-7&_nc_sid=7206a8&_nc_ohc=ZDCxySxYszEAX8wcdmp&_nc_ht=scontent.fsgn5-9.fna&oh=00_AfAq67RuqhUvGAhmGK1YttMIdXDnxKoeDC994GrNJQ7xQw&oe=6424090C',
-            address: ' 155-157 Trần Quốc Thảo, Quận 3, Hồ Chí Minh',
-            bird: '04/10/2001',
-            sex: 'Nam',
-            phone: '0328038817',
-            job: 'Bán xe',
-        },
-        {
-            id: '#CD3125',
-            name: 'Ngô Quốc Dũng',
-            img: 'https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-1/331787224_851102829289025_5870547377214840913_n.jpg?stp=dst-jpg_s320x320&_nc_cat=102&ccb=1-7&_nc_sid=7206a8&_nc_ohc=ZDCxySxYszEAX8wcdmp&_nc_ht=scontent.fsgn5-9.fna&oh=00_AfAq67RuqhUvGAhmGK1YttMIdXDnxKoeDC994GrNJQ7xQw&oe=6424090C',
-            address: ' 155-157 Trần Quốc Thảo, Quận 3, Hồ Chí Minh',
-            bird: '04/10/2001',
-            sex: 'Nam',
-            phone: '0328038817',
-            job: 'Bán xe',
-        },
-    ];
+    const [staffs, setStaffs] = useState([]);
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/staff`)
+            .then((res) => res.json())
+            .then((data) => setStaffs(data))
+            .catch((err) => console.log(err.message));
+    }, []);
+    // const listMembers = [
+    //     {
+    //         id: '#CD3125',
+    //         name: 'Ngô Quốc Dũng',
+    //         img: 'https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-1/331787224_851102829289025_5870547377214840913_n.jpg?stp=dst-jpg_s320x320&_nc_cat=102&ccb=1-7&_nc_sid=7206a8&_nc_ohc=ZDCxySxYszEAX8wcdmp&_nc_ht=scontent.fsgn5-9.fna&oh=00_AfAq67RuqhUvGAhmGK1YttMIdXDnxKoeDC994GrNJQ7xQw&oe=6424090C',
+    //         address: ' 155-157 Trần Quốc Thảo, Quận 3, Hồ Chí Minh',
+    //         bird: '04/10/2001',
+    //         sex: 'Nam',
+    //         phone: '0328038817',
+    //         job: 'Bán xe',
+    //     }
+    // ];
 
     return (
         <div className={cx('wrapper-doc')}>
             <div className={cx('header-clock')}>
-                <HeaderDoc text="Quản lí tài khoản" />
+                <HeaderDoc text="Quản lí nhân viên" />
                 <Clock />
             </div>
             <div className={cx('content-doc')}>
                 <div className={cx('wrap-btn')}>
                     <Button green>
-                        <i class="fa-solid fa-plus"></i>
+                        <i className="fa-solid fa-plus"></i>
                         Tạo mới nhân viên
                     </Button>
                     <Button green>
-                        <i class="fa-solid fa-file-arrow-up"></i>
+                        <i className="fa-solid fa-file-arrow-up"></i>
                         Tải từ file
                     </Button>
                     <Button purple>
-                        <i class="fa-solid fa-print"></i>
+                        <i className="fa-solid fa-print"></i>
                         In dữ liệu
                     </Button>
                     <Button pink>
-                        <i class="fa-solid fa-clone"></i>
+                        <i className="fa-solid fa-clone"></i>
                         Sao chép
                     </Button>
                     <Button grey>
-                        <i class="fa-solid fa-file-excel"></i>
+                        <i className="fa-solid fa-file-excel"></i>
                         Xuất file
                     </Button>
                     <Button yellow>
-                        <i class="fa-solid fa-file-pdf"></i>
+                        <i className="fa-solid fa-file-pdf"></i>
                         Xuất PDF
                     </Button>
                 </div>
@@ -118,34 +106,34 @@ function Doc1() {
                             </thead>
                             <tbody>
                                 {/* Hiện từng nhân viên cụ thể */}
-                                {listMembers.map((member, index) => (
+                                {staffs.map((staff, index) => (
                                     <tr key={index}>
                                         <td>
                                             <input className={cx('checkbox')} type="checkbox" name="check1" value="1" />
                                         </td>
                                         <td>
-                                            <p>{member.id}</p>
+                                            <p>{staff._id}</p>
                                         </td>
                                         <td>
-                                            <p className={cx('text-align-left')}>{member.name}</p>
+                                            <p className={cx('text-align-left')}>{staff.fullname}</p>
                                         </td>
                                         <td>
-                                            <img className={cx('img-person')} src={member.img} alt="" />
+                                            <img className={cx('img-person')} src={staff.staff_img} alt="" />
                                         </td>
                                         <td>
-                                            <p className={cx('text-align-left')}>{member.address}</p>
+                                            <p className={cx('text-align-left')}>{staff.address}</p>
                                         </td>
                                         <td>
-                                            <p>{member.bird}</p>
+                                            <p>{staff.birth}</p>
                                         </td>
                                         <td>
-                                            <p>{member.sex}</p>
+                                            <p>{staff.sex}</p>
                                         </td>
                                         <td>
-                                            <p>{member.phone}</p>
+                                            <p>{staff.phonenumber}</p>
                                         </td>
                                         <td>
-                                            <p>{member.job}</p>
+                                            <p>{staff.job_type}</p>
                                         </td>
                                         <td className={cx('table-data')}>
                                             <Button small pink title="Xóa">

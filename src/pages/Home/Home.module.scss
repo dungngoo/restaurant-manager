@@ -11,7 +11,7 @@
 }
 .div {
     width: 100%;
-    height: 850px;
+    max-height: 700px;
 }
 // Undder-banner
 .under-banner {
@@ -172,13 +172,17 @@
         line-height: 80px;
         animation: goToTop 0.5s ease forwards;
     }
+    .h1 {
+        line-height: 60px;
+    }
 }
+
 @keyframes goToTop {
     from {
         height: 20%;
     }
     to {
-        height: 100%;
+        height: 93%;
     }
 }
 
