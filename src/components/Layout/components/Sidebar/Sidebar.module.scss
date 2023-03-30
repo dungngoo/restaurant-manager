@@ -1,40 +1,92 @@
 .wrapper {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    height: 100%;
-    font-size: 14px;
-    font-weight: 200;
-    margin-top: 60px;
-}
-.row {
-    background-color: var(--primary);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 16%;
     color: var(--whitecolor);
+}
+
+.wrap-img {
     display: flex;
-    padding: 4px;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    line-height: 30px;
-    text-transform: uppercase;
+    padding: 10px 10px 30px 10px;
+    font-weight: 700;
+    border-bottom: 0.5px solid #6e7c8e;
+    .img {
+        border: 3px solid var(--whitecolor);
+        width: 36%;
+        height: 36%;
+        border-radius: 999px;
+    }
+    .name {
+        padding-top: 12px;
+        font-size: 20px;
+    }
+    .span {
+        padding-top: 4px;
+        font-size: 14px;
+        line-height: 5px;
+    }
 }
-.icon-caterory {
-    padding-left: 8px;
-    color: white;
-    margin-right: 6px;
-    width: 16px;
-    height: 16px;
+.list-manager {
+    list-style: none;
+    padding: 10px 4px;
+    li + li {
+        margin: 10px 0;
+    }
 }
-.list-item {
-    text-decoration: none;
-    li {
-        border-bottom: 1px solid #ccc;
-        line-height: 30px;
+.item-manager {
+    display: flex;
+    border-radius: 8px;
+    background-color: transparent;
+    width: 100%;
+    line-height: 60px;
+    justify-content: center;
+    padding: 0 20px;
+
+    .link {
+        text-decoration: none;
+        color: var(--whitecolor);
+        display: flex;
         width: 100%;
-        list-style: none;
-        &:hover {
-            background-color: #f8f9fa;
-            color: rgba(248, 72, 47, 0.3);
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    .p {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    &:hover {
+        animation: fadeOut 0.5s ease;
+        background-color: var(--hover-color);
+        .p,
+        i {
+            color: var(--black-color);
         }
-        a {
-            padding-left: 36px;
-        }
+    }
+    &:active {
+        background-color: var(--active-color);
+    }
+}
+.active {
+    background-color: var(--active-color);
+    .p,
+    i {
+        color: var(--black-color);
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }

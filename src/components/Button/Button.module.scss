@@ -1,5 +1,4 @@
 .wrapper {
-    min-width: 100px;
     padding: 9px 16px;
     border-radius: 4px;
     font-size: 1.6rem;
@@ -19,6 +18,36 @@
     border: 1px solid var(--primary);
 }
 .small {
-    min-width: 40px;
-    padding: 4px 16px;
+    height: 30px;
+}
+.green {
+    background-color: var(--green-btn);
+    color: #003c00;
+}
+.lightgreen {
+    background-color: var(--lightgreen-btn);
+    color: #008c04;
+}
+.yellow {
+    background-color: var(--yellow-btn);
+    color: #4b5400;
+}
+
+.purple {
+    background-color: var(--purple-btn);
+    color: var(--black-color);
+}
+
+.pink {
+    background-color: var(--pink-btn);
+    color: #bf0000;
+}
+
+.grey {
+    background-color: var(--grey-btn);
+    color: #372c2e;
+}
+.lightorange {
+    background-color: var(--lightorange-btn);
+    color: #f59d4e;
 }
