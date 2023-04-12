@@ -13,6 +13,7 @@ import Admin from '~/pages/Admin';
 import { AdminLayout, LoginLayout } from '~/components/Layout';
 import Docs, { Doc1, Doc2, Doc3, Doc4, Doc5 } from '~/pages/Docs';
 import HomeLayout from '~/components/Layout/HomeLayout';
+import FormCreateStaff from '~/components/Layout/components/FormCreateStaff';
 
 // Không cần login
 const publicRoutes = [
@@ -28,6 +29,7 @@ const publicRoutes = [
     { path: '/admin', component: Admin, layout: LoginLayout },
     { path: '/docs', component: Docs, layout: AdminLayout },
     { path: '/docs/1', component: Doc1, layout: AdminLayout },
+    { path: '/docs/1/create', component: FormCreateStaff, layout: AdminLayout },
     { path: '/docs/2', component: Doc2, layout: AdminLayout },
     { path: '/docs/3', component: Doc3, layout: AdminLayout },
     { path: '/docs/4', component: Doc4, layout: AdminLayout },

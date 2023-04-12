@@ -1,1 +1,29 @@
-
+.wrapper {
+    :global(.carousel .thumbs-wrapper) {
+        background-color: black;
+        padding: 10px;
+        margin: 0 !important;
+        border-color: transparent;
+    }
+    :global(.carousel .thumbs-wrapper .thumbs) {
+        margin: 0 !important;
+    }
+    :global(.carousel .thumbs-wrapper .thumbs .thumb) {
+        border: 3px solid transparent;
+    }
+    :global(.carousel .thumbs-wrapper .thumbs .thumb.selected) {
+        border: 3px solid #fff;
+    }
+    :global(.carousel .control-prev.control-arrow:before ) {
+        border-width: 30px;
+    }
+    :global(.carousel .control-next.control-arrow:before ) {
+        border-width: 30px;
+    }
+    :global(.carousel .control-prev.control-arrow:before ) {
+        margin-top: -18px;
+    }
+    :global(.carousel .control-next.control-arrow:before ) {
+        margin-top: -18px;
+    }
+}
