@@ -7,11 +7,8 @@ import img2 from '~/assets/imgs/home/img2.jpg';
 import img3 from '~/assets/imgs/home/img3.jpg';
 import img4 from '~/assets/imgs/home/img4.png';
 import img5 from '~/assets/imgs/home/img5.jpeg';
-import ContentLibrary from '~/components/Layout/components/ContentLibrary';
 import { Link } from 'react-router-dom';
-import HeaderContent from '~/components/Layout/components/HeaderContent';
 import Button from '~/components/Button';
-import Libary from '../Library';
 import News from '../News';
 const cx = classNames.bind(styles);
 
@@ -23,24 +20,21 @@ function Home({ home }) {
         const wrapDiscover = document.getElementById('wrap-discover');
         const wrapPromotion = document.getElementById('wrap-promotion');
         const wrapNews = document.getElementById('wrap-news');
-        console.log(underBanner);
-        console.log(wrapRow);
         window.addEventListener('scroll', function () {
             var x = this.scrollY;
-            console.log(this.scrollY);
-            if (x > 200 && x < 1172) {
+            if (x > 100 - 30 && x < 1142 - 70) {
                 underBanner.classList.add(cx('slideInLeft'));
             }
-            if (x > 500 && x < 2005) {
+            if (x > 470 - 70 && x < 1975 - 70) {
                 wrapRow.classList.add(cx('slideInRight'));
             }
-            if (x > 1305 && x < 2805) {
+            if (x > 1275 - 70 && x < 2775 - 70) {
                 wrapDiscover.classList.add(cx('slideInLeft'));
             }
-            if (x > 2105 && x < 3305) {
+            if (x > 2085 - 70 && x < 3275 - 70) {
                 wrapPromotion.classList.add(cx('slideInRight'));
             }
-            if (x > 2605) {
+            if (x > 2575 - 70) {
                 wrapNews.classList.add(cx('slideInLeft'));
             }
         });
@@ -62,9 +56,9 @@ function Home({ home }) {
                     infiniteLoop
                     interval={2000}
                 >
-                    {urls.map((url) => (
+                    {urls.map((url, index) => (
                         <div className={cx('div')}>
-                            <img src={url} />
+                            <img src={url} alt={`Ảnh${index}`} />
                         </div>
                     ))}
                 </Carousel>
@@ -269,7 +263,7 @@ function Home({ home }) {
                                     ></img>
                                     <div className={cx('cardOverlay')}>
                                         <Link to="/" className={cx('cardTitle')}>
-                                            <h1>Tiệc cưới</h1>
+                                            <h1 className={cx('h1')}>Tiệc cưới</h1>
                                         </Link>
                                     </div>
                                 </div>
@@ -287,7 +281,7 @@ function Home({ home }) {
                                     ></img>
                                     <div className={cx('cardOverlay')}>
                                         <Link to="/" className={cx('cardTitle')}>
-                                            <h1>Tiệc hội nghị</h1>
+                                            <h1 className={cx('h1')}>Tiệc hội nghị</h1>
                                         </Link>
                                     </div>
                                 </div>
@@ -305,7 +299,7 @@ function Home({ home }) {
                                     ></img>
                                     <div className={cx('cardOverlay')}>
                                         <Link to="/" className={cx('cardTitle')}>
-                                            <h1>Tiệc sự kiện</h1>
+                                            <h1 className={cx('h1')}>Tiệc sự kiện</h1>
                                         </Link>
                                     </div>
                                 </div>

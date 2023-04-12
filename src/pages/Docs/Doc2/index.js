@@ -3,9 +3,19 @@ import styles from './Doc2.module.scss';
 import Clock from '~/components/Clock';
 import HeaderDoc from '~/components/Layout/components/HeaderDoc';
 import Button from '~/components/Button';
+import { useEffect, useState } from 'react';
 const cx = classNames.bind(styles);
 
 function Doc2() {
+    // const [table, setTable] = useState([]);
+
+    // useEffect(() => {
+    //     fetch('http://localhost:3001/table')
+    //         .then((res) => res.json())
+    //         .then((data) => setTable(data))
+    //         .catch((err) => console.error(err.message));
+    // }, []);
+
     const listLobbys = [
         {
             id: '#RUBY1',

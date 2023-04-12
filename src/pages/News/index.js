@@ -2,6 +2,7 @@ import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-sol
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import styles from './News.module.scss';
 const cx = classNames.bind(styles);
 
@@ -147,7 +148,7 @@ function News() {
 
                     <div className={cx('col l-4')}>
                         <div className={cx('border-black')}>
-                            <a href="" className={''}>
+                            <a href="">
                                 <img
                                     className={cx('imgCol')}
                                     src="https://luxurypalace.vn/wp-content/uploads/2023/03/rrtt.jpg"
