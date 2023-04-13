@@ -1,6 +1,14 @@
 .wrapper {
     padding-top: 50px;
     overflow-x: hidden;
+    :global(.carousel .control-prev.control-arrow:before) {
+        border-width: 20px;
+        margin-top: -18px;
+    }
+    :global(.carousel .control-next.control-arrow:before) {
+        border-width: 20px;
+        margin-top: -18px;
+    }
 }
 .wrap-carousel {
     width: 100%;

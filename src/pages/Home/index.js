@@ -10,10 +10,12 @@ import img5 from '~/assets/imgs/home/img5.jpeg';
 import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import News from '../News';
+import { useEffect } from 'react';
 const cx = classNames.bind(styles);
 
 function Home({ home }) {
     const urls = [`${img1}`, `${img2}`, `${img3}`, `${img4}`, `${img5}`];
+
     function init() {
         const underBanner = document.getElementById('underbanner');
         const wrapRow = document.getElementById('wrap-row');
@@ -44,6 +46,7 @@ function Home({ home }) {
             init();
         }
     });
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('wrap-carousel')}>

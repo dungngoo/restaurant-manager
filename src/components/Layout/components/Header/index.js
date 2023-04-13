@@ -82,7 +82,7 @@ function Header() {
                         <div className={cx('orders')}>Đặt tiệc</div>
                     </Link>
                 </li>
-                <li clasName={cx('list-item')}>
+                {/* <li clasName={cx('list-item')}>
                     <div className={cx('form-login')}>
                         <div className={cx('header-login')} onClick={handleClick}>
                             <div className={cx('header__wrap-logo-login')}>
@@ -95,12 +95,12 @@ function Header() {
                                     <span>Tài khoản của tôi</span>
                                     <FontAwesomeIcon icon={faAngleDown} className={cx('header__myaccount-icon')} />
                                 </div>
-                            </div>
+                            </div> */}
                             {/* Hiện account Form đăng nhập */}
                             {showLoginForm && <FormAccount />}
-                        </div>
+                        {/* </div>
                     </div>
-                </li>
+                </li> */}
             </ul>
         </div>
     );

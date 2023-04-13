@@ -67,14 +67,14 @@ function Sidebar() {
 
                     {listsManager.map((list, index) => (
                         <li id="li" className={cx('item-manager')} key={index}>
-                            <a href={`/docs/${list.link}`} className={cx('link')}>
+                            <Link to={`/docs/${list.link}`} className={cx('link')}>
                                 <div className={cx('wrap-i')}>
                                     <i className={list.iClassname}></i>
                                 </div>
                                 <span id="p" className={cx('p')}>
                                     {list.name}
                                 </span>
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>

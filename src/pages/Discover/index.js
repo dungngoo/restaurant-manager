@@ -22,9 +22,8 @@ function Discover() {
                 autoPlay
                 showStatus={false}
                 infiniteLoop
-                interval={2000}
                 onSwipeMove
-                showIndicators={false}
+                
             >
                 {urls.map((url) => (
                     <div className={cx('div')}>
