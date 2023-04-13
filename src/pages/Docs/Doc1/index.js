@@ -5,16 +5,13 @@ import Clock from '~/components/Clock';
 import HeaderDoc from '~/components/Layout/components/HeaderDoc';
 import styles from './Doc1.module.scss';
 import ModalUpdateStaff from '~/components/Layout/ModalUpdateStaff';
-import { Modal } from 'bootstrap';
-import Example from '~/components/Modal';
 import ModalDeleteStaff from '~/components/Layout/components/ModalDeleteStaff';
-import axios from 'axios';
 const cx = classNames.bind(styles);
 
 function Doc1() {
     // Xử lý DOM CHECKBOX ALL
     const [isCheckedAll, setIsCheckedAll] = useState(false);
-
+    const [resizedImage, setResizedImage] = useState(null);
     const [staffs, setStaffs] = useState([]);
     // useState chỉ định nhân viên được chọn trong checkbox
     const [isCheckedStaffs, setIsCheckedStaffs] = useState([]);
@@ -22,7 +19,6 @@ function Doc1() {
     const [selectedStaff, setSelectedStaff] = useState(null);
     const [deleteStaff, setDeleteStaff] = useState(null);
     const [deleteManyStaff, setDeleteManyStaff] = useState(null);
-
 
     // handle error
     const [deleteManyError, setDeleteManyError] = useState('');
@@ -100,8 +96,7 @@ function Doc1() {
         if (isCheckedStaffs === '' || !isCheckedAll) {
             setDeleteManyError('Xin mời chọn nhân viên');
             return;
-        }
-        else {
+        } else {
             setDeleteManyError('');
         }
         setDeleteManyStaff(id);
@@ -128,7 +123,6 @@ function Doc1() {
     //API delete nhiều nhân viên theo checkbox đã chọn
     // isCheckedStaffs = 642d7b3e534c58b54dc047cf,642e41f44f74334a40561abd
     const handleDeleteMany = async () => {
-       
         await fetch(`${process.env.REACT_APP_SERVER_URL}/staff/delete-many/`, {
             method: 'DELETE',
             headers: {
@@ -142,6 +136,7 @@ function Doc1() {
             })
             .catch((err) => console.log(err));
     };
+
     return (
         <div className={cx('wrapper-doc')}>
             <div className={cx('header-clock')}>
@@ -255,11 +250,15 @@ function Doc1() {
                                             <p className={cx('text-align-left')}>{staff.fullname}</p>
                                         </td>
                                         <td>
-                                            <div>
+                                            <div style={{ width: '65px', height: '65px' }}>
                                                 <img
                                                     className={cx('img-person')}
-                                                    src={`http://localhost:3001/${staff?.staffImg}`}
-                                                    alt=""
+                                                    src={`${process.env.REACT_APP_SERVER_URL}/${staff?.staffImg}`}
+                                                    alt="Ảnh không tìm thấy"
+                                                    style={{
+                                                        width: '75%',
+                                                        height: '100%',
+                                                    }}
                                                 />
                                             </div>
                                         </td>
