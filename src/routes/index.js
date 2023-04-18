@@ -2,10 +2,10 @@
 // Pages
 import Home from '~/pages/Home';
 import News from '~/pages/News';
-import Discover from '~/pages/Discover';
+import { Diamond, Platinum, Ruby, Topaz } from '~/pages/Discover';
 import Library from '~/pages/Library';
 import Promotion from '~/pages/Promotion';
-import Service from '~/pages/Service';
+import Service, { HoiNghi, SuKien, TiecCuoi, TiecOutside } from '~/pages/Service';
 import Contact from '~/pages/Contact';
 import Introduce from '~/pages/Introduce';
 import Order from '~/pages/Order';
@@ -18,8 +18,14 @@ import FormCreateStaff from '~/components/Layout/components/FormCreateStaff';
 // Không cần login
 const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
-    { path: '/discover', component: Discover },
-    { path: '/service', component: Service },
+    { path: '/discover/ruby/', component: Ruby },
+    { path: '/discover/topaz/', component: Topaz },
+    { path: '/discover/diamond/', component: Diamond },
+    { path: '/discover/platinum/', component: Platinum },
+    { path: '/service/hoi-nghi/', component: HoiNghi },
+    { path: '/service/tiec-cuoi/', component: TiecCuoi },
+    { path: '/service/tiec-ouside/', component: TiecOutside },
+    { path: '/service/su-kien/', component: SuKien },
     { path: '/promotion', component: Promotion },
     { path: '/libary', component: Library },
     { path: '/news', component: News },

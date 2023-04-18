@@ -35,12 +35,12 @@ function Header() {
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/discover">
+                    <Link className={cx('list-item-link')} to="/discover/ruby/">
                         Khám phá
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/service">
+                    <Link className={cx('list-item-link')} to="/service/hoi-nghi/">
                         Dịch vụ
                     </Link>
                 </li>
