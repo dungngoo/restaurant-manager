@@ -49,19 +49,6 @@ import tiecsukienimg8 from '~/assets/imgs/services/tiec-sukien/img8.jpg';
 import tiecsukienimg9 from '~/assets/imgs/services/tiec-sukien/img9.jpg';
 import tiecsukienimg10 from '~/assets/imgs/services/tiec-sukien/img10.jpg';
 
-import img1 from '~/assets/imgs/conference/img1.jpg';
-import img2 from '~/assets/imgs/conference/img2.jpg';
-import img3 from '~/assets/imgs/conference/img3.jpg';
-import img4 from '~/assets/imgs/conference/img4.jpg';
-import img5 from '~/assets/imgs/conference/img5.jpeg';
-import img6 from '~/assets/imgs/conference/img6.jpg';
-import img7 from '~/assets/imgs/conference/img7.jpg';
-import img8 from '~/assets/imgs/conference/img8.jpg';
-import img9 from '~/assets/imgs/conference/img9.jpg';
-import img10 from '~/assets/imgs/conference/img10.png';
-import img11 from '~/assets/imgs/conference/img11.jpg';
-import img12 from '~/assets/imgs/conference/img12.jpg';
-
 import SlideShow from '~/components/Layout/components/SlideShow';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -178,7 +165,7 @@ function Service(props) {
     const serviceToPath = {
         hoinghi: '/service/hoi-nghi/',
         tieccuoi: '/service/tiec-cuoi/',
-        tiecouside: '/service/tiec-ouside/',
+        tiecouside: '/service/tiec-outside/',
         sukien: '/service/su-kien/',
     };
 
