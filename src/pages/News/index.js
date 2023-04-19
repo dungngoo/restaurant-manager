@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import styles from './News.module.scss';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function News() {
@@ -18,14 +19,16 @@ function News() {
                 <div className={cx('row-col')}>
                     <div className={cx('col l-4')}>
                         <div className={cx('border-black')}>
-                            <a href="" className={''}>
+                            <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={''}>
                                 <img
                                     className={cx('imgCol')}
                                     src="https://luxurypalace.vn/wp-content/uploads/2023/03/rrtt.jpg"
                                 ></img>
-                            </a>
+                            </Link>
                             <div className={cx('bodyCol')}>
-                                <a className={cx('titleCol')}>NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC</a>
+                                <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={cx('titleCol')}>
+                                    NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC
+                                </Link>
                                 <p className={cx('paragraph')}>
                                     Việc đặt các trung tâm hội nghị đã không còn quá xa lạ với những booker hoặc những
                                     công ty acency. Thế nhưng, đối với những khách hàng riêng lẻ lần đầu đặt tiệc thì
@@ -33,9 +36,9 @@ function News() {
                                 </p>
                             </div>
                             <div className={cx('footerCol')}>
-                                <button type="submit" className={cx('btnRead')}>
-                                    Đọc ngay
-                                </button>
+                                <Link className={cx('link')} to={'luu-y-khi-to-chuc-tiec-mua-he'}>
+                                    <button className={cx('btnRead')}>Đọc ngay</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -44,14 +47,16 @@ function News() {
 
                     <div className={cx('col l-4')}>
                         <div className={cx('border-black')}>
-                            <a href="" className={''}>
+                            <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={''}>
                                 <img
                                     className={cx('imgCol')}
                                     src="https://luxurypalace.vn/wp-content/uploads/2023/03/rrtt.jpg"
                                 ></img>
-                            </a>
+                            </Link>
                             <div className={cx('bodyCol')}>
-                                <a className={cx('titleCol')}>NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC</a>
+                                <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={cx('titleCol')}>
+                                    NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC
+                                </Link>
                                 <p className={cx('paragraph')}>
                                     Việc đặt các trung tâm hội nghị đã không còn quá xa lạ với những booker hoặc những
                                     công ty acency. Thế nhưng, đối với những khách hàng riêng lẻ lần đầu đặt tiệc thì
@@ -59,9 +64,9 @@ function News() {
                                 </p>
                             </div>
                             <div className={cx('footerCol')}>
-                                <button type="submit" className={cx('btnRead')}>
-                                    Đọc ngay
-                                </button>
+                                <Link className={cx('link')} to={'luu-y-khi-to-chuc-tiec-mua-he'}>
+                                    <button className={cx('btnRead')}>Đọc ngay</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -69,14 +74,16 @@ function News() {
 
                     <div className={cx('col l-4')}>
                         <div className={cx('border-black')}>
-                            <a href="" className={''}>
+                            <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={''}>
                                 <img
                                     className={cx('imgCol')}
                                     src="https://luxurypalace.vn/wp-content/uploads/2023/03/rrtt.jpg"
                                 ></img>
-                            </a>
+                            </Link>
                             <div className={cx('bodyCol')}>
-                                <a className={cx('titleCol')}>NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC</a>
+                                <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={cx('titleCol')}>
+                                    NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC
+                                </Link>
                                 <p className={cx('paragraph')}>
                                     Việc đặt các trung tâm hội nghị đã không còn quá xa lạ với những booker hoặc những
                                     công ty acency. Thế nhưng, đối với những khách hàng riêng lẻ lần đầu đặt tiệc thì
@@ -84,9 +91,9 @@ function News() {
                                 </p>
                             </div>
                             <div className={cx('footerCol')}>
-                                <button type="submit" className={cx('btnRead')}>
-                                    Đọc ngay
-                                </button>
+                                <Link className={cx('link')} to={'luu-y-khi-to-chuc-tiec-mua-he'}>
+                                    <button className={cx('btnRead')}>Đọc ngay</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -97,14 +104,16 @@ function News() {
                 <div className={cx('row-col')}>
                     <div className={cx('col l-4')}>
                         <div className={cx('border-black')}>
-                            <a href="" className={''}>
+                            <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={''}>
                                 <img
                                     className={cx('imgCol')}
                                     src="https://luxurypalace.vn/wp-content/uploads/2023/03/rrtt.jpg"
                                 ></img>
-                            </a>
+                            </Link>
                             <div className={cx('bodyCol')}>
-                                <a className={cx('titleCol')}>NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC</a>
+                                <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={cx('titleCol')}>
+                                    NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC
+                                </Link>
                                 <p className={cx('paragraph')}>
                                     Việc đặt các trung tâm hội nghị đã không còn quá xa lạ với những booker hoặc những
                                     công ty acency. Thế nhưng, đối với những khách hàng riêng lẻ lần đầu đặt tiệc thì
@@ -112,25 +121,26 @@ function News() {
                                 </p>
                             </div>
                             <div className={cx('footerCol')}>
-                                <button type="submit" className={cx('btnRead')}>
-                                    Đọc ngay
-                                </button>
+                                <Link className={cx('link')} to={'luu-y-khi-to-chuc-tiec-mua-he'}>
+                                    <button className={cx('btnRead')}>Đọc ngay</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
-
                     {/* /////////////////////// */}
 
                     <div className={cx('col l-4')}>
                         <div className={cx('border-black')}>
-                            <a href="" className={''}>
+                            <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={''}>
                                 <img
                                     className={cx('imgCol')}
                                     src="https://luxurypalace.vn/wp-content/uploads/2023/03/rrtt.jpg"
                                 ></img>
-                            </a>
+                            </Link>
                             <div className={cx('bodyCol')}>
-                                <a className={cx('titleCol')}>NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC</a>
+                                <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={cx('titleCol')}>
+                                    NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC
+                                </Link>
                                 <p className={cx('paragraph')}>
                                     Việc đặt các trung tâm hội nghị đã không còn quá xa lạ với những booker hoặc những
                                     công ty acency. Thế nhưng, đối với những khách hàng riêng lẻ lần đầu đặt tiệc thì
@@ -138,9 +148,9 @@ function News() {
                                 </p>
                             </div>
                             <div className={cx('footerCol')}>
-                                <button type="submit" className={cx('btnRead')}>
-                                    Đọc ngay
-                                </button>
+                                <Link className={cx('link')} to={'luu-y-khi-to-chuc-tiec-mua-he'}>
+                                    <button className={cx('btnRead')}>Đọc ngay</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -148,14 +158,16 @@ function News() {
 
                     <div className={cx('col l-4')}>
                         <div className={cx('border-black')}>
-                            <a href="">
+                            <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={''}>
                                 <img
                                     className={cx('imgCol')}
                                     src="https://luxurypalace.vn/wp-content/uploads/2023/03/rrtt.jpg"
                                 ></img>
-                            </a>
+                            </Link>
                             <div className={cx('bodyCol')}>
-                                <a className={cx('titleCol')}>NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC</a>
+                                <Link to={'luu-y-khi-to-chuc-tiec-mua-he'} className={cx('titleCol')}>
+                                    NHỮNG ĐIỀU CẦN BIẾT LẦN ĐẦU ĐẶT TIỆC
+                                </Link>
                                 <p className={cx('paragraph')}>
                                     Việc đặt các trung tâm hội nghị đã không còn quá xa lạ với những booker hoặc những
                                     công ty acency. Thế nhưng, đối với những khách hàng riêng lẻ lần đầu đặt tiệc thì
@@ -163,9 +175,9 @@ function News() {
                                 </p>
                             </div>
                             <div className={cx('footerCol')}>
-                                <button type="submit" className={cx('btnRead')}>
-                                    Đọc ngay
-                                </button>
+                                <Link className={cx('link')} to={'luu-y-khi-to-chuc-tiec-mua-he'}>
+                                    <button className={cx('btnRead')}>Đọc ngay</button>
+                                </Link>
                             </div>
                         </div>
                     </div>

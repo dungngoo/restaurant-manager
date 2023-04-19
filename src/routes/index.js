@@ -14,6 +14,8 @@ import { AdminLayout, LoginLayout } from '~/components/Layout';
 import Docs, { Doc1, Doc2, Doc3, Doc4, Doc5 } from '~/pages/Docs';
 import HomeLayout from '~/components/Layout/HomeLayout';
 import FormCreateStaff from '~/components/Layout/components/FormCreateStaff';
+import PromotionData from '~/pages/Promotion/PromotionData/lixidaunam';
+import NewsData from '~/pages/News/NewsData/luuykhitochuctiecmuahe';
 
 // Không cần login
 const publicRoutes = [
@@ -49,6 +51,8 @@ const publicRoutes = [
     { path: '/docs/3', component: Doc3, layout: AdminLayout },
     { path: '/docs/4', component: Doc4, layout: AdminLayout },
     { path: '/docs/5', component: Doc5, layout: AdminLayout },
+    { path: '/promotions/li-xi-dau-nam/', component: PromotionData },
+    { path: '/news/luu-y-khi-to-chuc-tiec-mua-he/', component: NewsData },
 ];
 // Không vào được nếu chưa login
 const privateRoutes = [];
