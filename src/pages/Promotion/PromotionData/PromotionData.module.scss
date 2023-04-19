@@ -1,0 +1,45 @@
+.wrapper {
+    margin: 40px;
+    line-height: 1.6rem;
+}
+.wrapper-header {
+    display: flex;
+    justify-content: center;
+}
+.header {
+}
+.title {
+    margin: 20px 0px;
+    color: #434343;
+}
+.wrapper-body {
+}
+.paragraphShort {
+}
+.spanShort {
+    display: block;
+}
+.imageBody {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.img {
+    width: 60%;
+    margin: 20px 0;
+}
+.paragraphLong {
+}
+.pLong {
+    margin-bottom: 0px;
+    font-size: 16px;
+}
+.hashtag {
+    color: #007bff;
+
+    &:hover {
+        cursor: pointer;
+        color: #0056b3;
+        text-decoration: underline;
+    }
+}
