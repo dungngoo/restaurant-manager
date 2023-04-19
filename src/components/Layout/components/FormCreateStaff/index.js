@@ -81,8 +81,8 @@ function FormCreateStaff() {
                 })
                 .catch((err) => {
                     if (err.response) {
-                        console.log();
-                        setExistErrors(Object.values(err.response.data.err));
+                        console.log(err.response);
+                        setExistErrors(Object.values(err?.response?.data?.err));
                     }
                     console.log(existErrors);
                 });

@@ -12,40 +12,27 @@ const cx = classNames.bind(styles);
 function Header() {
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [showCartForm, setShowCartForm] = useState(false);
-    function handleClick() {
-        setShowLoginForm(!showLoginForm);
-        if (showCartForm) setShowCartForm(false);
-    }
-
-    function handleClickCart() {
-        setShowCartForm(!showCartForm);
-        if (showLoginForm) setShowLoginForm(false);
-    }
+   
     return (
         <div className={cx('wrapper')}>
             <ul className={cx('navbar-left-header')}>
-                <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/admin">
-                        Admin
-                    </Link>
-                </li>
                 <li clasName={cx('list-item')}>
                     <Link className={cx('list-item-link')} to="/introduce">
                         Giới thiệu
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/discover">
+                    <Link className={cx('list-item-link')} to="/discover/ruby/">
                         Khám phá
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/service">
+                    <Link className={cx('list-item-link')} to="/service/hoi-nghi/">
                         Dịch vụ
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link', 'promotion')} to="/promotion">
+                    <Link className={cx('list-item-link', 'promotion')} to="/promotion-cat/tiec-cuoi/">
                         Khuyến mãi
                     </Link>
                 </li>
@@ -63,7 +50,7 @@ function Header() {
             </div>
             <ul className={cx('navbar-right-header')}>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/libary">
+                    <Link className={cx('list-item-link')} to="/library">
                         Thư viện
                     </Link>
                 </li>
@@ -96,9 +83,9 @@ function Header() {
                                     <FontAwesomeIcon icon={faAngleDown} className={cx('header__myaccount-icon')} />
                                 </div>
                             </div> */}
-                            {/* Hiện account Form đăng nhập */}
-                            {showLoginForm && <FormAccount />}
-                        {/* </div>
+                {/* Hiện account Form đăng nhập */}
+                {showLoginForm && <FormAccount />}
+                {/* </div>
                     </div>
                 </li> */}
             </ul>
