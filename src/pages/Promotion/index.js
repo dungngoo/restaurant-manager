@@ -17,7 +17,7 @@ export const TiecCuoiKM = () => {
             titleLink="LÌ XÌ ĐẦU NĂM – NHẬN NGÀN QUÀ TẶNG"
             paragraph="QUÀ SIÊU XỊN từ Luxury Palace dành TẶNG RIÊNG cho các cặp đôi cưới trong năm 2023 sẽ là MÓN QUÀ Ý NGHĨA và THIẾT THỰC NHẤT từ trước đến nay"
             image={img1}
-            linkTo='/promotions/li-xi-dau-nam/'
+            linkTo='/promotions/li-xi-dau-nam'
         />
     );
 };
@@ -30,7 +30,7 @@ export const HoiNghiKM = () => {
             titleLink="Hội Nghị Thành Công"
             paragraph="Với kinh nghiệm tổ chức thành công sự kiện cho nhiều doanh nghiệp lớn trong và ngoài nước cùng kiến trúc SANG TRỌNG, trang thiết bị HIỆN ĐẠI và phong cách phục vụ CHU ĐÁO. Luxury Palace chúng tôi, luôn tự hào là nơi tổ chức thành công những sự kiện quan trọng của QUÝ…"
             image={img2}
-            linkTo='/promotions/hoi-nghi-thanh-cong/'
+            linkTo='/promotions/hoi-nghi-thanh-cong'
         />
     );
 };
@@ -45,7 +45,7 @@ export const SuKienKM = () => {
             titleLink="Tiệc Sự Kiện Cá Nhân"
             paragraph="Luxury Palace được ví như TÒA LÂU ĐÀI sang trọng và đẳng cấp nhất tại khu vực Gò Vấp. Chúng tôi, không chỉ tổ chức tốt được những sự kiện CÁ NHÂN mà còn KẾT NỐI được nhiều GIA ĐÌNH bằng những chương trình sự kiện KẾT NỐI đa dạng khác nhau."
             image={img3}
-            linkTo='/promotions/tiec-su-kien-ca-nhan/'
+            linkTo='/promotions/tiec-su-kien-ca-nhan'
         />
     );
 };

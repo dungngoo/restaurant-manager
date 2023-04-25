@@ -14,7 +14,7 @@ import { AdminLayout, LoginLayout } from '~/components/Layout';
 import Docs, { Doc1, Doc2, Doc3, Doc4, Doc5 } from '~/pages/Docs';
 import HomeLayout from '~/components/Layout/HomeLayout';
 import FormCreateStaff from '~/components/Layout/components/FormCreateStaff';
-import PromotionData from '~/pages/Promotion/PromotionData/lixidaunam';
+import PromotionData from '~/pages/Promotion/PromotionData';
 import NewsData from '~/pages/News/NewsData';
 import NewsLayout from '~/components/Layout/NewsLayout';
 
@@ -52,7 +52,7 @@ const publicRoutes = [
     { path: '/docs/3', component: Doc3, layout: AdminLayout },
     { path: '/docs/4', component: Doc4, layout: AdminLayout },
     { path: '/docs/5', component: Doc5, layout: AdminLayout },
-    { path: '/promotions/li-xi-dau-nam/', component: PromotionData },
+    { path: '/promotions/:id', component: PromotionData },
     { path: '/news/:id', component: NewsData, layout: NewsLayout },
     { path: '/news/page/:page', component: NewsData, layout: NewsLayout },
 ];
