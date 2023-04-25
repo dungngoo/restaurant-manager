@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import News from '../News';
 import { useEffect } from 'react';
+import OrtherNews from '../News/OrtherNews';
 const cx = classNames.bind(styles);
 
 function Home({ home }) {
@@ -111,7 +112,7 @@ function Home({ home }) {
                                     src="https://luxurypalace.vn/wp-content/uploads/2019/10/service-1-398x176.png"
                                 ></img>
                                 <div className={cx('cardOverlay')}>
-                                    <Link to="/" className={cx('cardTitle')}>
+                                    <Link to="/service/hoi-nghi/" className={cx('cardTitle')}>
                                         <h1>Hội nghị</h1>
                                         <p>
                                             Luôn đặt mình vào vị trí của khách hàng, lắng nghe và thấu hiểu chính là nền
@@ -133,7 +134,7 @@ function Home({ home }) {
                                     src="https://luxurypalace.vn/wp-content/uploads/2019/12/tiec-cuoi-398x176.jpg"
                                 ></img>
                                 <div className={cx('cardOverlay')}>
-                                    <Link to="/" className={cx('cardTitle')}>
+                                    <Link to="/service/tiec-cuoi/" className={cx('cardTitle')}>
                                         <h1>Tiệc cưới</h1>
                                         <p>
                                             LUXURY PALACE được ví như MỘT CUNG ĐIỆN tổ chức tiệc cưới vừa HIỆN ĐẠI, vừa
@@ -156,7 +157,7 @@ function Home({ home }) {
                                     src="https://luxurypalace.vn/wp-content/uploads/2019/12/outsize-398x176.jpg"
                                 ></img>
                                 <div className={cx('cardOverlay')}>
-                                    <Link to="/" className={cx('cardTitle')}>
+                                    <Link to="/service/tiec-outside/" className={cx('cardTitle')}>
                                         <h1>Tiệc outside</h1>
                                         <p>
                                             LUXURY PALACE không chỉ phù hợp cho các loại hình tiệc trong khuôn khổ lồng
@@ -179,7 +180,7 @@ function Home({ home }) {
                                     src="https://luxurypalace.vn/wp-content/uploads/2019/12/event-398x176.jpg"
                                 ></img>
                                 <div className={cx('cardOverlay')}>
-                                    <Link to="/" className={cx('cardTitle')}>
+                                    <Link to="/service/su-kien/" className={cx('cardTitle')}>
                                         <h1>Sự kiện</h1>
                                         <p>
                                             LUXURY PALACE được thiết kế như LÂU ĐÀI HOÀNG GIA, với lối kiến trúc thích
@@ -204,7 +205,7 @@ function Home({ home }) {
                             <div className={cx('col l-6')}>
                                 <div className={cx('wrap-content')}>
                                     <h3>Khám phá ngay những sảnh tiệc sang trọng và lịch lãm tại DH Palace</h3>
-                                    <Button primary className={cx('btn-discover')}>
+                                    <Button primary className={cx('btn-discover')} to={'/discover/ruby/'}>
                                         Khám phá ngay
                                     </Button>
                                 </div>
@@ -265,7 +266,7 @@ function Home({ home }) {
                                         alt="Ảnh tiệc cưới 1"
                                     ></img>
                                     <div className={cx('cardOverlay')}>
-                                        <Link to="/" className={cx('cardTitle')}>
+                                        <Link to="/promotion-cat/tiec-cuoi/" className={cx('cardTitle')}>
                                             <h1 className={cx('h1')}>Tiệc cưới</h1>
                                         </Link>
                                     </div>
@@ -283,7 +284,7 @@ function Home({ home }) {
                                         alt="Ảnh tiệc hội nghị"
                                     ></img>
                                     <div className={cx('cardOverlay')}>
-                                        <Link to="/" className={cx('cardTitle')}>
+                                        <Link to="/promotion-cat/hoi-nghi/" className={cx('cardTitle')}>
                                             <h1 className={cx('h1')}>Tiệc hội nghị</h1>
                                         </Link>
                                     </div>
@@ -301,7 +302,7 @@ function Home({ home }) {
                                         alt="Ảnh tiệc sự kiện"
                                     ></img>
                                     <div className={cx('cardOverlay')}>
-                                        <Link to="/" className={cx('cardTitle')}>
+                                        <Link to="/promotion-cat/su-kien/" className={cx('cardTitle')}>
                                             <h1 className={cx('h1')}>Tiệc sự kiện</h1>
                                         </Link>
                                     </div>
@@ -315,7 +316,7 @@ function Home({ home }) {
             {/* Tin tức */}
 
             <div id="wrap-news" className={cx('wrap-news')}>
-                <News />
+                <OrtherNews title="TIN TỨC" />
             </div>
         </div>
     );

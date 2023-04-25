@@ -18,7 +18,7 @@ function NewsLayout({ children }) {
                     </div>
                 </div>
             </div>
-            <OrtherNews />
+            <OrtherNews title="TIN LIÊN QUAN"/>
             <Footer className={cx('footer')} />
         </div>
     );

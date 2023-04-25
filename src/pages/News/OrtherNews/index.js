@@ -6,47 +6,49 @@ import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
-function OrtherNews() {
+function OrtherNews({ title }) {
     const [news, setNews] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_SERVER_URL}/news?limit=4`)
-            .then((res) => res.data)
-            .then((data) => {
-                console.log(data);
-                setTimeout(() => {
-                    setIsLoading(false);
+        async function getNews() {
+            axios
+                .get(`${process.env.REACT_APP_SERVER_URL}/news?_limit=5`)
+                .then((res) => res.data)
+                .then((data) => {
+                    console.log(data);
                     setNews(data);
-                }, 1000); // set time out 1 giây
-            })
-            .catch((err) => console.log(err));
+                })
+                .catch((err) => console.log(err));
+        }
+        getNews();
     }, []);
     console.log(news);
+    const { id } = useParams();
+    const newsSplice = news.filter((news) => id !== news.news_id).splice(0, 4);
+    console.log(newsSplice);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('wrapper-footer')}>
                 <div className={cx('footer')}>
-                    <h2 className={cx('title')}>TIN LIÊN QUAN</h2>
+                    <h2 className={cx('title')}>{title}</h2>
                 </div>
             </div>
             <div className={cx('wrapper-newsOrther')}>
                 <div className={cx('row')}>
-                    {news.map((item, index) => {
+                    {newsSplice.map((item, index) => {
                         return (
                             <div className={cx('col l-3')}>
                                 <div className={cx('news')}>
-                                    <Link to={`/news/${item.news_id}`} className={cx('wrapper-imgNewsOrther')}>
+                                    <a href={`/news/${item.news_id}`} className={cx('wrapper-imgNewsOrther')}>
                                         <img className={cx('imgNewsOrther')} src={item.image}></img>
-                                    </Link>
-                                    <Link to={`/news/${item.news_id}`} className={cx('titleNewsOrther')}>
+                                    </a>
+                                    <a href={`/news/${item.news_id}`} className={cx('titleNewsOrther')}>
                                         {item.title}
-                                    </Link>
+                                    </a>
                                     <p className={cx('pShort')}>{item.content}</p>
                                     <button className={cx('btnRead')}>
-                                        <Link className={cx('link')} to={`/news/${item.news_id}`}>
+                                        <a className={cx('link')} href={`/news/${item.news_id}`}>
                                             Đọc ngay
-                                        </Link>
+                                        </a>
                                     </button>
                                 </div>
                             </div>

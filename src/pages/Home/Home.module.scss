@@ -217,6 +217,10 @@
         color: var(--primary);
     }
     .btn-discover {
+        text-decoration: none;
+        &:hover {
+            color: #fff;
+        }
         width: 230px;
         font-size: 16px;
         opacity: 0.9;

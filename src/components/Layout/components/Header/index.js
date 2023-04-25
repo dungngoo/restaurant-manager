@@ -50,22 +50,22 @@ function Header() {
             </div>
             <ul className={cx('navbar-right-header')}>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/library">
+                    <Link className={cx('list-item-link')} to="/library/">
                         Thư viện
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/news">
+                    <a className={cx('list-item-link')} href="/news/">
                         Tin tức
-                    </Link>
+                    </a>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/contact">
+                    <Link className={cx('list-item-link')} to="/contact/">
                         Liên hệ
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/order">
+                    <Link className={cx('list-item-link')} to="/order/">
                         <div className={cx('orders')}>Đặt tiệc</div>
                     </Link>
                 </li>

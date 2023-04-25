@@ -54,6 +54,7 @@ const publicRoutes = [
     { path: '/docs/5', component: Doc5, layout: AdminLayout },
     { path: '/promotions/li-xi-dau-nam/', component: PromotionData },
     { path: '/news/:id', component: NewsData, layout: NewsLayout },
+    { path: '/news/page/:page', component: NewsData, layout: NewsLayout },
 ];
 // Không vào được nếu chưa login
 const privateRoutes = [];
