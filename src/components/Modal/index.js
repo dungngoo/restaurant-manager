@@ -6,7 +6,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-function Example({ show, handleClose }) {
+function Modal1({ show, handleClose }) {
     return (
         <Modal show={show} onHide={handleClose} backdropClassName={cx('bd')}>
             <Modal.Header closeButton>
@@ -30,4 +30,4 @@ function Example({ show, handleClose }) {
     );
 }
 
-export default Example;
+export default Modal1;

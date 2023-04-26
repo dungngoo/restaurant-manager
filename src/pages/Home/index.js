@@ -103,7 +103,7 @@ function Home({ home }) {
             <div id="wrap-row" className={cx('wrap-row')}>
                 <div className={cx('row')}>
                     <div className={cx('col6')}>
-                        <a href="" className={cx('h-100')}>
+                        <a href="/service/hoi-nghi/" className={cx('h-100')}>
                             <div className={cx('border')}></div>
                             <div className={cx('overlay')}></div>
                             <div className={cx('card')}>
@@ -125,7 +125,7 @@ function Home({ home }) {
                         </a>
                     </div>
                     <div className={cx('col6')}>
-                        <a href="" className={cx('h-100')}>
+                        <a href="/service/tiec-cuoi/" className={cx('h-100')}>
                             <div className={cx('border')}></div>
                             <div className={cx('overlay')}></div>
                             <div className={cx('card')}>
@@ -148,7 +148,7 @@ function Home({ home }) {
                         </a>
                     </div>
                     <div className={cx('col6')}>
-                        <a href="" className={cx('h-100')}>
+                        <a href="/service/tiec-outside/" className={cx('h-100')}>
                             <div className={cx('border')}></div>
                             <div className={cx('overlay')}></div>
                             <div className={cx('card')}>
@@ -171,7 +171,7 @@ function Home({ home }) {
                         </a>
                     </div>
                     <div className={cx('col6')}>
-                        <a href="" className={cx('h-100')}>
+                        <a href="/service/su-kien/" className={cx('h-100')}>
                             <div className={cx('border')}></div>
                             <div className={cx('overlay')}></div>
                             <div className={cx('card')}>
@@ -312,7 +312,6 @@ function Home({ home }) {
                     </div>
                 </div>
             </div>
-
             {/* Tin tức */}
 
             <div id="wrap-news" className={cx('wrap-news')}>
