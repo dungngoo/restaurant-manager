@@ -2,10 +2,10 @@
 // Pages
 import Home from '~/pages/Home';
 import News from '~/pages/News';
-import { Diamond, Platinum, Ruby, Topaz } from '~/pages/Discover';
+import Discover from '~/pages/Discover';
 import Library, { HinhCuoi, MonAn, SuKienCaNhan, SuKienCongTy } from '~/pages/Library';
 import { HoiNghiKM, SuKienKM, TiecCuoiKM } from '~/pages/Promotion';
-import { HoiNghi, SuKien, TiecCuoi, TiecOutside } from '~/pages/Service';
+import Service from '~/pages/Service';
 import Contact from '~/pages/Contact';
 import Introduce from '~/pages/Introduce';
 import Order from '~/pages/Order';
@@ -21,14 +21,8 @@ import NewsLayout from '~/components/Layout/NewsLayout';
 // Không cần login
 const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
-    { path: '/discover/ruby/', component: Ruby },
-    { path: '/discover/topaz/', component: Topaz },
-    { path: '/discover/diamond/', component: Diamond },
-    { path: '/discover/platinum/', component: Platinum },
-    { path: '/service/hoi-nghi/', component: HoiNghi },
-    { path: '/service/tiec-cuoi/', component: TiecCuoi },
-    { path: '/service/tiec-outside/', component: TiecOutside },
-    { path: '/service/su-kien/', component: SuKien },
+    { path: '/discover/:constant', component: Discover },
+    { path: '/services/:type', component: Service },
     { path: '/promotion-cat/hoi-nghi/', component: HoiNghiKM },
     { path: '/promotion-cat/tiec-cuoi/', component: TiecCuoiKM },
     { path: '/promotion-cat/su-kien/', component: SuKienKM },

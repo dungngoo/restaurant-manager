@@ -42,6 +42,9 @@
     :global(.carousel .slider-wrapper) {
         max-height: 700px;
     }
+    :global(.carousel .slider-wrapper .slider .slide) {
+        width: 100%;
+    }
 }
 
 .div {

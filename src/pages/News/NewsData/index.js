@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
-function NewsData(props) {
+function NewsData() {
     const { id } = useParams();
     const [selectedNews, setSelectedNews] = useState();
     console.log(id);

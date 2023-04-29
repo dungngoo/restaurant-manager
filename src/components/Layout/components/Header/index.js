@@ -27,7 +27,7 @@ function Header() {
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/service/hoi-nghi/">
+                    <Link className={cx('list-item-link')} to="/services/tiec-cuoi/">
                         Dịch vụ
                     </Link>
                 </li>
