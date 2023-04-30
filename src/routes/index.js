@@ -3,8 +3,8 @@
 import Home from '~/pages/Home';
 import News from '~/pages/News';
 import Discover from '~/pages/Discover';
-import Library, { HinhCuoi, MonAn, SuKienCaNhan, SuKienCongTy } from '~/pages/Library';
-import { HoiNghiKM, SuKienKM, TiecCuoiKM } from '~/pages/Promotion';
+import Library, { MonAn } from '~/pages/Library';
+import Promotion from '~/pages/Promotion';
 import Service from '~/pages/Service';
 import Contact from '~/pages/Contact';
 import Introduce from '~/pages/Introduce';
@@ -17,27 +17,26 @@ import FormCreateStaff from '~/components/Layout/components/FormCreateStaff';
 import PromotionData from '~/pages/Promotion/PromotionData';
 import NewsData from '~/pages/News/NewsData';
 import NewsLayout from '~/components/Layout/NewsLayout';
+import MenuItemsLibrary from '~/components/Layout/components/MenuItemsLibrary';
+import EventsLibrary from '~/components/Layout/components/EventsLibrary';
+import EventDetail from '~/components/EventDetail';
 
 // Không cần login
 const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
     { path: '/discover/:constant', component: Discover },
     { path: '/services/:type', component: Service },
-    { path: '/promotion-cat/hoi-nghi/', component: HoiNghiKM },
-    { path: '/promotion-cat/tiec-cuoi/', component: TiecCuoiKM },
-    { path: '/promotion-cat/su-kien/', component: SuKienKM },
+    { path: '/promotion-cat/:param', component: Promotion },
+    // { path: '/promotion-cat/type/', component: Promotion },
     { path: '/library', component: Library },
+    { path: '/library-cat/:param/', component: EventsLibrary },
     { path: '/library-cat/hinh-am-thuc/', component: MonAn },
-    { path: '/library-cat/hinh-cuoi/', component: HinhCuoi },
-    { path: '/library-cat/hinh-su-kien/', component: SuKienCongTy },
-    { path: '/library-cat/hinh-trang-tri/', component: SuKienCaNhan },
-    { path: '/library-cat/hinh-cuoi/', component: Library },
-    { path: '/library-cat/hinh-su-kien/', component: Library },
-    { path: '/library-cat/hinh-trang-tri/', component: Library },
+    { path: '/libraries/:type', component: MenuItemsLibrary },
+    { path: '/events/:name', component: EventDetail },
     { path: '/news', component: News },
     { path: '/contact', component: Contact },
     { path: '/introduce', component: Introduce },
-    { path: '/order', component: Order },
+    { path: '/order/', component: Order },
     { path: '/admin', component: Admin, layout: LoginLayout },
     { path: '/docs', component: Docs, layout: AdminLayout },
     { path: '/docs/1', component: Doc1, layout: AdminLayout },

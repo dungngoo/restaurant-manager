@@ -55,10 +55,6 @@
     text-align: center;
     text-decoration: none;
     color: #73402d;
-    &:hover {
-        color: #73402d;
-        text-decoration: underline !important;
-    }
 }
 
 //  ////////////////////////
@@ -75,3 +71,15 @@
 .p-20 {
     padding-bottom: 20px;
 }
+.wrapper-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.header {
+    padding: 80px;
+}
+
+

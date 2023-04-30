@@ -18,20 +18,20 @@ function Service(props) {
             const response = await fetch(requestUrl);
             const data = await response.json();
             console.log('Service:', data);
-            setService(data);
+            setService(data[0]);
         }
-        async function getAllService() {
-            const requestUrl = `${process.env.REACT_APP_SERVER_URL}/services/`;
+        async function getServiceTypes() {
+            const requestUrl = `${process.env.REACT_APP_SERVER_URL}/serviceTypes/type`;
             const response = await fetch(requestUrl);
             const data = await response.json();
             console.log('Services', data);
             setServices(data);
         }
         getServiceByServiceType();
-        getAllService();
+        getServiceTypes();
     }, [type]);
     if (!service || !service.description || !service.imgs) {
-        <div>Loading...</div>;
+        return <div>Loading...</div>;
     }
     const layout1 = (service) => {
         return service.description.map((item, index) => <p key={index}>{item}</p>);
@@ -70,7 +70,7 @@ function Service(props) {
                                             window.location.pathname === service.link ? 'selected' : '',
                                         )}
                                     >
-                                        <span className={cx('span-item')}>{service.serviceType}</span>
+                                        <span className={cx('span-item')}>{service.name}</span>
                                     </Link>
                                 </li>
                             ))}

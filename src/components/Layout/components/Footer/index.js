@@ -52,7 +52,7 @@ function Footer1() {
                     </div>
                 </div>
             </div>
-            <div className={cx('copyright')}>COPYRIGHT © | 2023 LUXURY PALACE</div>
+            <div className={cx('copyright')}>COPYRIGHT © | 2023 DH PALACE</div>
         </div>
     );
 }

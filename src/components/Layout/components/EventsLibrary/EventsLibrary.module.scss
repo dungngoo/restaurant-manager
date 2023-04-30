@@ -75,3 +75,43 @@
 .p-20 {
     padding-bottom: 20px;
 }
+.wrapper-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.header {
+    padding: 80px;
+}
+
+.wrap-service {
+    display: inline-flex;
+    width: 800px;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.navbar {
+    display: flex;
+    font-size: 20px;
+    padding: 20px 20px 0 20px;
+    width: -140%;
+    margin: 0 !important;
+    li {
+        list-style: none;
+    }
+}
+.navbar-link {
+    padding: 2px 14px;
+}
+.span-item {
+    display: inline-block;
+    padding-bottom: 3px;
+    color: var(--primary);
+    border: 3px solid transparent;
+}
+.selected {
+    border-bottom: 4px solid rgb(255, 170, 0);
+}
