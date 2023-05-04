@@ -19,18 +19,23 @@
 }
 .text {
     margin: 30px 25px;
-    text-align: right;
 }
 .titleText {
+    text-align: center;
     text-transform: uppercase;
 }
 
 .formContact {
-    display: block;
     margin: 30px 25px;
+    input {
+        border-radius: 8px;
+    }
+    textarea {
+        border-radius: 8px;
+    }
 }
 .titleForm {
-    text-align: right;
+    text-align: center;
     text-transform: uppercase;
 }
 .input {
