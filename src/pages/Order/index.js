@@ -124,9 +124,6 @@ function Order() {
     }
 
     useEffect(() => {
-        console.log(formData.lobbyType, formData.capacity);
-    }, [formData]);
-    useEffect(() => {
         if (error) {
             setShowErrorModal(true);
             setShowSuccessModal(false);

@@ -20,6 +20,7 @@ import NewsLayout from '~/components/Layout/NewsLayout';
 import MenuItemsLibrary from '~/components/Layout/components/MenuItemsLibrary';
 import EventsLibrary from '~/components/Layout/components/EventsLibrary';
 import EventDetail from '~/components/EventDetail';
+import FormCreateBooking from '~/components/Layout/components/FormCreateBooking';
 
 // Không cần login
 const publicRoutes = [
@@ -37,14 +38,15 @@ const publicRoutes = [
     { path: '/contact', component: Contact },
     { path: '/introduce', component: Introduce },
     { path: '/order/', component: Order },
-    { path: '/admin', component: Admin, layout: LoginLayout },
-    { path: '/docs', component: Docs, layout: AdminLayout },
-    { path: '/docs/1', component: Doc1, layout: AdminLayout },
-    { path: '/docs/1/create', component: FormCreateStaff, layout: AdminLayout },
-    { path: '/docs/2', component: Doc2, layout: AdminLayout },
-    { path: '/docs/3', component: Doc3, layout: AdminLayout },
-    { path: '/docs/4', component: Doc4, layout: AdminLayout },
-    { path: '/docs/5', component: Doc5, layout: AdminLayout },
+    { path: '/admin/login', component: Admin, layout: LoginLayout },
+    { path: '/admin/dashboard', component: Docs, layout: AdminLayout },
+    { path: '/admin/1', component: Doc1, layout: AdminLayout },
+    { path: '/admin/1/create', component: FormCreateStaff, layout: AdminLayout },
+    { path: '/admin/2', component: Doc2, layout: AdminLayout },
+    { path: '/admin/2/create', component: FormCreateBooking, layout: AdminLayout },
+    { path: '/admin/3', component: Doc3, layout: AdminLayout },
+    { path: '/admin/4', component: Doc4, layout: AdminLayout },
+    { path: '/admin/5', component: Doc5, layout: AdminLayout },
     { path: '/promotions/:id', component: PromotionData },
     { path: '/news/:id', component: NewsData, layout: NewsLayout },
     { path: '/news/page/:page', component: NewsData, layout: NewsLayout },

@@ -6,7 +6,7 @@ import FormAccount from '../FormAccount';
 import { useState } from 'react';
 import { faAngleDown, faUser } from '@fortawesome/free-solid-svg-icons';
 import logoHeader from '~/assets/imgs/logonhahang1.png';
-
+import logoNhaHang from '~/assets/imgs/dhpalace.png';
 const cx = classNames.bind(styles);
 
 function Header() {
@@ -42,7 +42,7 @@ function Header() {
                     <div className={cx('wrap-img-header')}>
                         <img
                             className={cx('img-header')}
-                            src="https://luxurypalace.vn/wp-content/themes/luxury-palace/image/logo_icon.png"
+                            src={logoNhaHang}
                             alt="Ảnh Header"
                         />
                     </div>

@@ -26,14 +26,14 @@ function Doc2() {
     return (
         <div className={cx('wrapper-doc')}>
             <div className={cx('header-clock')}>
-                <HeaderDoc text="Quản lí tiệc" />
+                <HeaderDoc text="Quản lí đơn đặt tiệc" />
                 <Clock />
             </div>
             <div className={cx('content-doc')}>
                 <div className={cx('wrap-btn')}>
-                    <Button green>
+                    <Button green to="./create">
                         <i class="fa-solid fa-plus"></i>
-                        Thêm sảnh
+                        Tạo đơn đặt tiệc
                     </Button>
                     <Button green>
                         <i class="fa-solid fa-file-arrow-up"></i>
@@ -41,7 +41,7 @@ function Doc2() {
                     </Button>
                     <Button purple>
                         <i class="fa-solid fa-print"></i>
-                        In dữ liệu
+                       Xuất hóa đơn
                     </Button>
                     <Button pink>
                         <i class="fa-solid fa-clone"></i>

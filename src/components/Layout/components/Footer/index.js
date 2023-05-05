@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Footer1.module.scss';
+import logoNhaHang from '~/assets/imgs/dhpalace-remove.png';
 
 const cx = classNames.bind(styles);
 
@@ -10,11 +11,7 @@ function Footer1() {
                 <div className={cx('row')}>
                     <div className={cx('col-md-12')}>
                         <div className={cx('footer-heading')}>
-                            <img
-                                className={cx('footer-logo')}
-                                src="https://luxurypalace.vn/wp-content/themes/luxury-palace/image/logo.png"
-                                alt="Logo nhà hàng"
-                            />
+                            <img className={cx('footer-logo')} src={logoNhaHang} alt="Logo nhà hàng" />
                         </div>
                     </div>
                     <div className={cx('footer-content')}>
@@ -24,11 +21,21 @@ function Footer1() {
                             </h1>
                             <div className={cx('service-footer')}>
                                 <ul className={cx('list-service')}>
-                                    <li className={cx('item-service')}>Liên Hệ</li>
-                                    <li className={cx('item-service')}>Dịch Vụ</li>
-                                    <li className={cx('item-service')}>Sảnh Tiệc</li>
-                                    <li className={cx('item-service')}>Ưu đãi</li>
-                                    <li className={cx('item-service')}>Thư viện</li>
+                                    <li className={cx('item-service')}>
+                                        <a href="/contact/">Liên Hệ</a>
+                                    </li>
+                                    <li className={cx('item-service')}>
+                                        <a href="/services/tiec-cuoi/">Dịch Vụ</a>
+                                    </li>
+                                    <li className={cx('item-service')}>
+                                        <a href="/discover/ruby/">Sảnh Tiệc</a>
+                                    </li>
+                                    <li className={cx('item-service')}>
+                                        <a href="/promotion-cat/tiec-cuoi/">Ưu đãi</a>
+                                    </li>
+                                    <li className={cx('item-service')}>
+                                        <a href="/library/">Thư viện</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
