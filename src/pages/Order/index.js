@@ -16,7 +16,8 @@ const cx = classNames.bind(styles);
 function Order() {
     const urls = [`${img1}`, `${img2}`, `${img3}`, `${img4}`, `${img5}`];
     const [error, setError] = useState(null);
-    const [isSuccess, setIsSuccess] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(null);
+    const [success, setSuccess] = useState(null);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [lobbies, setLobbies] = useState([]);
@@ -39,7 +40,7 @@ function Order() {
         async function getLobbies() {
             try {
                 const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/lobbies/`);
-                const data = await response.json();
+                const data = await response.json(); 
                 console.log('Lobbies: ', data);
                 setLobbies(data);
             } catch (error) {
@@ -102,6 +103,7 @@ function Order() {
             // do something with formData
             if (JSON.stringify(formData) === JSON.stringify(prevFormData)) {
                 setError('Bạn đã đặt tiệc rồi. Hãy thay đổi dữ liệu!!!');
+                setSuccess(null);
             } else {
                 async function sendBooking(formData) {
                     try {
@@ -110,29 +112,33 @@ function Order() {
                             formData,
                         );
                         console.log(response.data);
-                        return response.data;
+                        setSuccess(response.data);
                     } catch (error) {
                         setError(error.response.data.error);
                     }
                 }
-                sendBooking();
+                sendBooking(formData);
                 setPrevFormData(formData);
             }
         } else {
             setError('Vui lòng điền đầy đủ thông tin!');
         }
     }
-
+    console.log(prevFormData);
     useEffect(() => {
         if (error) {
             setShowErrorModal(true);
             setShowSuccessModal(false);
         }
-        if (isSuccess) {
+        if (success) {
             setShowErrorModal(false);
             setShowSuccessModal(true);
         }
-    }, [error, isSuccess]);
+    }, [error, success]);
+    useEffect(() => {
+        console.log(formData);
+    }, [formData]);
+    console.log(isSuccess);
     return (
         <div className={cx('row')}>
             <div className={cx('c-5')}>
@@ -247,14 +253,14 @@ function Order() {
                             </Modal.Footer>
                         </Modal>
                     )}
-                    {isSuccess && (
+                    {success && (
                         <Modal
                             show={showSuccessModal}
                             onHide={() => setShowSuccessModal(false)}
                             style={{ color: 'green', textAlign: 'center', fontSize: '20px' }}
                         >
                             <Modal.Header closeButton>
-                                <Modal.Title>Success</Modal.Title>
+                                <Modal.Title>{success}</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>Đặt tiệc thành công </Modal.Body>
                         </Modal>

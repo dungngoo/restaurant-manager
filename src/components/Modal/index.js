@@ -20,7 +20,7 @@ function Modal1({ show, handleClose }) {
             </Modal.Body>
             <Modal.Footer style={{ justifyContent: 'flex-start' }}>
                 <Button lightgreen small onClick={handleClose}>
-                    Lưu lại
+                    Thêm
                 </Button>
                 <Button pink small onClick={handleClose} s>
                     Hủy bỏ

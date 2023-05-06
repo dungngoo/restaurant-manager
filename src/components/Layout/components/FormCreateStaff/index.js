@@ -77,7 +77,7 @@ function FormCreateStaff() {
                     headers: { 'Cotent-Type': 'multipart/form-data' },
                 })
                 .then(async function redirect() {
-                    await window.location.replace('/docs/1');
+                    await window.location.replace('/admin/1');
                 })
                 .catch((err) => {
                     if (err.response) {

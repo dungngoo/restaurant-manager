@@ -16,7 +16,7 @@ function ModalDeleteStaff({ show, handleClose, header, body, save }) {
             </Modal.Body>
             <Modal.Footer style={{ justifyContent: 'center' }}>
                 <Button lightgreen small onClick={save}>
-                    Lưu
+                    Xóa
                 </Button>
                 <Button pink small onClick={handleClose} s>
                     Hủy bỏ
