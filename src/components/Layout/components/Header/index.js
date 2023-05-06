@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FormAccount from '../FormAccount';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { faAngleDown, faUser } from '@fortawesome/free-solid-svg-icons';
 import logoHeader from '~/assets/imgs/logonhahang1.png';
 import logoNhaHang from '~/assets/imgs/dhpalace.png';
@@ -12,7 +12,24 @@ const cx = classNames.bind(styles);
 function Header() {
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [showCartForm, setShowCartForm] = useState(false);
-   
+    // if (window.scrollY()) {
+    //     logoElement.parentElement.classList.add(cx('wrap-img-header-fullSize'));
+    // } else {
+    //     logoElement.parentElement.classList.remove(cx('wrap-img-header'));
+    // }
+    window.addEventListener('scroll', function () {
+        const logoElement = document.getElementById('logoNhaHang');
+
+        var x = this.scrollY;
+        if (x === 0) {
+            logoElement.parentElement.classList.remove(cx('wrap-img-header'));
+            logoElement.parentElement.classList.add(cx('wrap-img-header-fullSize'));
+        } else {
+            logoElement.parentElement.classList.add(cx('wrap-img-header'));
+            logoElement.parentElement.classList.remove(cx('wrap-img-header-fullSize'));
+        }
+     
+    });
     return (
         <div className={cx('wrapper')}>
             <ul className={cx('navbar-left-header')}>
@@ -39,12 +56,8 @@ function Header() {
             </ul>
             <div clasName={cx('logo-heading')}>
                 <a className={cx('list-item-link-img')} href="/">
-                    <div className={cx('wrap-img-header')}>
-                        <img
-                            className={cx('img-header')}
-                            src={logoNhaHang}
-                            alt="Ảnh Header"
-                        />
+                    <div className={cx('wrap-img-header-fullSize')}>
+                        <img id="logoNhaHang" className={cx('img-header')} src={logoNhaHang} alt="Ảnh Header" />
                     </div>
                 </a>
             </div>

@@ -24,7 +24,7 @@
 .titlePage {
     text-align: center;
     color: var(--primary);
-    padding: 20px;
+    padding: 60px;
     margin: 0 30%;
 }
 
@@ -70,8 +70,8 @@
     width: 45%;
     height: 60%;
     margin-top: 13px;
-    background-color: rgba(78, 64, 45, 0.8);
-    color: white;
+    background-color: var(--primary);
+    color: rgb(255, 255, 255);
     border-color: white;
     border-radius: 4px;
 

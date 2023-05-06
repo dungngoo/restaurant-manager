@@ -1,3 +1,6 @@
+.wrapper {
+    padding-top: 60px;
+}
 .c-5 {
     margin-bottom: 50px;
     flex: 0 0 41.66667%;
@@ -37,16 +40,17 @@
 .titleHeading {
     font-weight: 500;
     background-color: #fff;
+    text-align: center;
     padding-bottom: 20px;
     margin-bottom: 0;
     color: #434343;
 }
 .titleForm {
-    background-color: #f9ecdb;
+    background-color: #fcd9ac;
     padding: 10px 0;
     margin-bottom: 0;
-    color: #ff8400;
-    font-weight: 300;
+    color: var(--primary);
+    font-weight: 600;
     text-align: center;
     text-transform: uppercase;
 }
@@ -95,7 +99,7 @@
     padding: 5px 0;
     font-size: 20px;
     font-weight: 400;
-    background-color: rgba(78, 64, 45, 0.8);
+    background-color: var(--primary);
     color: white;
     border-color: white;
     &:hover {
@@ -150,4 +154,12 @@
 }
 .modal-content {
     transform: translateY(100%);
+}
+.div-menu {
+    display: flex;
+    height: 740px;
+    img {
+        width: 100%;
+        height: 100%;
+    }
 }

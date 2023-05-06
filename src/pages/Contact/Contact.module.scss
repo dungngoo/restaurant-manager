@@ -9,8 +9,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 60px;
     text-transform: uppercase;
-    color: #434343;
+    color: var(--primary);
 }
 .c-12 {
     display: block;
@@ -61,7 +62,8 @@
     padding: 5px 0;
     font-size: 20px;
     font-weight: 400;
-    background-color: rgba(78, 64, 45, 0.8);
+    border-radius: 4px;
+    background-color: var(--primary);
     color: white;
     border-color: white;
     &:hover {

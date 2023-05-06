@@ -50,6 +50,8 @@
 }
 .news {
     min-height: 450px;
+    padding: 4px;
+    border-radius: 8px;
 }
 .wrapper-imgNewsOrther {
     width: 100%;
@@ -81,14 +83,15 @@
 .btnRead {
     width: 70%;
     line-height: 2;
-    background-color: rgba(78, 64, 45, 0.8);
+    background-color: var(--primary);
     color: white;
     border: 1px solid;
     border-color: white;
     border-radius: 4px;
 
     &:hover {
-        background-color: rgba(59, 48, 34, 0.8);
+        background-color: var(--primary);
+        opacity: 0.7;
     }
 }
 .link {

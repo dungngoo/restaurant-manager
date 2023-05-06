@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 function Introduce() {
     return (
         <div className={cx('wrapper')}>
-            <h2 className={cx('title')}>Giới thiệu</h2>
+            <h2 className={cx('titlePage',)}>GIỚI THIỆU</h2>
             <p>
                 DH PALACE được biết đến như là một CUNG ĐIỆN tổ chức hội nghị – tiệc cưới đẳng cấp bậc nhất tại
                 thành phố Hồ Chí Minh. Tại đây, chúng tôi sẽ mang đến cho bạn sự trải nghiệm dịch vụ hoàn hảo và chuyên

@@ -16,28 +16,29 @@ const cx = classNames.bind(styles);
 
 function Home({ home }) {
     const urls = [`${img1}`, `${img2}`, `${img3}`, `${img4}`, `${img5}`];
-
     function init() {
         const underBanner = document.getElementById('underbanner');
         const wrapRow = document.getElementById('wrap-row');
         const wrapDiscover = document.getElementById('wrap-discover');
         const wrapPromotion = document.getElementById('wrap-promotion');
         const wrapNews = document.getElementById('wrap-news');
+
+       
         window.addEventListener('scroll', function () {
             var x = this.scrollY;
-            if (x > 100 - 30 && x < 1142 - 70) {
+            if (x > 0 && x < 1142 - 200) {
                 underBanner.classList.add(cx('slideInLeft'));
             }
-            if (x > 470 - 70 && x < 1975 - 70) {
+            if (x > 470 - 200 && x < 1975 - 200) {
                 wrapRow.classList.add(cx('slideInRight'));
             }
-            if (x > 1275 - 70 && x < 2775 - 70) {
+            if (x > 1275 - 200 && x < 2775 - 200) {
                 wrapDiscover.classList.add(cx('slideInLeft'));
             }
-            if (x > 2085 - 70 && x < 3275 - 70) {
+            if (x > 2085 - 200 && x < 3275 - 200) {
                 wrapPromotion.classList.add(cx('slideInRight'));
             }
-            if (x > 2575 - 70) {
+            if (x > 2575 - 200) {
                 wrapNews.classList.add(cx('slideInLeft'));
             }
         });

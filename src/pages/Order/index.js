@@ -17,6 +17,7 @@ function Order() {
     const urls = [`${img1}`, `${img2}`, `${img3}`, `${img4}`, `${img5}`];
     const [error, setError] = useState(null);
     const [isSuccess, setIsSuccess] = useState(null);
+    const [imageMenu, setImageMenu] = useState('');
     const [success, setSuccess] = useState(null);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -33,6 +34,7 @@ function Order() {
         lobbyType: '',
         numbersTable: '',
         capacity: '',
+        text: '',
     });
 
     useEffect(() => {
@@ -40,7 +42,7 @@ function Order() {
         async function getLobbies() {
             try {
                 const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/lobbies/`);
-                const data = await response.json(); 
+                const data = await response.json();
                 console.log('Lobbies: ', data);
                 setLobbies(data);
             } catch (error) {
@@ -82,6 +84,22 @@ function Order() {
                 lobbyType: value,
                 capacity: lobby ? lobby.capacity : '',
             }));
+        } else if (name === 'menu') {
+            const carouselElement = document.getElementById('carousel');
+            const carouselElement1 = document.getElementById('carousel1');
+
+            if (value === 'Thực đơn 1') {
+                setImageMenu('http://atesco.vn/admin/webroot/upload/image/images/cc.jpg');
+            } else if (value === 'Thực đơn 2') {
+                setImageMenu('http://atesco.vn/admin/webroot/upload/image/images/d8.jpg');
+            } else if (value === 'Thực đơn 3') {
+                setImageMenu('http://atesco.vn/admin/webroot/upload/image/images/d6.jpg');
+            } else if (value === 'Thực đơn 4') {
+                setImageMenu('http://atesco.vn/admin/webroot/upload/image/images/d4.jpg');
+            } else if (value === '') {
+                setImageMenu('');
+            }
+            setFormData((prevData) => ({ ...prevData, [name]: value }));
         } else {
             setFormData((prevData) => ({ ...prevData, [name]: value }));
         }
@@ -140,149 +158,188 @@ function Order() {
     }, [formData]);
     console.log(isSuccess);
     return (
-        <div className={cx('row')}>
-            <div className={cx('c-5')}>
-                <form className={cx('formBooking')} onSubmit={handleSubmit}>
-                    <h1 className={cx('titleHeading')}>Đặt tiệc tại đây</h1>
+        <div className={cx('wrapper')}>
+            <div className={cx('row')}>
+                <div className={cx('c-5')}>
+                    <form className={cx('formBooking')} onSubmit={handleSubmit}>
+                        <h2 className={cx('titleForm')}>ĐẶT TIỆC TẠI ĐÂY</h2>
 
-                    <h2 className={cx('titleForm')}>Liên hệ đặt tiệc</h2>
-                    <div className={cx('bodyForm')}>
-                        <input
-                            name={'name'}
-                            value={formData.name}
-                            type={'text'}
-                            className={cx('input')}
-                            placeholder="Họ và tên"
-                            onChange={handleChange}
-                        ></input>
-                        <input
-                            name={'phone'}
-                            type={'phone'}
-                            value={formData.phone}
-                            className={cx('input')}
-                            placeholder="Điện thoại"
-                            onChange={handleChange}
-                        ></input>
-                        <input
-                            name={'eventDate'}
-                            value={formData.eventDate}
-                            type={'date'}
-                            className={cx('input')}
-                            onChange={handleChange}
-                        ></input>
-                        <select
-                            name={'eventType'}
-                            value={formData.eventType}
-                            type={'text'}
-                            className={cx('input')}
-                            placeholder="Loại tiệc"
-                            onChange={handleChange}
-                        >
-                            <option value="">--- Chọn loại tiệc ---</option>
-                            {serviceTypes &&
-                                serviceTypes.map((serviceType, index) => (
-                                    <option key={index} value={serviceType.name}>
-                                        {serviceType.name}
-                                    </option>
-                                ))}
-                        </select>
+                        <div className={cx('bodyForm')}>
+                            <input
+                                name={'name'}
+                                value={formData.name}
+                                type={'text'}
+                                className={cx('input')}
+                                placeholder="Họ và tên"
+                                onChange={handleChange}
+                            ></input>
+                            <input
+                                name={'phone'}
+                                type={'phone'}
+                                value={formData.phone}
+                                className={cx('input')}
+                                placeholder="Điện thoại"
+                                onChange={handleChange}
+                            ></input>
+                            <input
+                                name={'eventDate'}
+                                value={formData.eventDate}
+                                type={'date'}
+                                className={cx('input')}
+                                onChange={handleChange}
+                            ></input>
+                            <select
+                                name={'eventType'}
+                                value={formData.eventType}
+                                type={'text'}
+                                className={cx('input')}
+                                placeholder="Loại tiệc"
+                                onChange={handleChange}
+                            >
+                                <option value="">--- Chọn loại tiệc ---</option>
+                                {serviceTypes &&
+                                    serviceTypes.map((serviceType, index) => (
+                                        <option key={index} value={serviceType.name}>
+                                            {serviceType.name}
+                                        </option>
+                                    ))}
+                            </select>
 
-                        <select
-                            name={'lobbyType'}
-                            type={'text'}
-                            value={formData.lobbyType}
-                            className={cx('input')}
-                            placeholder="Loại sảnh"
-                            onChange={handleChange}
-                        >
-                            <option value="">--- Chọn sảnh ---</option>
-                            {lobbies &&
-                                lobbies.map((lobby, index) => (
-                                    <option key={index} value={lobby.name}>
-                                        Sảnh {lobby.name} - Sức chứa: {lobby.capacity}
-                                    </option>
-                                ))}
-                        </select>
-                        <input
-                            name={'numbersTable'}
-                            type={'number'}
-                            value={formData.numbersTable}
-                            className={cx('input')}
-                            placeholder="Số bàn"
-                            max={formData.capacity}
-                            onChange={handleChange}
-                        ></input>
-                        <select
-                            name={'servicePackage'}
-                            type={'text'}
-                            value={formData.servicePackage}
-                            className={cx('input')}
-                            placeholder="Gói dịch vụ"
-                            onChange={handleChange}
-                        >
-                            <option value="">-- Chọn gói dịch vụ --</option>
-                            {packages &&
-                                packages.map((item, index) => (
-                                    <option key={index} value={item.packageName}>
-                                        {item.packageName}
-                                    </option>
-                                ))}
-                        </select>
-                    </div>
-                    <div className={cx('wrapper')}>
-                        <Button className={cx('btnBooking')}>Đặt tiệc</Button>
-                    </div>
-                    <div className={cx('footerBooking')}>
-                        <h3 className={cx('hotLine')}>Hotline: 0328038817</h3>
-                    </div>
-                    {error && (
-                        <Modal
-                            show={showErrorModal}
-                            onHide={() => setShowErrorModal(false)}
-                            style={{ color: 'red' }}
-                            className={cx('modal-error')}
-                        >
-                            <Modal.Header closeButton>
-                                <Modal.Title>Error</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>{error}</Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={() => setShowErrorModal(false)}>
-                                    Close
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
-                    )}
-                    {success && (
-                        <Modal
-                            show={showSuccessModal}
-                            onHide={() => setShowSuccessModal(false)}
-                            style={{ color: 'green', textAlign: 'center', fontSize: '20px' }}
-                        >
-                            <Modal.Header closeButton>
-                                <Modal.Title>{success}</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>Đặt tiệc thành công </Modal.Body>
-                        </Modal>
-                    )}
-                </form>
-            </div>
-            <div className={cx('c-7')}>
-                <Carousel
-                    className={cx('carousel')}
-                    showThumbs={false}
-                    centerSlidePercentage={50}
-                    autoPlay
-                    showStatus={false}
-                    infiniteLoop
-                    interval={2000}
-                >
-                    {urls.map((url) => (
-                        <div className={cx('div')}>
-                            <img src={url} />
+                            <select
+                                name={'lobbyType'}
+                                type={'text'}
+                                value={formData.lobbyType}
+                                className={cx('input')}
+                                placeholder="Loại sảnh"
+                                onChange={handleChange}
+                            >
+                                <option value="">--- Chọn sảnh ---</option>
+                                {lobbies &&
+                                    lobbies.map((lobby, index) => (
+                                        <option key={index} value={lobby.name}>
+                                            Sảnh {lobby.name} - Sức chứa: {lobby.capacity}
+                                        </option>
+                                    ))}
+                            </select>
+                            <input
+                                name={'numbersTable'}
+                                type={'number'}
+                                value={formData.numbersTable}
+                                className={cx('input')}
+                                placeholder="Số bàn"
+                                max={formData.capacity}
+                                onChange={handleChange}
+                            ></input>
+                            <select
+                                name={'servicePackage'}
+                                type={'text'}
+                                value={formData.servicePackage}
+                                className={cx('input')}
+                                placeholder="Gói dịch vụ"
+                                onChange={handleChange}
+                            >
+                                <option value="">-- Chọn dịch vụ khác --</option>
+                                {packages &&
+                                    packages.map((item, index) => (
+                                        <option key={index} value={item.packageName}>
+                                            {item.packageName}
+                                        </option>
+                                    ))}
+                            </select>
+                            <select
+                                name={'menu'}
+                                type={'text'}
+                                value={formData.menu}
+                                className={cx('input')}
+                                placeholder="Loại sảnh"
+                                onChange={handleChange}
+                            >
+                                <option value="">--- Chọn thực đơn ---</option>
+                                <option value="Thực đơn 1">Thực đơn 1</option>
+                                <option value="Thực đơn 2">Thực đơn 2</option>
+                                <option value="Thực đơn 3">Thực đơn 3</option>
+                                <option value="Thực đơn 4">Thực đơn 4</option>
+                            </select>
                         </div>
-                    ))}
-                </Carousel>
+                        <div className={cx('wrapper')}>
+                            <Button className={cx('btnBooking')}>Đặt tiệc</Button>
+                        </div>
+                        <div className={cx('footerBooking')}>
+                            <h3 className={cx('hotLine')}>Hotline: 0328038817</h3>
+                        </div>
+                        {error && (
+                            <Modal
+                                show={showErrorModal}
+                                onHide={() => setShowErrorModal(false)}
+                                style={{ color: 'red' }}
+                                className={cx('modal-error')}
+                            >
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Error</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>{error}</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={() => setShowErrorModal(false)}>
+                                        Close
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+                        )}
+                        {success && (
+                            <Modal
+                                show={showSuccessModal}
+                                onHide={() => setShowSuccessModal(false)}
+                                style={{ color: 'green', textAlign: 'center', fontSize: '20px' }}
+                            >
+                                <Modal.Header closeButton>
+                                    <Modal.Title>{success}</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Đặt tiệc thành công </Modal.Body>
+                            </Modal>
+                        )}
+                    </form>
+                </div>
+                <div className={cx('c-7')} id="carousel">
+                    {imageMenu !== '' ? (
+                        <Carousel
+                            className={cx('carousel')}
+                            showThumbs={false}
+                            centerSlidePercentage={50}
+                            autoPlay
+                            showIndicators={false}
+                            showStatus={false}
+                            infiniteLoop
+                            interval={2000}
+                        >
+                            <div className={cx('div-menu')}>
+                                <img src={imageMenu} />
+                            </div>
+                        </Carousel>
+                    ) : (
+                        <Carousel
+                            className={cx('carousel')}
+                            showThumbs={false}
+                            centerSlidePercentage={50}
+                            autoPlay
+                            showStatus={false}
+                            infiniteLoop
+                            interval={2000}
+                        >
+                            {urls.map((url) => (
+                                <div className={cx('div')}>
+                                    <img src={url} />
+                                </div>
+                            ))}
+                        </Carousel>
+                    )}
+                </div>
+                {/* <div className={cx('c-7')} id="carousel1" style={{ display: 'none' }}>
+                <div className={cx('carousel')}>
+                    <div className={cx('div-menu')}>
+                        <img src={imageMenu} />
+                    </div>
+                </div>
+            </div> */}
             </div>
         </div>
     );
