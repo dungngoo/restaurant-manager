@@ -26,7 +26,7 @@ import FormCreateBooking from '~/components/Layout/components/FormCreateBooking'
 const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
     { path: '/discover/:constant', component: Discover },
-    { path: '/services/:type', component: Service },
+    { path: '/services/:name', component: Service },
     { path: '/promotion-cat/:param', component: Promotion },
     // { path: '/promotion-cat/type/', component: Promotion },
     { path: '/library', component: Library },

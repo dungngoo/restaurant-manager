@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Order() {
@@ -21,20 +22,22 @@ function Order() {
     const [success, setSuccess] = useState(null);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [menus, setMenus] = useState([]);
     const [lobbies, setLobbies] = useState([]);
     const [serviceTypes, setServiceTypes] = useState([]);
     const [prevFormData, setPrevFormData] = useState(null);
-    const [packages, setPackages] = useState([]);
+    const [serviceOthers, setServiceOthers] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
+        email: '',
         phone: '',
         eventDate: '',
         eventType: '',
-        servicePackage: '',
         lobbyType: '',
         numbersTable: '',
+        servicePackage: [],
         capacity: '',
-        text: '',
     });
 
     useEffect(() => {
@@ -60,23 +63,23 @@ function Order() {
                 console.log(error.message);
             }
         }
-        async function getPackages() {
+        async function getMenu() {
             try {
-                const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/packages/`);
+                const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/menus`);
                 const data = await response.json();
-                console.log('Packages: ', data);
-                setPackages(data);
+                console.log('Menus: ', data);
+                setMenus(data);
             } catch (error) {
                 console.log(error.message);
             }
         }
+        getMenu();
         getLobbies();
         getServiceType();
-        getPackages();
     }, []);
 
     function handleChange(event) {
-        const { name, value } = event.target;
+        const { name, value, checked } = event.target;
         if (name === 'lobbyType') {
             const lobby = lobbies.find((l) => l.name === value.substring());
             setFormData((prevData) => ({
@@ -84,10 +87,39 @@ function Order() {
                 lobbyType: value,
                 capacity: lobby ? lobby.capacity : '',
             }));
+        } else if (name === 'eventType') {
+            if (value !== '') {
+                let type = value;
+                console.log(type);
+                async function getServiceFollowServiceType() {
+                    try {
+                        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/services/${type}`);
+                        const data = await response.json();
+                        console.log('Service orthers: ', data);
+                        setServiceOthers(data);
+                    } catch (error) {
+                        console.log(error.message);
+                    }
+                }
+                getServiceFollowServiceType();
+            } else {
+                setServiceOthers([]);
+            }
+            setFormData((prevData) => ({ ...prevData, [name]: value }));
+        } else if (name === 'servicePackage') {
+            if (checked) {
+                formData.servicePackage.push(value);
+            } else {
+                const index = formData.servicePackage.indexOf(value);
+                if (index > -1) {
+                    formData.servicePackage.splice(index, 1);
+                }
+            }
+            setFormData((prevData) => ({
+                ...prevData,
+                servicePackage: formData.servicePackage,
+            }));
         } else if (name === 'menu') {
-            const carouselElement = document.getElementById('carousel');
-            const carouselElement1 = document.getElementById('carousel1');
-
             if (value === 'Thực đơn 1') {
                 setImageMenu('http://atesco.vn/admin/webroot/upload/image/images/cc.jpg');
             } else if (value === 'Thực đơn 2') {
@@ -107,6 +139,7 @@ function Order() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        setLoading(true);
         // check if formData is valid
         const isValidForm =
             formData.name !== '' &&
@@ -122,24 +155,55 @@ function Order() {
             if (JSON.stringify(formData) === JSON.stringify(prevFormData)) {
                 setError('Bạn đã đặt tiệc rồi. Hãy thay đổi dữ liệu!!!');
                 setSuccess(null);
+                setLoading(false);
             } else {
-                async function sendBooking(formData) {
+                async function sendBookingAndEmail(formData) {
                     try {
-                        const response = await axios.post(
+                        // Gửi booking và email đồng thời
+                        const responseBooking = await axios.post(
+                            `${process.env.REACT_APP_SERVER_URL}/bookings/`,
+                            formData,
+                        );
+                        const responseEmail = await axios.post(
                             `${process.env.REACT_APP_SERVER_URL}/bookings/sendEmail`,
                             formData,
                         );
-                        console.log(response.data);
-                        setSuccess(response.data);
+
+                        // Xử lý kết quả trả về từ server
+                        console.log(responseBooking.data.success, responseEmail.data.success);
+                        if (responseBooking.data.success && responseEmail.data.success) {
+                            // Nếu cả hai thành công, hiển thị thông báo thành công cho người dùng
+                            setSuccess('Đặt tiệc thành công');
+                            setFormData({
+                                name: '',
+                                email: '',
+                                phone: '',
+                                eventDate: '',
+                                eventType: '',
+                                lobbyType: '',
+                                numbersTable: '',
+                                servicePackage: [],
+                                capacity: '',
+                            });
+                            setLoading(false);
+                        } else {
+                            // Nếu có lỗi xảy ra, hiển thị thông báo lỗi cho người dùng
+                            setError('Lỗi khi gửi đơn đặt tiệc');
+                            setLoading(false);
+                        }
                     } catch (error) {
-                        setError(error.response.data.error);
+                        console.error(error);
+                        // Nếu có lỗi xảy ra khi gọi API, hiển thị thông báo lỗi cho người dùng
+                        setError('Lỗi khi gửi đơn đặt tiệc');
+                        setLoading(false);
                     }
                 }
-                sendBooking(formData);
+                sendBookingAndEmail(formData);
                 setPrevFormData(formData);
             }
         } else {
             setError('Vui lòng điền đầy đủ thông tin!');
+            setLoading(false);
         }
     }
     console.log(prevFormData);
@@ -174,6 +238,14 @@ function Order() {
                                 onChange={handleChange}
                             ></input>
                             <input
+                                name={'email'}
+                                type={'email'}
+                                value={formData.email}
+                                className={cx('input')}
+                                placeholder="Email"
+                                onChange={handleChange}
+                            ></input>
+                            <input
                                 name={'phone'}
                                 type={'phone'}
                                 value={formData.phone}
@@ -199,7 +271,7 @@ function Order() {
                                 <option value="">--- Chọn loại tiệc ---</option>
                                 {serviceTypes &&
                                     serviceTypes.map((serviceType, index) => (
-                                        <option key={index} value={serviceType.name}>
+                                        <option key={index} value={serviceType.type}>
                                             {serviceType.name}
                                         </option>
                                     ))}
@@ -230,22 +302,27 @@ function Order() {
                                 max={formData.capacity}
                                 onChange={handleChange}
                             ></input>
-                            <select
-                                name={'servicePackage'}
-                                type={'text'}
-                                value={formData.servicePackage}
-                                className={cx('input')}
-                                placeholder="Gói dịch vụ"
-                                onChange={handleChange}
-                            >
-                                <option value="">-- Chọn dịch vụ khác --</option>
-                                {packages &&
-                                    packages.map((item, index) => (
-                                        <option key={index} value={item.packageName}>
-                                            {item.packageName}
-                                        </option>
+                            {serviceOthers.length > 0 && (
+                                <div className={cx('wrap-checkbox')}>
+                                    <p>Chọn dịch vụ khác:</p>
+                                    {serviceOthers.map((service, index) => (
+                                        <div className={cx('wrap-service')}>
+                                            <label key={index}>
+                                                <input
+                                                    name="servicePackage"
+                                                    type="checkbox"
+                                                    value={service.serviceName}
+                                                    className={cx('c-3')}
+                                                    checked={formData.servicePackage.includes(service.serviceName)}
+                                                    onChange={handleChange}
+                                                />
+                                                <span>{service.serviceName}</span>
+                                            </label>
+                                        </div>
                                     ))}
-                            </select>
+                                </div>
+                            )}
+
                             <select
                                 name={'menu'}
                                 type={'text'}
@@ -255,14 +332,22 @@ function Order() {
                                 onChange={handleChange}
                             >
                                 <option value="">--- Chọn thực đơn ---</option>
-                                <option value="Thực đơn 1">Thực đơn 1</option>
-                                <option value="Thực đơn 2">Thực đơn 2</option>
-                                <option value="Thực đơn 3">Thực đơn 3</option>
-                                <option value="Thực đơn 4">Thực đơn 4</option>
+                                {menus.length > 0 &&
+                                    menus.map((menu, i) => (
+                                        <option value={menu.name} key={i}>
+                                            {menu.name}
+                                        </option>
+                                    ))}
                             </select>
                         </div>
-                        <div className={cx('wrapper')}>
-                            <Button className={cx('btnBooking')}>Đặt tiệc</Button>
+                        <div className={cx('wrapper-booking')}>
+                            {loading ? (
+                                <div className={cx('loading')}>
+                                    <i className="fas fa-circle-notch fa-spin"></i>
+                                </div>
+                            ) : (
+                                <Button className={cx('btnBooking')}>Đặt tiệc</Button>
+                            )}
                         </div>
                         <div className={cx('footerBooking')}>
                             <h3 className={cx('hotLine')}>Hotline: 0328038817</h3>
@@ -301,20 +386,9 @@ function Order() {
                 </div>
                 <div className={cx('c-7')} id="carousel">
                     {imageMenu !== '' ? (
-                        <Carousel
-                            className={cx('carousel')}
-                            showThumbs={false}
-                            centerSlidePercentage={50}
-                            autoPlay
-                            showIndicators={false}
-                            showStatus={false}
-                            infiniteLoop
-                            interval={2000}
-                        >
-                            <div className={cx('div-menu')}>
-                                <img src={imageMenu} />
-                            </div>
-                        </Carousel>
+                        <div className={cx('div-menu')}>
+                            <img src={imageMenu} />
+                        </div>
                     ) : (
                         <Carousel
                             className={cx('carousel')}
@@ -333,13 +407,6 @@ function Order() {
                         </Carousel>
                     )}
                 </div>
-                {/* <div className={cx('c-7')} id="carousel1" style={{ display: 'none' }}>
-                <div className={cx('carousel')}>
-                    <div className={cx('div-menu')}>
-                        <img src={imageMenu} />
-                    </div>
-                </div>
-            </div> */}
             </div>
         </div>
     );

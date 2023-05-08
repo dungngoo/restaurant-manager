@@ -10,6 +10,8 @@
     flex: 0 0 58.33333%;
     max-width: 58.33333%;
     margin-bottom: 40px;
+    width: 100%;
+    height: 100%;
     :global(.carousel .control-prev.control-arrow:before) {
         border-width: 20px;
         margin-top: -18px;
@@ -21,10 +23,11 @@
 }
 .carousel {
     display: flex;
-    height: 100%;
     align-items: center;
+    height: 100%;
+    width: 100%;
     img {
-        height: 740px;
+        height: 100%;
         object-fit: cover;
         object-position: center;
     }
@@ -87,10 +90,6 @@
         outline: 0;
         box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     }
-}
-.wrapper {
-    width: 100%;
-    margin: 20px 0px;
 }
 
 .btnBooking {
@@ -157,9 +156,37 @@
 }
 .div-menu {
     display: flex;
-    height: 740px;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    border: 10px solid rgb(242, 118, 118);
+    border-radius: 8px;
     img {
+        border-radius: 8px;
         width: 100%;
         height: 100%;
     }
+}
+.div {
+    height: 970px;
+}
+.wrap-checkbox {
+    padding: 16px 40px 0px 40px;
+    span {
+        padding: 4px;
+        font-size: 14px;
+    }
+}
+.c-3 {
+    margin-bottom: 20px;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.wrapper-booking {
+    padding-top: 20px;
+}
+.loading{
+    padding: 10px;
+    text-align: center;
+    font-size: 30px;
 }

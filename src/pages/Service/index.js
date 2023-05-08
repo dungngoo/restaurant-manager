@@ -7,19 +7,13 @@ import { Link, useParams } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 const cx = classNames.bind(styles);
 
-function Service(props) {
+function Service() {
     const [services, setServices] = useState([]);
     const [service, setService] = useState('');
-    const { type } = useParams();
+    const { name } = useParams();
 
     useEffect(() => {
-        async function getServiceByServiceType() {
-            const requestUrl = `${process.env.REACT_APP_SERVER_URL}/services/${type}`;
-            const response = await fetch(requestUrl);
-            const data = await response.json();
-            console.log('Service:', data);
-            setService(data[0]);
-        }
+        // Lấy ra 4 loại dịch vụ
         async function getServiceTypes() {
             const requestUrl = `${process.env.REACT_APP_SERVER_URL}/serviceTypes/type`;
             const response = await fetch(requestUrl);
@@ -27,12 +21,18 @@ function Service(props) {
             console.log('Services', data);
             setServices(data);
         }
-        getServiceByServiceType();
+        // Lấy loại dịch vụ theo tên
+        async function getServiceByName() {
+            const requestUrl = `${process.env.REACT_APP_SERVER_URL}/serviceTypes/${name}`;
+            const response = await fetch(requestUrl);
+            const data = await response.json();
+            console.log('Service', data);
+            setService(data);
+        }
         getServiceTypes();
-    }, [type]);
-    if (!service || !service.description || !service.imgs) {
-        return <div>Loading...</div>;
-    }
+        getServiceByName();
+    }, [name]);
+
     const layout1 = (service) => {
         return service.description.map((item, index) => <p key={index}>{item}</p>);
     };
@@ -53,7 +53,6 @@ function Service(props) {
             </>
         );
     };
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('wrapper-header')}>
@@ -64,10 +63,10 @@ function Service(props) {
                             {services.map((service, index) => (
                                 <li key={index}>
                                     <Link
-                                        to={service.link}
+                                        to={`/services/${service.type}`}
                                         className={cx(
                                             'navbar-link',
-                                            window.location.pathname === service.link ? 'selected' : '',
+                                            window.location.pathname === `/services/${service.type}` ? 'selected' : '',
                                         )}
                                     >
                                         <span className={cx('span-item')}>{service.name}</span>
@@ -78,10 +77,11 @@ function Service(props) {
                     </div>
                 </div>
             </div>
-            {service && (window.location.pathname === '/services/tiec-su-kien/' ? layout2(service) : layout1(service))}
+            {service &&
+                (window.location.pathname === '/services/tiec-su-kien/' ? layout2(service[0]) : layout1(service[0]))}
             {service && (
                 <Carousel thumbWidth={150} autoPlay showStatus={false} infiniteLoop onSwipeMove>
-                    {service.imgs.map((item, index) => (
+                    {service[0].imgs.map((item, index) => (
                         <div className={cx('div')} key={index}>
                             <img src={item} />
                         </div>

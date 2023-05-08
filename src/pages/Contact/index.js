@@ -9,8 +9,8 @@ function Contact() {
     const [formData, setFormData] = useState({
         email: '',
         phone: '',
-        title: '',
         text: '',
+        name: '',
     });
 
     function handleSubmit(e) {
@@ -27,7 +27,7 @@ function Contact() {
         }
 
         // Kiểm tra các trường khác
-        if (!formData.title || !formData.text) {
+        if (!formData.name && !formData.text) {
             alert('Vui lòng nhập đầy đủ thông tin!');
             return;
         }
@@ -46,15 +46,15 @@ function Contact() {
             if (response.ok) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Success',
-                    text: 'Email sent successfully!',
+                    title: 'Thành công',
+                    text: 'Cám ơn bạn đã liên hệ với nhà hàng chúng tôi',
                 });
                 clearForm();
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error',
-                    text: 'Failed to send email.',
+                    title: 'Lỗi',
+                    text: 'Đã có lỗi khi gửi liên hệ, xin mời kiểm tra lại!',
                 });
             }
         }
@@ -65,12 +65,15 @@ function Contact() {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
     function clearForm() {
-        document.getElementById('title').value = '';
+        document.getElementById('name').value = '';
         document.getElementById('email').value = '';
         document.getElementById('phone').value = '';
         document.getElementById('text').value = '';
     }
     console.log(document.getElementById('email'));
+    console.log(document.getElementById('name'));
+    console.log(document.getElementById('phone'));
+    console.log(document.getElementById('text'));
     return (
         <div className={cx('grid')}>
             <div className={cx('row')}>
@@ -90,13 +93,21 @@ function Contact() {
                                 <div>
                                     <span>Liên hệ: 0328038817</span>
                                 </div>
-                                <div>CSKH: (028) 35.88.33.99 – CSKH@dhpalace.com.vn </div>
-                                <div>Email: marketing@dh.com.vn</div>
+                                <div>CSKH: (032) 80.388.17 – CSKHDHPALACE@gmail.com</div>
+                                <div>Email: CSKHDHPALACE@gmail.com</div>
                             </div>
                         </div>
                         <div className={cx('c-12')}>
                             <form className={cx('formContact')} onSubmit={handleSubmit}>
                                 <h4 className={cx('titleForm')}>Gửi liên hệ</h4>
+                                <input
+                                    name="name"
+                                    id="name"
+                                    className={cx('input')}
+                                    placeholder="Họ và tên"
+                                    value={formData.name}
+                                    onChange={handleChangeInput}
+                                ></input>
                                 <input
                                     name="email"
                                     id="email"
@@ -113,14 +124,7 @@ function Contact() {
                                     value={formData.phone}
                                     onChange={handleChangeInput}
                                 ></input>
-                                <input
-                                    id="title"
-                                    name="title"
-                                    className={cx('input')}
-                                    placeholder="Tiêu đề"
-                                    value={formData.title}
-                                    onChange={handleChangeInput}
-                                ></input>
+
                                 <textarea
                                     rows={5}
                                     id="text"
