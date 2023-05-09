@@ -3,17 +3,12 @@ import Modal from 'react-bootstrap/Modal';
 import styles from './ModalUpdateStaff.module.scss';
 import classNames from 'classnames/bind';
 import Button from '~/components/Button';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
-function ModalUpdateStaff({ handleClose, show, selectedStaff }) {
-    // Chuyển hướng navigate
-
-    const [showNewImage, setShowNewImage] = useState(false);
-
-    // Error selection
+function ModalUpdateStaff({ handleClose, show, selectedStaff, showNewImage, setShowNewImage, changeFormat }) {
     const [selectionError, setSelectionError] = useState('');
+
+    // Thay đổi dữ liệu birth, date từ dd/mm/yyyy thành yyyy-mm-dd
 
     const [state, setState] = useState({
         staff_id: selectedStaff.staff_id,
@@ -30,25 +25,12 @@ function ModalUpdateStaff({ handleClose, show, selectedStaff }) {
         job: selectedStaff.job_type,
         staff_img: selectedStaff.staffImg,
     });
-    const [isSubmit, setIsSubmit] = useState(false);
-    // Thay đổi dữ liệu birth, date từ dd/mm/yyyy thành yyyy-mm-dd
-    function changeFormat(val) {
-        const myArr = val.split('/');
-
-        let year = myArr[2];
-        let month = myArr[1];
-        let day = myArr[0];
-
-        let formatDate = year + '-' + month + '-' + day;
-        return formatDate;
-    }
 
     const handleChangeInput = (evt) => {
         setState({
             ...state,
             [evt.target.name]: evt.target.value,
         });
-        console.log(state.job);
     };
 
     // Xử lý sự kiện cập nhật
@@ -80,18 +62,6 @@ function ModalUpdateStaff({ handleClose, show, selectedStaff }) {
             body: JSON.stringify(dataContent),
         };
 
-        // formData.append('email', state.email);
-        // formData.append('address', state.address);
-        // formData.append('birth', changeFormat(state.birth).toString());
-        // formData.append('birthPlace', state.birthPlace);
-        // formData.append('date', changeFormat(state.date).toString());
-        // formData.append('dateOfPlace', state.dateOfPlace);
-        // formData.append('phonenumber', state.phoneNumber.toString());
-        // formData.append('identify', state.identify);
-        // formData.append('job_type', state.job);
-        // formData.append('sex', state.sex.toString());
-        // formData.append('staffImg', state.staff_img);
-        // `${process.env.REACT_APP_SERVER_URL}/staff/${selectedStaff.staff_id}`
         fetch(`${process.env.REACT_APP_SERVER_URL}/staff/${selectedStaff._id}`, requestOptions)
             .then((res) => res.json())
             .then(async (data) => {
@@ -100,7 +70,6 @@ function ModalUpdateStaff({ handleClose, show, selectedStaff }) {
             })
             .catch((err) => console.log(err));
     };
-
     return (
         <form onSubmit={handleUpdate}>
             <Modal show={show} onHide={handleClose}>
@@ -243,7 +212,9 @@ function ModalUpdateStaff({ handleClose, show, selectedStaff }) {
                         <div className={cx('col l-4')}>
                             <p className={cx('p')}>
                                 Giới tính
-                                {state.sex === '' && <span style={{color: 'red',paddingLeft: '4px'}}>{selectionError}</span>}
+                                {state.sex === '' && (
+                                    <span style={{ color: 'red', paddingLeft: '4px' }}>{selectionError}</span>
+                                )}
                             </p>
                             <select
                                 name="sex"
@@ -260,7 +231,9 @@ function ModalUpdateStaff({ handleClose, show, selectedStaff }) {
                         <div className={cx('col l-4')}>
                             <p className={cx('p')}>
                                 Chức vụ
-                                {state.job === '' && <span style={{color: 'red',paddingLeft: '4px'}}>{selectionError}</span>}
+                                {state.job === '' && (
+                                    <span style={{ color: 'red', paddingLeft: '4px' }}>{selectionError}</span>
+                                )}
                             </p>
                             <select
                                 name="job"

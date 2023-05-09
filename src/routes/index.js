@@ -1,6 +1,7 @@
 // Layouts
 // Pages
 import Home from '~/pages/Home';
+import { Route, Navigate } from 'react-router-dom';
 import News from '~/pages/News';
 import Discover from '~/pages/Discover';
 import Library, { MonAn } from '~/pages/Library';
@@ -9,7 +10,7 @@ import Service from '~/pages/Service';
 import Contact from '~/pages/Contact';
 import Introduce from '~/pages/Introduce';
 import Order from '~/pages/Order';
-import Admin from '~/pages/Admin';
+import Admin from '~/components/Admin';
 import { AdminLayout, LoginLayout } from '~/components/Layout';
 import Docs, { Doc1, Doc2, Doc3, Doc4, Doc5 } from '~/pages/Docs';
 import HomeLayout from '~/components/Layout/HomeLayout';
@@ -28,7 +29,6 @@ const publicRoutes = [
     { path: '/discover/:constant', component: Discover },
     { path: '/services/:name', component: Service },
     { path: '/promotion-cat/:param', component: Promotion },
-    // { path: '/promotion-cat/type/', component: Promotion },
     { path: '/library', component: Library },
     { path: '/library-cat/:param/', component: EventsLibrary },
     { path: '/library-cat/hinh-am-thuc/', component: MonAn },
@@ -38,20 +38,54 @@ const publicRoutes = [
     { path: '/contact', component: Contact },
     { path: '/introduce', component: Introduce },
     { path: '/order/', component: Order },
-    { path: '/admin/login', component: Admin, layout: LoginLayout },
-    { path: '/admin/dashboard', component: Docs, layout: AdminLayout },
-    { path: '/admin/1', component: Doc1, layout: AdminLayout },
-    { path: '/admin/1/create', component: FormCreateStaff, layout: AdminLayout },
-    { path: '/admin/2', component: Doc2, layout: AdminLayout },
-    { path: '/admin/2/create', component: FormCreateBooking, layout: AdminLayout },
-    { path: '/admin/3', component: Doc3, layout: AdminLayout },
-    { path: '/admin/4', component: Doc4, layout: AdminLayout },
-    { path: '/admin/5', component: Doc5, layout: AdminLayout },
     { path: '/promotions/:id', component: PromotionData },
     { path: '/news/:id', component: NewsData, layout: NewsLayout },
     { path: '/news/page/:page', component: NewsData, layout: NewsLayout },
+    { path: '/admin/login', component: Admin, layout: LoginLayout },
 ];
 // Không vào được nếu chưa login
-const privateRoutes = [];
+
+const privateRoutes = [
+    {
+        path: '/admin',
+        component: Docs,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/1',
+        component: Doc1,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/1/create',
+        component: FormCreateStaff,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/2',
+        component: Doc2,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/2/create',
+        component: FormCreateBooking,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/3',
+        component: Doc3,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/4',
+        component: Doc4,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/5',
+        component: Doc5,
+        layout: AdminLayout,
+    },
+];
 
 export { publicRoutes, privateRoutes };

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
-function ModalDeleteStaff({ show, handleClose, header, body, save }) {
+function ModalDelete({ show, handleClose, header, body, save }) {
     return (
         <Modal show={show} onHide={handleClose} backdropClassName={cx('bd')} centered>
             <Modal.Header closeButton>{header}</Modal.Header>
@@ -26,4 +26,4 @@ function ModalDeleteStaff({ show, handleClose, header, body, save }) {
     );
 }
 
-export default ModalDeleteStaff;
+export default ModalDelete;

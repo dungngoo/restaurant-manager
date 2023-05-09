@@ -25,7 +25,7 @@ function Footer1() {
                                         <a href="/contact/">Liên Hệ</a>
                                     </li>
                                     <li className={cx('item-service')}>
-                                        <a href="/services/tiec-cuoi/">Dịch Vụ</a>
+                                        <a href="/services/tiec-cuoi">Dịch Vụ</a>
                                     </li>
                                     <li className={cx('item-service')}>
                                         <a href="/discover/ruby/">Sảnh Tiệc</a>

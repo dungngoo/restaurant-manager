@@ -59,9 +59,9 @@ function Promotion() {
                                             )}
                                         >
                                             <span className={cx('span-item')}>
-                                                {promotion.serviceType.name === 'Tiệc sự kiện'
+                                                {promotion.serviceTypeId.name === 'Tiệc sự kiện'
                                                     ? 'Sự kiện'
-                                                    : promotion.serviceType.name}
+                                                    : promotion.serviceTypeId.name}
                                             </span>
                                         </Link>
                                     </li>
