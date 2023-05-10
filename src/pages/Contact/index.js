@@ -12,7 +12,37 @@ function Contact() {
         text: '',
         name: '',
     });
-
+    const [isLoading, setIsLoading] = useState(false);
+    // Gửi email cho bộ phận CSKH của DH Palace
+    async function sendEmailtoContact() {
+        const requestUrl = `${process.env.REACT_APP_SERVER_URL}/customer/sendEmail`;
+        const response = await fetch(requestUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
+        console.log(response);
+        if (response.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: 'Cám ơn bạn đã liên hệ với nhà hàng chúng tôi',
+            }).then(() => {
+                clearForm();
+                setIsLoading(false);
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Lỗi',
+                text: 'Đã có lỗi khi gửi liên hệ, xin mời kiểm tra lại!',
+            }).then(() => {
+                setIsLoading(false);
+            });
+        }
+    }
     function handleSubmit(e) {
         e.preventDefault();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,33 +61,8 @@ function Contact() {
             alert('Vui lòng nhập đầy đủ thông tin!');
             return;
         }
-        e.preventDefault();
-        // Gửi email cho bộ phận CSKH của DH Palace
-        async function sendEmailtoContact() {
-            const requestUrl = `${process.env.REACT_APP_SERVER_URL}/contacts/sendEmail`;
-            const response = await fetch(requestUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-            console.log(response);
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Thành công',
-                    text: 'Cám ơn bạn đã liên hệ với nhà hàng chúng tôi',
-                });
-                clearForm();
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Lỗi',
-                    text: 'Đã có lỗi khi gửi liên hệ, xin mời kiểm tra lại!',
-                });
-            }
-        }
+
+        setIsLoading(true);
         sendEmailtoContact();
     }
     function handleChangeInput(e) {
@@ -65,15 +70,14 @@ function Contact() {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
     function clearForm() {
-        document.getElementById('name').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('phone').value = '';
-        document.getElementById('text').value = '';
+        setFormData({
+            email: '',
+            phone: '',
+            text: '',
+            name: '',
+        });
     }
-    console.log(document.getElementById('email'));
-    console.log(document.getElementById('name'));
-    console.log(document.getElementById('phone'));
-    console.log(document.getElementById('text'));
+
     return (
         <div className={cx('grid')}>
             <div className={cx('row')}>
@@ -135,7 +139,11 @@ function Contact() {
                                     onChange={handleChangeInput}
                                 ></textarea>
                                 <p className={cx('footerForm')}>
-                                    <button className={cx('btnSumbit')}>Gửi</button>
+                                    {isLoading ? (
+                                        <i className="fas fa-circle-notch fa-spin"></i>
+                                    ) : (
+                                        <button className={cx('btnSumbit')}>Gửi</button>
+                                    )}
                                 </p>
                             </form>
                         </div>

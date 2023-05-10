@@ -34,10 +34,12 @@
     textarea {
         border-radius: 8px;
     }
+    cursor: pointer;
 }
 .titleForm {
     text-align: center;
     text-transform: uppercase;
+    cursor: text;
 }
 .input {
     width: 100%;
@@ -63,12 +65,13 @@
     font-size: 20px;
     font-weight: 400;
     border-radius: 4px;
+    opacity: 0.9;
     background-color: var(--primary);
     color: white;
     border-color: white;
     &:hover {
         cursor: pointer;
-        background-color: rgba(59, 48, 34, 0.8);
+        opacity: 1;
         color: white;
     }
 }

@@ -73,7 +73,7 @@ function Home({ home }) {
                         <div className={cx('col l-6', 'left-content')}>
                             <p>
                                 Luôn đặt mình vào vị trí của khách hàng, lắng nghe và thấu hiểu chính là nền tảng để
-                                LUXURY PALACE tạo nên một chất lượng dịch vụ hoàn hảo.
+                                DH PALACE tạo nên một chất lượng dịch vụ hoàn hảo.
                             </p>
                             <p>
                                 Hãy để chúng tôi luôn đồng hành và mang lại cho bạn một sự kiện ẤN TƯỢNG và TRỌN VẸN
@@ -116,7 +116,7 @@ function Home({ home }) {
                                         <h1>Hội nghị</h1>
                                         <p>
                                             Luôn đặt mình vào vị trí của khách hàng, lắng nghe và thấu hiểu chính là nền
-                                            tảng để luxury palace tạo nên mộtchất lượng dịch vụ hoàn hảo và trọn vẹn
+                                            tảng để DH PALACE tạo nên mộtchất lượng dịch vụ hoàn hảo và trọn vẹn
                                             nhất.
                                         </p>
                                     </Link>
@@ -137,7 +137,7 @@ function Home({ home }) {
                                     <Link to="/services/tiec-cuoi" className={cx('cardTitle')}>
                                         <h1>Tiệc cưới</h1>
                                         <p>
-                                            LUXURY PALACE được ví như MỘT CUNG ĐIỆN tổ chức tiệc cưới vừa HIỆN ĐẠI, vừa
+                                            DH PALACE được ví như MỘT CUNG ĐIỆN tổ chức tiệc cưới vừa HIỆN ĐẠI, vừa
                                             SANG TRỌNG lại không kém phần LÃNG MẠNG. Mỗi sảnh tiệc có thiết kế riêng
                                             biệt, độc đáo và đầy ấn tượng hứa hẹn đem đến cho bạn sự lựa chọn hoàn hảo
                                             nhất. Và chúng tôi tin rằng, […]
@@ -160,7 +160,7 @@ function Home({ home }) {
                                     <Link to="/services/tiec-outside" className={cx('cardTitle')}>
                                         <h1>Tiệc outside</h1>
                                         <p>
-                                            LUXURY PALACE không chỉ phù hợp cho các loại hình tiệc trong khuôn khổ lồng
+                                            DH PALACE không chỉ phù hợp cho các loại hình tiệc trong khuôn khổ lồng
                                             kính tại trung tâm, chúng tôi còn là ĐỘI NGŨ KINH NGHIỆM tác chiến cho các
                                             loại hình tiệc outside bên ngoài. Với động ngũ là các chuyên gia năm sao
                                             hoàn toàn mang đến cho khách hàng sự CHUẨN […]
@@ -183,7 +183,7 @@ function Home({ home }) {
                                     <Link to="/services/tiec-su-kien" className={cx('cardTitle')}>
                                         <h1>Sự kiện</h1>
                                         <p>
-                                            LUXURY PALACE được thiết kế như LÂU ĐÀI HOÀNG GIA, với lối kiến trúc thích
+                                            DH PALACE được thiết kế như LÂU ĐÀI HOÀNG GIA, với lối kiến trúc thích
                                             hợp với các loại hình sự kiện trong đó có CÁC SỰ KIỆN CÁ NHÂN KHÁC NHAU: SỰ
                                             KIỆN SINH NHẬT SỰ KIỆN KỶ NIỆM NGÀY CƯỚI SỰ KIỆN LỄ ĐÍNH HÔN SỰ KIỆN LỄ GIA
                                             TIÊN SỰ KIÊN TIỆC […]
