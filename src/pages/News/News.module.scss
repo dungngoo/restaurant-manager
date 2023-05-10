@@ -74,9 +74,9 @@
     color: rgb(255, 255, 255);
     border-color: white;
     border-radius: 4px;
-
+    opacity: 0.9;
     &:hover {
-        background-color: rgba(59, 48, 34, 0.8);
+        opacity: 1;
     }
 }
 .link {

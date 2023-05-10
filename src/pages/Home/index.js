@@ -23,7 +23,6 @@ function Home({ home }) {
         const wrapPromotion = document.getElementById('wrap-promotion');
         const wrapNews = document.getElementById('wrap-news');
 
-       
         window.addEventListener('scroll', function () {
             var x = this.scrollY;
             if (x > 0 && x < 1142 - 200) {
@@ -316,7 +315,8 @@ function Home({ home }) {
             {/* Tin tức */}
 
             <div id="wrap-news" className={cx('wrap-news')}>
-                <OrtherNews title="TIN TỨC" />
+                <div style={{paddingTop: '60px'}}><h1 className={cx('header')}>TIN TỨC</h1></div>
+                <OrtherNews />
             </div>
         </div>
     );

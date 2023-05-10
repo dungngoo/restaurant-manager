@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
-function OrtherNews({ title }) {
+function OrtherNews() {
     const [news, setNews] = useState([]);
     useEffect(() => {
         async function getNews() {
@@ -27,11 +27,7 @@ function OrtherNews({ title }) {
     console.log(newsSplice);
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('wrapper-footer')}>
-                <div className={cx('footer')}>
-                    <h2 className={cx('title')}>{title}</h2>
-                </div>
-            </div>
+            <div className={cx('wrapper-footer')}></div>
             <div className={cx('wrapper-newsOrther')}>
                 <div className={cx('row')}>
                     {newsSplice.map((item, index) => {

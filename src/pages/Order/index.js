@@ -17,7 +17,6 @@ const cx = classNames.bind(styles);
 function Order() {
     const urls = [`${img1}`, `${img2}`, `${img3}`, `${img4}`, `${img5}`];
     const [error, setError] = useState(null);
-    const [isSuccess, setIsSuccess] = useState(null);
     const [imageMenu, setImageMenu] = useState('');
     const [success, setSuccess] = useState(null);
     const [showErrorModal, setShowErrorModal] = useState(false);
@@ -25,9 +24,10 @@ function Order() {
     const [menus, setMenus] = useState([]);
     const [lobbies, setLobbies] = useState([]);
     const [serviceTypes, setServiceTypes] = useState([]);
-    const [prevFormData, setPrevFormData] = useState(null);
     const [serviceOthers, setServiceOthers] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [errorCount, setErrorCount] = useState(0);
+    const [successCount, setSuccessCount] = useState(0);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -140,6 +140,7 @@ function Order() {
     function handleSubmit(event) {
         event.preventDefault();
         setLoading(true);
+
         // check if formData is valid
         const isValidForm =
             formData.name !== '' &&
@@ -148,86 +149,94 @@ function Order() {
             formData.eventType !== '' &&
             formData.lobbyType !== '' &&
             formData.numbersTable !== '' &&
-            formData.servicePackage !== '';
-
+            formData.numbersTable > 0 &&
+            formData.servicePackage !== '' &&
+            formData.menu !== '';
         if (isValidForm) {
-            // do something with formData
-            if (JSON.stringify(formData) === JSON.stringify(prevFormData)) {
-                setError('Bạn đã đặt tiệc rồi. Hãy thay đổi dữ liệu!!!');
-                setSuccess(null);
-                setLoading(false);
-            } else {
-                async function sendBookingAndEmail(formData) {
-                    try {
-                        // Gửi booking và email đồng thời
-                        const responseBooking = await axios.post(
-                            `${process.env.REACT_APP_SERVER_URL}/bookings/`,
-                            formData,
-                        );
-                        const responseEmail = await axios.post(
-                            `${process.env.REACT_APP_SERVER_URL}/bookings/sendEmail`,
-                            formData,
-                        );
-
-                        // Xử lý kết quả trả về từ server
-                        console.log(responseBooking.data.success, responseEmail.data.success);
-                        if (responseBooking.data.success && responseEmail.data.success) {
-                            // Nếu cả hai thành công, hiển thị thông báo thành công cho người dùng
-                            setSuccess('Đặt tiệc thành công');
-                            setFormData({
-                                name: '',
-                                email: '',
-                                phone: '',
-                                eventDate: '',
-                                eventType: '',
-                                lobbyType: '',
-                                numbersTable: '',
-                                servicePackage: [],
-                                capacity: '',
-                            });
-                            setLoading(false);
-                        } else {
-                            // Nếu có lỗi xảy ra, hiển thị thông báo lỗi cho người dùng
-                            setError('Lỗi khi gửi đơn đặt tiệc');
-                            setLoading(false);
-                        }
-                    } catch (error) {
-                        console.error(error);
-                        // Nếu có lỗi xảy ra khi gọi API, hiển thị thông báo lỗi cho người dùng
-                        setError('Lỗi khi gửi đơn đặt tiệc');
-                        setLoading(false);
-                    }
-                }
-                sendBookingAndEmail(formData);
-                setPrevFormData(formData);
+            async function formatData() {
+                setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    menu: '',
+                    eventDate: '',
+                    eventType: '',
+                    lobbyType: '',
+                    numbersTable: '',
+                    servicePackage: [],
+                    capacity: '',
+                });
+                setImageMenu('');
             }
+            async function sendBookingAndEmail(formData) {
+                try {
+                    // Gửi booking và email đồng thời
+                    const responseBooking = await axios.post(`${process.env.REACT_APP_SERVER_URL}/bookings/`, formData);
+                    const responseEmail = await axios.post(
+                        `${process.env.REACT_APP_SERVER_URL}/bookings/sendEmail`,
+                        formData,
+                    );
+                    console.log(responseEmail);
+                    console.log(responseBooking);
+
+                    // Xử lý kết quả trả về từ server
+                    if (responseBooking.data.success && responseEmail.data.success) {
+                        setSuccess('Đặt tiệc thành công');
+                        setSuccessCount((prev) => prev + 1);
+                        setErrorCount(0);
+                        setError('');
+                        formatData();
+                        setLoading(false);
+                    } else {
+                        setError('Lỗi khi gửi đơn đặt tiệc');
+                        setSuccess('');
+                        setLoading(false);
+                        setErrorCount((prev) => prev + 1);
+                        setSuccessCount(0);
+                    }
+                } catch (error) {
+                    setError(error.response.data.message);
+                    setLoading(false);
+                    setErrorCount((prev) => prev + 1);
+                    setSuccessCount(0);
+                }
+            }
+            sendBookingAndEmail(formData);
         } else {
-            setError('Vui lòng điền đầy đủ thông tin!');
+            setError('Thông tin đơn đặt tiệc không hợp lệ!');
             setLoading(false);
+            setErrorCount((prev) => prev + 1);
+            setSuccessCount(0);
         }
     }
-    console.log(prevFormData);
+
+    console.log('Success:' + success);
+    console.log('err:' + error);
     useEffect(() => {
         if (error) {
-            setShowErrorModal(true);
             setShowSuccessModal(false);
-        }
-        if (success) {
-            setShowErrorModal(false);
+            setShowErrorModal(true);
+        } else if (success) {
             setShowSuccessModal(true);
+            setShowErrorModal(false);
         }
     }, [error, success]);
     useEffect(() => {
-        console.log(formData);
-    }, [formData]);
-    console.log(isSuccess);
+        if (errorCount > 0) {
+            setShowSuccessModal(false);
+            setShowErrorModal(true);
+        } else if (successCount > 0) {
+            setShowSuccessModal(true);
+            setShowErrorModal(false);
+        }
+    }, [errorCount, successCount]);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('row')}>
                 <div className={cx('c-5')}>
                     <form className={cx('formBooking')} onSubmit={handleSubmit}>
                         <h2 className={cx('titleForm')}>ĐẶT TIỆC TẠI ĐÂY</h2>
-
                         <div className={cx('bodyForm')}>
                             <input
                                 name={'name'}
@@ -374,12 +383,16 @@ function Order() {
                             <Modal
                                 show={showSuccessModal}
                                 onHide={() => setShowSuccessModal(false)}
-                                style={{ color: 'green', textAlign: 'center', fontSize: '20px' }}
+                                style={{
+                                    color: 'green',
+                                    textAlign: 'center',
+                                    fontSize: '20px',
+                                }}
                             >
                                 <Modal.Header closeButton>
                                     <Modal.Title>{success}</Modal.Title>
                                 </Modal.Header>
-                                <Modal.Body>Đặt tiệc thành công </Modal.Body>
+                                <Modal.Body>Đặt tiệc thành công</Modal.Body>
                             </Modal>
                         )}
                     </form>
