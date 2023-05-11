@@ -1,0 +1,28 @@
+.wrapper {
+    margin: 0 0 20px 0;
+    padding: 0 4px
+}
+.wrap-under {
+    display: flex;
+    justify-content: space-between;
+}
+.wrap-chart {
+    padding: 30px;
+    border-radius: 4px;
+    background-color: var(--whitecolor);
+    height: 100%;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    }
+.grid {
+    padding: 10px;
+}
+.red {
+    color: rgb(239, 84, 84);
+}
+.blue {
+    color: rgb(119, 119, 235);
+}
+.green {
+    color: rgb(115, 229, 115);
+}

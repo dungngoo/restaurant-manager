@@ -216,7 +216,7 @@ function StaffList() {
                                         <div style={{ width: '65px', height: '65px' }}>
                                             <img
                                                 className={cx('img-person')}
-                                                src={`${process.env.REACT_APP_SERVER_URL}/${staff?.staffImg}`}
+                                                src={`https://website-restaurant.s3.ap-southeast-1.amazonaws.com/${staff.staffImg}`}
                                                 alt="Ảnh không tìm thấy"
                                                 style={{
                                                     width: '75%',

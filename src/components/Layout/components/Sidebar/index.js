@@ -1,42 +1,55 @@
 import styles from './Sidebar.module.scss';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import logoAdmin from '~/assets/imgs/admin/img1.jpg';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+    const [currentPath, setCurrentPath] = useState('');
     const listsManager = [
         {
             link: '1',
-            iClassname: 'fa-solid fa-house',
-            name: 'Quản lí nhân viên',
-        },
-        {
-            link: '2',
-            iClassname: 'fa-solid fa-magnifying-glass',
-            name: 'Quản lí đơn đặt tiệc',
-        },
-        {
-            link: '3',
-            iClassname: 'fa-solid fa-user',
+            iClassname: 'fa-solid fa-champagne-glasses',
             name: 'Quản lí tiệc',
         },
         {
-            link: '4',
-            iClassname: 'fa-regular fa-user',
-            name: 'Quản lí dịch vụ',
+            link: '2',
+            iClassname: 'fa-solid fa-dungeon',
+            name: 'Quản lí sảnh',
         },
         {
-            link: '5',
-            iClassname: 'fa-brands fa-facebook',
+            link: '3',
+            iClassname: 'fa-solid fa-utensils',
             name: 'Quản lí thực đơn',
         },
         {
+            link: '4',
+            iClassname: 'fa-solid fa-user',
+            name: 'Quản lí nhân viên',
+        },
+        {
+            link: '5',
+            iClassname: 'fa-solid fa-bell-concierge',
+            name: 'Quản lí dịch vụ',
+        },
+        {
             link: '6',
-            iClassname: 'fa-solid fa-check',
-            name: 'Quản lí sảnh',
+            iClassname: 'fa-solid fa-star',
+            name: 'Quản lí đơn đặt tiệc',
+        },
+        {
+            link: '7',
+            iClassname: 'fa-solid fa-chart-column',
+            name: 'Thống kê',
         },
     ];
+
+    const location = useLocation();
+
+    useEffect(() => {
+        setCurrentPath(location.pathname);
+    }, [location]);
 
     return (
         <div className={cx('wrapper')}>
@@ -51,14 +64,19 @@ function Sidebar() {
 
                 <ul className={cx('list-manager')}>
                     {listsManager.map((list, index) => (
-                        <li id="li" className={cx('item-manager')} key={index}>
+                        <li
+                            className={cx('item-manager', {
+                                active: `/admin/${list.link}` === currentPath,
+                            })}
+                            key={index}
+                        >
                             <Link to={`/admin/${list.link}`} className={cx('link')}>
                                 <div className={cx('wrap-i')}>
                                     <i className={list.iClassname}></i>
                                 </div>
-                                <span id="p" className={cx('p')}>
-                                    {list.name}
-                                </span>
+                                <div className={cx('p')}>
+                                    <span>{list.name}</span>
+                                </div>
                             </Link>
                         </li>
                     ))}

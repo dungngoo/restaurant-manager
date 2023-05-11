@@ -8,7 +8,7 @@ function Doc5() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header-clock')}>
-                <HeaderDoc text="Quản lí văn phòng" />
+                <HeaderDoc text="Quản lí thực đơn" />
                 <Clock />
             </div>
         </div>

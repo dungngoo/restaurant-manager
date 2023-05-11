@@ -1,20 +1,20 @@
 import classNames from 'classnames/bind';
-import Clock from '~/components/Clock';
+import styles from './Doc7.module.scss';
+
 import HeaderDoc from '~/components/Layout/components/HeaderDoc';
-import styles from './Doc1.module.scss';
-import StaffList from '~/components/StaffList';
+import Clock from '~/components/Clock';
+
 const cx = classNames.bind(styles);
 
-function Doc1() {
+function Docs7() {
     return (
         <div className={cx('wrapper-doc')}>
             <div className={cx('header-clock')}>
-                <HeaderDoc text="Quản lí nhân viên" />
+                <HeaderDoc text="Quản lí sảnh" />
                 <Clock />
             </div>
-            <StaffList />
         </div>
     );
 }
 
-export default Doc1;
+export default Docs7;

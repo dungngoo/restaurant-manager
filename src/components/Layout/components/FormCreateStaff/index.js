@@ -46,6 +46,12 @@ function FormCreateStaff() {
             ...state,
             [evt.target.name]: evt.target.value,
         });
+        if (evt.target.name === 'staff_img') {
+            setState({
+                ...state,
+                staff_img: evt.target.files[0],
+            });
+        }
         console.log(state);
     };
 
@@ -55,37 +61,55 @@ function FormCreateStaff() {
         setIsSubmit(true);
     };
 
+    // async function uploadToS3(file) {
+    //     const formData = new FormData();
+    //     formData.append('file', file);
+    //     try {
+    //         const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, formData, {
+    //             headers: { 'Content-Type': 'multipart/form-data' },
+    //         });
+
+    //         return res.data.Location;
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
+    async function createStaff() {
+        // const staffImg = await uploadToS3(state.staff_img);
+        // console.log(staffImg);
+        const formData = new FormData();
+        formData.append('fullname', state.fullName);
+        formData.append('email', state.email);
+        formData.append('address', state.address);
+        formData.append('birth', changeFormat(state.birth).toString());
+        formData.append('birthPlace', state.birthPlace);
+        formData.append('date', changeFormat(state.date).toString());
+        formData.append('dateOfPlace', state.dateOfPlace);
+        formData.append('phonenumber', state.phoneNumber.toString());
+        formData.append('identify', state.identify);
+        formData.append('job_type', state.job);
+        formData.append('sex', state.sex.toString());
+        formData.append('staffImg', state.staff_img);
+
+        axios
+            .post(`${process.env.REACT_APP_SERVER_URL}/staff/`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            })
+            .then(async function redirect() {
+                await window.location.replace('/admin/1');
+            })
+            .catch((err) => {
+                if (err.response) {
+                    console.log(err.response);
+                    setExistErrors(Object.values(err?.response?.data?.err));
+                }
+                console.log(existErrors);
+            });
+    }
     useEffect(() => {
         console.log(formErrors);
         if (Object.keys(formErrors).length === 0 && isSubmit) {
-            // Tạo dữ liệu và dùng axios để  post vào server: localhost:3001/staff
-            const formData = new FormData();
-            formData.append('fullname', state.fullName);
-            formData.append('email', state.email);
-            formData.append('address', state.address);
-            formData.append('birth', changeFormat(state.birth).toString());
-            formData.append('birthPlace', state.birthPlace);
-            formData.append('date', changeFormat(state.date).toString());
-            formData.append('dateOfPlace', state.dateOfPlace);
-            formData.append('phonenumber', state.phoneNumber.toString());
-            formData.append('identify', state.identify);
-            formData.append('job_type', state.job);
-            formData.append('sex', state.sex.toString());
-            formData.append('staffImg', state.staff_img);
-            axios
-                .post(`${process.env.REACT_APP_SERVER_URL}/staff/`, formData, {
-                    headers: { 'Cotent-Type': 'multipart/form-data' },
-                })
-                .then(async function redirect() {
-                    await window.location.replace('/admin/1');
-                })
-                .catch((err) => {
-                    if (err.response) {
-                        console.log(err.response);
-                        setExistErrors(Object.values(err?.response?.data?.err));
-                    }
-                    console.log(existErrors);
-                });
+            createStaff();
         }
     }, [formErrors]);
 
@@ -134,8 +158,7 @@ function FormCreateStaff() {
             errors.phoneNumber = 'Số điện thoai không được để trống!';
         } else if (!numberOnly.test(values.phoneNumber)) {
             errors.phoneNumber = 'Số điện thoai không được nhập chữ!';
-        }
-        else if (!phoneNumberOnly.test(values.phoneNumber)) {
+        } else if (!phoneNumberOnly.test(values.phoneNumber)) {
             errors.phoneNumber = 'Số điện thoai không hợp lệ!';
         }
         if (!values.birth) {
@@ -357,12 +380,7 @@ function FormCreateStaff() {
                         <p className={cx('p')}>Ảnh thẻ 3x4</p>
                     </div>
                     <div className={cx('row')}>
-                        <input
-                            id="file"
-                            type="file"
-                            onChange={(e) => setState({ ...state, staff_img: e.target.files[0] })}
-                            name="staff_img"
-                        />
+                        <input id="file" type="file" onChange={handleChangeInput} name="staff_img" />
                         <p className={cx('errors')}>{formErrors.staff_img}</p>
                     </div>
                     {state.staff_img && (

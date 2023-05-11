@@ -8,7 +8,7 @@ function Doc4() {
     return (
         <div className={cx('wrapper-doc')}>
             <div className={cx('header-clock')}>
-                <HeaderDoc text="Quản lí sảnh" />
+                <HeaderDoc text="Quản lí dịch vụ" />
                 <Clock />
             </div>
         </div>

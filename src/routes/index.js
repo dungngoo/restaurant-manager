@@ -12,7 +12,7 @@ import Introduce from '~/pages/Introduce';
 import Order from '~/pages/Order';
 import Admin from '~/components/Admin';
 import { AdminLayout, LoginLayout } from '~/components/Layout';
-import Docs, { Doc1, Doc2, Doc3, Doc4, Doc5 } from '~/pages/Docs';
+import Docs, { Doc1, Doc2, Doc3, Doc4, Doc5, Doc6 } from '~/pages/Docs';
 import HomeLayout from '~/components/Layout/HomeLayout';
 import FormCreateStaff from '~/components/Layout/components/FormCreateStaff';
 import PromotionData from '~/pages/Promotion/PromotionData';
@@ -22,6 +22,7 @@ import MenuItemsLibrary from '~/components/Layout/components/MenuItemsLibrary';
 import EventsLibrary from '~/components/Layout/components/EventsLibrary';
 import EventDetail from '~/components/EventDetail';
 import FormCreateBooking from '~/components/Layout/components/FormCreateBooking';
+import Docs7 from '~/pages/Docs/Doc7';
 
 // Không cần login
 const publicRoutes = [
@@ -53,37 +54,48 @@ const privateRoutes = [
     },
     {
         path: '/admin/1',
-        component: Doc1,
-        layout: AdminLayout,
-    },
-    {
-        path: '/admin/1/create',
-        component: FormCreateStaff,
-        layout: AdminLayout,
-    },
-    {
-        path: '/admin/2',
-        component: Doc2,
-        layout: AdminLayout,
-    },
-    {
-        path: '/admin/2/create',
-        component: FormCreateBooking,
-        layout: AdminLayout,
-    },
-    {
-        path: '/admin/3',
         component: Doc3,
         layout: AdminLayout,
     },
     {
+        path: '/admin/2',
+        component: Docs7,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/3',
+        component: Doc5,
+        layout: AdminLayout,
+    },
+    {
         path: '/admin/4',
-        component: Doc4,
+        component: Doc1,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/4/create',
+        component: FormCreateStaff,
         layout: AdminLayout,
     },
     {
         path: '/admin/5',
-        component: Doc5,
+        component: Doc4,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/6',
+        component: Doc2,
+        layout: AdminLayout,
+    },
+    {
+        path: '/admin/6/create',
+        component: FormCreateBooking,
+        layout: AdminLayout,
+    },
+
+    {
+        path: '/admin/7',
+        component: Doc6,
         layout: AdminLayout,
     },
 ];
