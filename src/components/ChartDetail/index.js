@@ -22,7 +22,7 @@ function ChartDetail({ title, data, color }) {
                         <i className="fa-solid fa-chart-simple"></i>
                     </h3>
 
-                    <h3 className={cx('text-right')}>{data}</h3>
+                    <h3 className={(cx('text-right'), `${iconClasses}`)}>{data}</h3>
                 </div>
             </div>
         </div>

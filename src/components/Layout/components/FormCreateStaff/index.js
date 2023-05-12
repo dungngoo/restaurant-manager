@@ -96,7 +96,7 @@ function FormCreateStaff() {
                 headers: { 'Content-Type': 'multipart/form-data' },
             })
             .then(async function redirect() {
-                await window.location.replace('/admin/1');
+                await window.location.replace('/admin/4');
             })
             .catch((err) => {
                 if (err.response) {

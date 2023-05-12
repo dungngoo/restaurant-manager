@@ -16,6 +16,9 @@ function StaffList() {
     const [deleteStaff, setDeleteStaff] = useState(null);
     const [deleteManyStaff, setDeleteManyStaff] = useState(null);
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+
     const [showNewImage, setShowNewImage] = useState(false);
 
     // handle error
@@ -23,11 +26,11 @@ function StaffList() {
 
     // Gọi API để lấy ra tất cả nhân viên có trong cơ sở dữ liệu
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER_URL}/staff`)
+        fetch(`${process.env.REACT_APP_SERVER_URL}/staff?limit=${pageSize}&page=${currentPage}`)
             .then((res) => res.json())
             .then((data) => setStaffs(data))
             .catch((err) => console.log(err.message));
-    }, []);
+    }, [pageSize, currentPage]);
     // ------ sự kiện checkbox all và checkbox iten -----
     const checkboxes = document.getElementsByName('staffCheckBox');
 
@@ -87,7 +90,13 @@ function StaffList() {
             })
             .catch((err) => console.log(err));
     };
+    const handlePrevPage = () => {
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
 
+    const handleNextPage = () => {
+        setCurrentPage((prevPage) => prevPage + 1);
+    };
     return (
         <div className={cx('content-doc')}>
             <div className={cx('wrap-btn')}>
@@ -129,16 +138,7 @@ function StaffList() {
 
             <div className={cx('wrap-content')}>
                 <div className={cx('header')}>
-                    <div className={cx('wrap-select')}>
-                        Hiện
-                        <select className={cx('select')}>
-                            <option>10</option>
-                            <option>25</option>
-                            <option>30</option>
-                            <option>40</option>
-                        </select>
-                        danh mục
-                    </div>
+                    <div className={cx('wrap-select')}></div>
                     {deleteManyError && <p style={{ color: 'red' }}>{deleteManyError}</p>}
                     <div className={cx('search')}>
                         Tìm kiếm:
@@ -283,11 +283,11 @@ function StaffList() {
                     </table>
                 </div>
                 <div className={cx('footer')}>
-                    <p>Hiện 1 đến 7 của 7 danh mục</p>
+                    <p></p>
                     <div className={cx('change-table')}>
-                        <button>Lùi</button>
-                        <button className={cx('active')}>1</button>
-                        <button>Tiếp</button>
+                        <button onClick={handlePrevPage}>Lùi</button>
+                        <button className={cx('active')}>{currentPage}</button>
+                        <button onClick={handleNextPage}>Tiếp</button>
                     </div>
                 </div>
             </div>

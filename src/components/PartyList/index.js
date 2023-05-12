@@ -1,37 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import Button from '../Button';
-import styles from './BookingList.module.scss';
 import classNames from 'classnames/bind';
+import styles from './PartyList.module.scss';
+import Clock from '~/components/Clock';
+import HeaderDoc from '~/components/Layout/components/HeaderDoc';
+import Button from '~/components/Button';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { confirmAlert } from 'react-confirm-alert';
-
 const cx = classNames.bind(styles);
-function BookingList() {
+
+function PartyList() {
     // const [table, setTable] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [items, setItems] = useState([]);
-
     const startIndex = (currentPage - 1) * 10 + 1;
     const [pageSize, setPageSize] = useState(10);
-    const [confirm, setConfirm] = useState(false);
-    const [flag, setFlag] = useState(false);
-    useEffect(() => {
-        async function deletePendingBookings() {
-            try {
-                const response = await axios.delete(
-                    `${process.env.REACT_APP_SERVER_URL}/bookings/deletePendingBookings`,
-                );
-                alert(response.data.message);
-            } catch (error) {
-                console.error(error.message);
-            }
-        }
+    const [items, setItems] = useState([]);
 
-        deletePendingBookings();
-    }, []);
-
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER_URL}/bookings?limit=${pageSize}&page=${currentPage}`)
+    async function getServices() {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/parties?limit=${pageSize}&page=${currentPage}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -49,7 +35,14 @@ function BookingList() {
                 setItems(formattedBookings);
             })
             .catch((err) => console.error(err.message));
-    }, [currentPage, pageSize, flag]);
+    }
+    // useEffect(() => {
+    //     deletePendingBookings();
+    // }, []);
+
+    useEffect(() => {
+        getServices();
+    }, [currentPage, pageSize]);
 
     const handlePrevPage = () => {
         setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -59,53 +52,23 @@ function BookingList() {
         setCurrentPage((prevPage) => prevPage + 1);
     };
 
-    const handlePaymentConfirmation = async (item) => {
-        if (item.status === 'pending') {
-            await confirmAlert({
-                title: 'Xác nhận thanh toán',
-                message: 'Bạn có chắc chắn muốn xác nhận đã thanh toán?',
-                buttons: [
-                    {
-                        label: 'Đồng ý',
-                        onClick: async () => {
-                            // Kiểm tra giá trị confirmed để xác nhận thanh toán
-                            console.log('a');
-                            try {
-                                const response = await axios.put(
-                                    `${process.env.REACT_APP_SERVER_URL}/bookings/updateBooking/${item._id}`,
-                                    {
-                                        status: 'paid',
-                                    },
-                                );
-                                setFlag(true);
-                                // Cập nhật trạng thái trong danh sách hiển thị
-                                const updatedItems = items.map((i) =>
-                                    i._id === item._id ? { ...i, status: 'paid' } : i,
-                                );
-                                setItems(updatedItems);
-                            } catch (error) {
-                                console.error(error.message);
-                            }
-                        },
-                        // Trả về giá trị confirmed là true
-                    },
-                    {
-                        label: 'Hủy bỏ',
-                        onClick: () => false,
-                    },
-                ],
-            });
-        }
-    };
     return (
         <div className={cx('content-doc')}>
             <div className={cx('wrap-btn')}>
                 <Button purple>
-                    <i class="fa-solid fa-print"></i>
-                    Xuất hóa đơn
+                    <i className="fa-solid fa-print"></i>
+                    In dữ liệu
                 </Button>
                 <Button pink>
-                    <i class="fa-solid fa-print"></i>
+                    <i className="fa-solid fa-clone"></i>
+                    Sao chép
+                </Button>
+                <Button yellow>
+                    <i className="fa-solid fa-file-pdf"></i>
+                    Xuất PDF
+                </Button>
+                <Button grey>
+                    <i className="fa-solid fa-file-excel"></i>
                     Xóa tất cả
                 </Button>
             </div>
@@ -126,15 +89,23 @@ function BookingList() {
                                     <input type="checkbox" id="all" />
                                 </th>
                                 <th>Thứ tự</th>
-                                <th width="400" className={cx('text-align-left')}>
+                                <th width="200" className={cx('text-align-left')}>
                                     Tên khách hàng - SĐT
                                 </th>
-                                <th className={cx('text-align-center')}>Ngày đặt tiệc</th>
-                                <th className={cx('text-align-center')}>Tên sảnh</th>
-                                <th className={cx('text-align-center')}>Số bàn</th>
-                                <th className={cx('text-align-center')}>Tên thực đơn</th>
+                                <th width="100" className={cx('text-align-center')}>
+                                    Ngày đặt tiệc
+                                </th>
+                                <th width="150" className={cx('text-align-center')}>
+                                    Tên sảnh
+                                </th>
+                                <th width="80" className={cx('text-align-center')}>
+                                    Số bàn
+                                </th>
+                                <th width="200" className={cx('text-align-center')}>
+                                    Tên thực đơn
+                                </th>
                                 <th className={cx('text-align-center')}>Loại dịch vụ</th>
-                                <th className={cx('text-align-center')}>Trạng thái</th>
+                                <th className={cx('text-align-center')}>Dịch vụ khác</th>
                                 <th width="140">Tính năng</th>
                             </tr>
                         </thead>
@@ -176,33 +147,17 @@ function BookingList() {
                                             <p className={cx('text-align-center')}>{item.serviceTypeId.name}</p>
                                         </td>
                                         <td>
-                                            <p
-                                                className={cx('text-align-center')}
-                                                onClick={() => handlePaymentConfirmation(item)}
-                                                style={{ cursor: 'pointer' }}
-                                            >
-                                                {item.status === 'pending' ? (
-                                                    <i
-                                                        className="fa-solid fa-xmark"
-                                                        style={{
-                                                            display: 'flex',
-                                                            justifyContent: 'center',
-                                                            color: 'red',
-                                                            fontSize: '30px',
-                                                        }}
-                                                    ></i>
-                                                ) : (
-                                                    <i
-                                                        className="fa-solid fa-circle-check"
-                                                        style={{
-                                                            display: 'flex',
-                                                            justifyContent: 'center',
-                                                            color: 'green',
-                                                            fontSize: '30px',
-                                                        }}
-                                                    ></i>
-                                                )}
-                                            </p>
+                                            <ul>
+                                                <p className={cx('text-align-center')}>
+                                                    {item.services &&
+                                                        item.services.map((service, j) => (
+                                                            <li key={j} className={cx('li')}>
+                                                                {service.service.serviceName}
+                                                            </li>
+                                                        ))}
+                                                </p>
+                                            </ul>
+                                            {/* <p className={cx('text-align-center')}>{item.serviceTypeId.name}</p> */}
                                         </td>
                                         <td className={cx('table-data')}>
                                             <Button small pink title="Xóa">
@@ -238,4 +193,4 @@ function BookingList() {
     );
 }
 
-export default BookingList;
+export default PartyList;

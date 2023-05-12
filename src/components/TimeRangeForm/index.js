@@ -24,23 +24,32 @@ function TimeRangeForm(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className={cx('form')}>
-            <span className={cx('span')}>
-                <label>
-                    <span className={cx('text')}> Từ ngày:</span>
-                    <input type="date" value={startTime} onChange={handleStartTimeChange} />
-                </label>
-            </span>
-            <span className={cx('span')}>
-                <label>
-                    <span className={cx('text')}> Đến ngày:</span>
-                    <input type="date" value={endTime} onChange={handleEndTimeChange} />
-                </label>
-            </span>
-            <span className={cx('span')}>
-                <Button className={cx('btn')}>Submit</Button>
-            </span>
-        </form>
+        <p>
+            <form onSubmit={handleSubmit} className={cx('form')}>
+                <span className={cx('span')}>
+                    <label>
+                        <span className={cx('text')}> Từ ngày:</span>
+                        <input type="date" value={startTime} onChange={handleStartTimeChange} />
+                    </label>
+                </span>
+                <span className={cx('span')}>
+                    <label>
+                        <span className={cx('text')}> Đến ngày:</span>
+                        <input type="date" value={endTime} onChange={handleEndTimeChange} />
+                    </label>
+                </span>
+                <span className={cx('span')}>
+                    <Button className={cx('btn')}>Submit</Button>
+                </span>
+            </form>
+            <h4>Thống kê theo:</h4>
+            <select>
+                <option>Doanh thu</option>
+                <option>Tổng số hóa đơn</option>
+                <option>Số đơn đặt tiệc</option>
+                <option>Tổng số khách hàng</option>
+            </select>
+        </p>
     );
 }
 

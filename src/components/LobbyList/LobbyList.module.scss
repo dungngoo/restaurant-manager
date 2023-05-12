@@ -1,0 +1,6 @@
+.text-solong {
+    height: 2.5em; /* thiết lập chiều cao */
+    line-height: 1.25em; /* thiết lập khoảng cách giữa 2 dòng */
+    overflow: hidden; /* ẩn phần văn bản vượt quá chiều cao */
+    text-overflow: ellipsis;
+}

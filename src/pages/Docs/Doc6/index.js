@@ -24,7 +24,7 @@ function Docs6() {
                     <ChartDetail color={'green'} title={'TỔNG SỐ ĐƠN ĐẶT TIỆC'} data={'123'} />
                 </div>
                 <div className={cx('col l-4')}>
-                    <ChartDetail color={'blue'} title={'SỐ LƯỢNG TRUY CẬP'} data={'123'} />
+                    <ChartDetail color={'blue'} title={'DOANH THU THÁNG NÀY'} data={'2000000'} />
                 </div>
             </div>
 

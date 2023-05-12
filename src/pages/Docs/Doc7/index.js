@@ -3,6 +3,7 @@ import styles from './Doc7.module.scss';
 
 import HeaderDoc from '~/components/Layout/components/HeaderDoc';
 import Clock from '~/components/Clock';
+import LobbyList from '~/components/LobbyList';
 
 const cx = classNames.bind(styles);
 
@@ -13,6 +14,7 @@ function Docs7() {
                 <HeaderDoc text="Quản lí sảnh" />
                 <Clock />
             </div>
+            <LobbyList/>
         </div>
     );
 }
