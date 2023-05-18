@@ -1,0 +1,33 @@
+.wrapper-doc {
+    overflow: hidden; 
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+    .img-wrapper {
+        position: relative;
+        text-align: center;
+        .img {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            color: rgb(239, 222, 100);
+        }
+
+        h3 {
+            margin: 0;
+        }
+    }
+}

@@ -3,86 +3,86 @@ import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FormAccount from '../FormAccount';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { faAngleDown, faUser } from '@fortawesome/free-solid-svg-icons';
 import logoHeader from '~/assets/imgs/logonhahang1.png';
-
+import logoNhaHang from '~/assets/imgs/dhpalace.png';
 const cx = classNames.bind(styles);
 
 function Header() {
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [showCartForm, setShowCartForm] = useState(false);
-    function handleClick() {
-        setShowLoginForm(!showLoginForm);
-        if (showCartForm) setShowCartForm(false);
-    }
+    // if (window.scrollY()) {
+    //     logoElement.parentElement.classList.add(cx('wrap-img-header-fullSize'));
+    // } else {
+    //     logoElement.parentElement.classList.remove(cx('wrap-img-header'));
+    // }
+    window.addEventListener('scroll', function () {
+        const logoElement = document.getElementById('logoNhaHang');
 
-    function handleClickCart() {
-        setShowCartForm(!showCartForm);
-        if (showLoginForm) setShowLoginForm(false);
-    }
+        var x = this.scrollY;
+        if (x === 0) {
+            logoElement.parentElement.classList.remove(cx('wrap-img-header'));
+            logoElement.parentElement.classList.add(cx('wrap-img-header-fullSize'));
+        } else {
+            logoElement.parentElement.classList.add(cx('wrap-img-header'));
+            logoElement.parentElement.classList.remove(cx('wrap-img-header-fullSize'));
+        }
+     
+    });
     return (
         <div className={cx('wrapper')}>
             <ul className={cx('navbar-left-header')}>
-                <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/admin">
-                        Admin
-                    </Link>
-                </li>
                 <li clasName={cx('list-item')}>
                     <Link className={cx('list-item-link')} to="/introduce">
                         Giới thiệu
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/discover">
+                    <Link className={cx('list-item-link')} to="/discover/ruby/">
                         Khám phá
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/service">
+                    <Link className={cx('list-item-link')} to="/services/tiec-cuoi">
                         Dịch vụ
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link', 'promotion')} to="/promotion">
+                    <Link className={cx('list-item-link', 'promotion')} to="/promotion-cat/tiec-cuoi/">
                         Khuyến mãi
                     </Link>
                 </li>
             </ul>
             <div clasName={cx('logo-heading')}>
                 <a className={cx('list-item-link-img')} href="/">
-                    <div className={cx('wrap-img-header')}>
-                        <img
-                            className={cx('img-header')}
-                            src="https://luxurypalace.vn/wp-content/themes/luxury-palace/image/logo_icon.png"
-                            alt="Ảnh Header"
-                        />
+                    <div className={cx('wrap-img-header-fullSize')}>
+                        <img id="logoNhaHang" className={cx('img-header')} src={logoNhaHang} alt="Ảnh Header" />
                     </div>
                 </a>
             </div>
             <ul className={cx('navbar-right-header')}>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/libary">
+                    <Link className={cx('list-item-link')} to="/library/">
                         Thư viện
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/news">
+                    <a className={cx('list-item-link')} href="/news/">
                         Tin tức
-                    </Link>
+                    </a>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/contact">
+                    <Link className={cx('list-item-link')} to="/contact/">
                         Liên hệ
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/order">
+                    <Link className={cx('list-item-link')} to="/order/">
                         <div className={cx('orders')}>Đặt tiệc</div>
                     </Link>
                 </li>
-                <li clasName={cx('list-item')}>
+                {/* <li clasName={cx('list-item')}>
                     <div className={cx('form-login')}>
                         <div className={cx('header-login')} onClick={handleClick}>
                             <div className={cx('header__wrap-logo-login')}>
@@ -95,12 +95,12 @@ function Header() {
                                     <span>Tài khoản của tôi</span>
                                     <FontAwesomeIcon icon={faAngleDown} className={cx('header__myaccount-icon')} />
                                 </div>
-                            </div>
-                            {/* Hiện account Form đăng nhập */}
-                            {showLoginForm && <FormAccount />}
-                        </div>
+                            </div> */}
+                {/* Hiện account Form đăng nhập */}
+                {showLoginForm && <FormAccount />}
+                {/* </div>
                     </div>
-                </li>
+                </li> */}
             </ul>
         </div>
     );

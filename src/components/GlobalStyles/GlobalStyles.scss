@@ -2,11 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,400;1,500;1,700&display=swap');
 @import 'bootstrap/dist/css/bootstrap.min.css';
 :root {
-    --primary: rgb(78, 51, 45);
+    --primary: rgb(0, 98, 24);
     --labelColor: rgba(78, 64, 45, 1);
     --whitecolor: #fff;
     --text-color: #bebfc0;
     --black-color: #000;
+    --description-event-color: #f15555;
     // Default layout
     --default-layout-header-hight: 100px;
     --border-radius-admin: 4px;
@@ -89,10 +90,15 @@ input[type='number']::-webkit-outer-spin-button {
     border-bottom: 1px solid #ccc;
     margin: 0 8px;
     padding-bottom: 14px;
-    button {
+    button,
+    a {
         display: inline-flex;
         justify-content: space-between;
         font-size: 12px;
+        text-decoration: none;
+        &:hover {
+            color: #003c00;
+        }
     }
     i {
         margin-right: 4px;
@@ -133,7 +139,7 @@ input[type='number']::-webkit-outer-spin-button {
     display: flex;
     width: 100%;
     border-collapse: collapse;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     th {

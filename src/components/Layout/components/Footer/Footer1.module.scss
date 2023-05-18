@@ -13,11 +13,11 @@
     padding: 20px 0;
 }
 .footer-logo {
-    width: 140px;
+    width: 240px;
 }
 .footer-content {
     display: flex;
-    padding: 60px 0;
+    padding: 0 0 60px 0;
 }
 .footer-content-left {
     display: flex;
@@ -40,8 +40,13 @@
 .item-service {
     cursor: pointer;
     padding: 2px 0;
-    &:hover {
-        text-decoration: underline;
+    a {
+        text-decoration: none;
+        color: var(--primary);
+        &:hover {
+            text-decoration: underline;
+            color: var(--primary);
+        }
     }
 }
 .footer-content-right {
@@ -74,9 +79,9 @@
     cursor: pointer;
 }
 .copyright {
-    background-color: #2b2319;
-    color: #e2c1a3;
-    font-weight: 400;
+    background-color: #f2c58a ;
+    color: rgb(64, 182, 22);
+    font-weight: 700;
     padding: 12px;
     text-align: center;
 }

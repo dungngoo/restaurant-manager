@@ -1,8 +1,83 @@
 import classNames from 'classnames/bind';
 import styles from './Contact.module.scss';
+import { useState } from 'react';
+import Swal from 'sweetalert2';
+import { Modal } from 'react-bootstrap';
 const cx = classNames.bind(styles);
 
 function Contact() {
+    const [formData, setFormData] = useState({
+        email: '',
+        phone: '',
+        text: '',
+        name: '',
+    });
+    const [isLoading, setIsLoading] = useState(false);
+    // Gửi email cho bộ phận CSKH của DH Palace
+    async function sendEmailtoContact() {
+        const requestUrl = `${process.env.REACT_APP_SERVER_URL}/customer/sendEmail`;
+        const response = await fetch(requestUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
+        console.log(response);
+        if (response.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: 'Cám ơn bạn đã liên hệ với nhà hàng chúng tôi',
+            }).then(() => {
+                clearForm();
+                setIsLoading(false);
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Lỗi',
+                text: 'Đã có lỗi khi gửi liên hệ, xin mời kiểm tra lại!',
+            }).then(() => {
+                setIsLoading(false);
+            });
+        }
+    }
+    function handleSubmit(e) {
+        e.preventDefault();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[0-9]+$/;
+        if (!formData.email.match(emailRegex)) {
+            alert('Vui lòng nhập email hợp lệ!');
+            return;
+        }
+        if (!formData.phone.match(phoneRegex)) {
+            alert('Vui lòng nhập số điện thoại hợp lệ!');
+            return;
+        }
+
+        // Kiểm tra các trường khác
+        if (!formData.name && !formData.text) {
+            alert('Vui lòng nhập đầy đủ thông tin!');
+            return;
+        }
+
+        setIsLoading(true);
+        sendEmailtoContact();
+    }
+    function handleChangeInput(e) {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
+    function clearForm() {
+        setFormData({
+            email: '',
+            phone: '',
+            text: '',
+            name: '',
+        });
+    }
+
     return (
         <div className={cx('grid')}>
             <div className={cx('row')}>
@@ -15,33 +90,62 @@ function Contact() {
                     <div className={cx('rowCol')}>
                         <div className={cx('c-12')}>
                             <div className={cx('text')}>
-                                <h4 className={cx('titleText')}>Luxury Palace</h4>
-                                <p className={cx('paragraph1')}>171 Nguyễn Thái Sơn, P.7, Quận Gò Vấp, Tp.HCM</p>
-                                <p> Liên hệ: 093 133 14 49</p>
-                                <p>CSKH: (028) 35.88.33.99 – CSKH@luxurypalace.com.vn </p>
-                                <p>Email: marketing@luxurypalace.com.vn</p>
+                                <h4 className={cx('titleText')}>DH Palace</h4>
+                                <div>
+                                    <span>171 Nguyễn Thái Sơn, P.7, Quận Gò Vấp, Tp.HCM</span>
+                                </div>
+                                <div>
+                                    <span>Liên hệ: 0328038817</span>
+                                </div>
+                                <div>CSKH: (032) 80.388.17 – CSKHDHPALACE@gmail.com</div>
+                                <div>Email: CSKHDHPALACE@gmail.com</div>
                             </div>
                         </div>
                         <div className={cx('c-12')}>
-                            <div className={cx('formContact')}>
+                            <form className={cx('formContact')} onSubmit={handleSubmit}>
                                 <h4 className={cx('titleForm')}>Gửi liên hệ</h4>
-                                <input name="inputEmail" className={cx('input')} placeholder="Email"></input>
                                 <input
-                                    name="inputPhoneNumber"
+                                    name="name"
+                                    id="name"
+                                    className={cx('input')}
+                                    placeholder="Họ và tên"
+                                    value={formData.name}
+                                    onChange={handleChangeInput}
+                                ></input>
+                                <input
+                                    name="email"
+                                    id="email"
+                                    className={cx('input')}
+                                    placeholder="Email"
+                                    value={formData.email}
+                                    onChange={handleChangeInput}
+                                ></input>
+                                <input
+                                    id="phone"
+                                    name="phone"
                                     className={cx('input')}
                                     placeholder="Số điện thoại"
+                                    value={formData.phone}
+                                    onChange={handleChangeInput}
                                 ></input>
-                                <input name="inputTitle" className={cx('input')} placeholder="Tiêu đề"></input>
+
                                 <textarea
                                     rows={5}
-                                    name="inputContent"
+                                    id="text"
+                                    name="text"
                                     className={cx('input')}
                                     placeholder="Nội dung"
+                                    value={formData.text}
+                                    onChange={handleChangeInput}
                                 ></textarea>
                                 <p className={cx('footerForm')}>
-                                    <button className={cx('btnSumbit')}>Gửi</button>
+                                    {isLoading ? (
+                                        <i className="fas fa-circle-notch fa-spin"></i>
+                                    ) : (
+                                        <button className={cx('btnSumbit')}>Gửi</button>
+                                    )}
                                 </p>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

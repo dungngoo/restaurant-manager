@@ -126,9 +126,11 @@
 .forgot-password {
     font-weight: 500;
     color: black;
+    font-size: 16px;
     position: absolute;
     text-decoration: none;
     padding-top: 8px;
+    padding-left: 100px;
     right: 0;
     &:hover {
         text-decoration: underline;
@@ -141,5 +143,12 @@
     i {
         pointer-events: all !important;
         cursor: pointer !important;
+    }
+}
+.button {
+    font-size: 16px;
+    background-color: yellow;
+    &:hover {
+        opacity: 0.8;
     }
 }

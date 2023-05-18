@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import Clock from '~/components/Clock';
 import HeaderDoc from '~/components/Layout/components/HeaderDoc';
 import styles from './Doc3.module.scss';
+import PartyList from '~/components/PartyList';
 const cx = classNames.bind(styles);
 
 function Doc3() {
@@ -11,6 +12,7 @@ function Doc3() {
                 <HeaderDoc text="Quản lí tiệc" />
                 <Clock />
             </div>
+            <PartyList />
         </div>
     );
 }

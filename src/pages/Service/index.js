@@ -1,45 +1,93 @@
 import classNames from 'classnames/bind';
-import HeaderContent from '~/components/Layout/components/HeaderContent';
 import styles from './Service.module.scss';
-import img1 from '~/assets/imgs/conference/img1.jpg';
-import img2 from '~/assets/imgs/conference/img2.jpg';
-import img3 from '~/assets/imgs/conference/img3.jpg';
-import img4 from '~/assets/imgs/conference/img4.jpg';
-import img5 from '~/assets/imgs/conference/img5.jpeg';
-import img6 from '~/assets/imgs/conference/img6.jpg';
-import img7 from '~/assets/imgs/conference/img7.jpg';
-import img8 from '~/assets/imgs/conference/img8.jpg';
-import img9 from '~/assets/imgs/conference/img9.jpg';
-import img10 from '~/assets/imgs/conference/img10.png';
-import img11 from '~/assets/imgs/conference/img11.jpg';
-import img12 from '~/assets/imgs/conference/img12.jpg';
+
 import SlideShow from '~/components/Layout/components/SlideShow';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { Carousel } from 'react-responsive-carousel';
 const cx = classNames.bind(styles);
 
 function Service() {
+    const [services, setServices] = useState([]);
+    const [service, setService] = useState('');
+    const { name } = useParams();
+
+    useEffect(() => {
+        // Lấy ra 4 loại dịch vụ
+        async function getServiceTypes() {
+            const requestUrl = `${process.env.REACT_APP_SERVER_URL}/serviceTypes/type`;
+            const response = await fetch(requestUrl);
+            const data = await response.json();
+            console.log('Services', data);
+            setServices(data);
+        }
+        // Lấy loại dịch vụ theo tên
+        async function getServiceByName() {
+            const requestUrl = `${process.env.REACT_APP_SERVER_URL}/serviceTypes/${name}`;
+            const response = await fetch(requestUrl);
+            const data = await response.json();
+            console.log('Service', data);
+            setService(data);
+        }
+        getServiceTypes();
+        getServiceByName();
+    }, [name]);
+
+    const layout1 = (service) => {
+        return service.description.map((item, index) => <p key={index}>{item}</p>);
+    };
+
+    const layout2 = (service) => {
+        const serviceSliced = service.description.slice(1, 7);
+        return (
+            <>
+                <p> {service.description[0]}</p>
+                <ul style={{ padding: '0 30px', fontSize: '18px' }}>
+                    {serviceSliced.map((item, index) => (
+                        <li key={index} className={cx('li')}>
+                            {item}
+                        </li>
+                    ))}
+                </ul>
+                <p> {service.description[7]}</p>
+            </>
+        );
+    };
     return (
-        <div className={cx('wrapper', 'abasdsad')}>
-            <div className={cx('content')}>
-                <HeaderContent title="Dịch vụ" li1="Hội nghị" li2="Tiệc cưới" li3="Tiệc outside" li4="Sự kiện" />
+        <div className={cx('wrapper')}>
+            <div className={cx('wrapper-header')}>
+                <div className={cx('header')}>
+                    <h2 className={cx('title')}>Dịch vụ</h2>
+                    <div className={cx('wrap-service')}>
+                        <ul className={cx('navbar')}>
+                            {services.map((service, index) => (
+                                <li key={index}>
+                                    <Link
+                                        to={`/services/${service.type}`}
+                                        className={cx(
+                                            'navbar-link',
+                                            window.location.pathname === `/services/${service.type}` ? 'selected' : '',
+                                        )}
+                                    >
+                                        <span className={cx('span-item')}>{service.name}</span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <SlideShow
-                // introduceParagraph="Sảnh tiệc hội nghị của LUXURY PALACE được thiết kế với công suất lớn, hệ thống âm thanh, thiết bị, ánh sáng, trình chiếu hiện đại, đẳng cấp sẽ luôn sẵn sàng mang đến một không gian đa chức năng cho mọi loại hình tổ chức sự kiện. Phong cách phục vụ tận tình, chuyên nghiệp của đội ngũ nhân viên giàu kinh nghiệm sẽ mang lại cho bạn sự hài lòng cao nhất về chất lượng dịch vụ."
-                img1={img1}
-                img2={img2}
-                img3={img3}
-                img4={img4}
-                img5={img5}
-                img6={img6}
-                img7={img7}
-                img8={img8}
-                img9={img9}
-                img10={img10}
-                img11={img11}
-                img12={img12}
-                title={
-                    'Sảnh tiệc hội nghị của LUXURY PALACE được thiết kế với công suất lớn, hệ thống âm thanh, thiết bị, ánh sáng, trình chiếu hiện đại, đẳng cấp sẽ luôn sẵn sàng mang đến một không gian đa chức năng cho mọi loại hình tổ chức sự kiện. Phong cách phục vụ tận tình, chuyên nghiệp của đội ngũ nhân viên giàu kinh nghiệm sẽ mang lại cho bạn sự hài lòng cao nhất về chất lượng dịch vụ.'
-                }
-            />
+            {service &&
+                (window.location.pathname === '/services/tiec-su-kien/' ? layout2(service[0]) : layout1(service[0]))}
+            {service && (
+                <Carousel thumbWidth={150} autoPlay showStatus={false} infiniteLoop onSwipeMove>
+                    {service[0].imgs.map((item, index) => (
+                        <div className={cx('div')} key={index}>
+                            <img src={item} />
+                        </div>
+                    ))}
+                </Carousel>
+            )}
         </div>
     );
 }

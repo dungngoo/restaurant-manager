@@ -19,6 +19,7 @@ function Button({
     yellow,
     purple,
     pink,
+    type,
     grey,
     lightgreen,
     lightorange,
@@ -37,6 +38,7 @@ function Button({
         primary,
         outline,
         text,
+        type,
         disabled,
         rouded,
         small,
@@ -56,6 +58,9 @@ function Button({
     } else if (href) {
         props.href = href;
         Comp = 'a';
+    } else if (type) {
+        props.type = type;
+        Comp = 'input';
     }
 
     return (

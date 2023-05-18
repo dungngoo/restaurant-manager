@@ -1,59 +1,47 @@
 import classNames from 'classnames/bind';
 import styles from './ContentLibrary.module.scss';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import NavbarContent from '../NavbarContent';
 
 const cx = classNames.bind(styles);
 
-function ContentLibrary() {
+function ContentLibrary(props) {
+    const { header } = props;
+
+    const { type } = useParams();
+    const [menuItems, setMenuItems] = useState([]);
+    useEffect(() => {
+        async function getMenuItemByType() {
+            try {
+                const requestUrl = `${process.env.REACT_APP_SERVER_URL}/menuitems/type`;
+                const response = await fetch(requestUrl);
+                const data = await response.json();
+                console.log(data);
+                setMenuItems(data);
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+        getMenuItemByType();
+    }, [type]);
+
     return (
-        <div className={cx('row')}>
-            <div className={cx('col6')}>
-                <a href="" className={cx('h-100')}>
-                    <div className={cx('card')}>
-                        <img
-                            className={cx('img')}
-                            src="https://luxurypalace.vn/wp-content/uploads/2019/12/IMG_1144-scaled.jpg"
-                        ></img>
-                        <div className={cx('cardOverlay')}>
-                            <h5 className={cx('cardTitle')}>1. Món ăn</h5>
+        <div className={cx('container')}>
+            <NavbarContent />
+            <div className={cx('row')}>
+                <h1 style={{ textAlign: 'center', color: '#434343' }}>{header}</h1>
+                {menuItems &&
+                    menuItems.map((menuItem, index) => (
+                        <div className={cx('col6')} key={index}>
+                            <a href={`/libraries/${menuItem.type}`} className={cx('h-100')}>
+                                <div className={cx('card')}>
+                                    <img className={cx('img')} src={menuItem.image}></img>
+                                    <a className={cx('a')}>{menuItem.type}</a>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div className={cx('col6')}>
-                <a href="" className={cx('h-100')}>
-                    <div className={cx('card')}>
-                        <img
-                            className={cx('img')}
-                            src="	https://luxurypalace.vn/wp-content/uploads/2020/01/LUL02306.jpg"
-                        ></img>
-                        <div className={cx('cardOverlay')}>
-                            <h5 className={cx('cardTitle')}>2. Sự kiện cưới</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div className={cx('col6')}>
-                <a href="" className={cx('h-100')}>
-                    <div className={cx('card')}>
-                        <img
-                            className={cx('img')}
-                            src="https://luxurypalace.vn/wp-content/uploads/2019/12/8288fe19db363c686527.jpg"
-                        ></img>
-                        <div className={cx('cardOverlay')}>
-                            <h5 className={cx('cardTitle')}>3. Sự kiện công ty</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div className={cx('col6')}>
-                <a href="" className={cx('h-100')}>
-                    <div className={cx('card')}>
-                        <img className={cx('img')} src="https://luxurypalace.vn/wp-content/uploads/2021/12/6.jpg"></img>
-                        <div className={cx('cardOverlay')}>
-                            <h5 className={cx('cardTitle')}>4. Sự kiện cá nhân khác</h5>
-                        </div>
-                    </div>
-                </a>
+                    ))}
             </div>
         </div>
     );

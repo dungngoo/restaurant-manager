@@ -9,8 +9,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 60px;
     text-transform: uppercase;
-    color: #434343;
+    color: var(--primary);
 }
 .c-12 {
     display: block;
@@ -19,19 +20,26 @@
 }
 .text {
     margin: 30px 25px;
-    text-align: right;
 }
 .titleText {
+    text-align: center;
     text-transform: uppercase;
 }
 
 .formContact {
-    display: block;
     margin: 30px 25px;
+    input {
+        border-radius: 8px;
+    }
+    textarea {
+        border-radius: 8px;
+    }
+    cursor: pointer;
 }
 .titleForm {
-    text-align: right;
+    text-align: center;
     text-transform: uppercase;
+    cursor: text;
 }
 .input {
     width: 100%;
@@ -56,12 +64,14 @@
     padding: 5px 0;
     font-size: 20px;
     font-weight: 400;
-    background-color: rgba(78, 64, 45, 0.8);
+    border-radius: 4px;
+    opacity: 0.9;
+    background-color: var(--primary);
     color: white;
     border-color: white;
     &:hover {
         cursor: pointer;
-        background-color: rgba(59, 48, 34, 0.8);
+        opacity: 1;
         color: white;
     }
 }

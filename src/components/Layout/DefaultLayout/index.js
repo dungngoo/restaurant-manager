@@ -3,6 +3,7 @@ import styles from './DefaultLayout.module.scss';
 import classNames from 'classnames/bind';
 
 import Footer from '../components/Footer';
+import OrtherNews from '~/pages/News/OrtherNews';
 
 const cx = classNames.bind(styles);
 
