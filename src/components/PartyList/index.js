@@ -32,6 +32,7 @@ function PartyList() {
                         eventDate: formattedDate,
                     };
                 });
+                console.log(formattedBookings);
                 setItems(formattedBookings);
             })
             .catch((err) => console.error(err.message));
@@ -127,10 +128,9 @@ function PartyList() {
                                         </td>
                                         <td>
                                             <p className={cx('text-align-left')}>
-                                                {item.customerId.name} - {item.customerId.phone[0]}
+                                                {item.customerId.name} - {item.customerId.phone}
                                             </p>
                                         </td>
-
                                         <td>
                                             <p className={cx('text-align-center')}>{item.eventDate}</p>
                                         </td>

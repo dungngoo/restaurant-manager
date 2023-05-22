@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Contact.module.scss';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 import { Modal } from 'react-bootstrap';
 const cx = classNames.bind(styles);
 
@@ -14,17 +15,14 @@ function Contact() {
     });
     const [isLoading, setIsLoading] = useState(false);
     // Gửi email cho bộ phận CSKH của DH Palace
+
     async function sendEmailtoContact() {
         const requestUrl = `${process.env.REACT_APP_SERVER_URL}/customer/sendEmail`;
-        const response = await fetch(requestUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
-        console.log(response);
-        if (response.ok) {
+
+        try {
+            const response = await axios.post(requestUrl, formData);
+            console.log(response.data);
+
             Swal.fire({
                 icon: 'success',
                 title: 'Thành công',
@@ -33,16 +31,27 @@ function Contact() {
                 clearForm();
                 setIsLoading(false);
             });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Lỗi',
-                text: 'Đã có lỗi khi gửi liên hệ, xin mời kiểm tra lại!',
-            }).then(() => {
-                setIsLoading(false);
-            });
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Lỗi',
+                    text: `${error.response.data.error}`,
+                }).then(() => {
+                    setIsLoading(false);
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Lỗi',
+                    text: 'Đã có lỗi khi gửi liên hệ, xin mời kiểm tra lại!',
+                }).then(() => {
+                    setIsLoading(false);
+                });
+            }
         }
     }
+
     function handleSubmit(e) {
         e.preventDefault();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

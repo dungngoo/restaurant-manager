@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import styles from './ModalUpdateStaff.module.scss';
 import classNames from 'classnames/bind';
 import Button from '~/components/Button';
+import axios from 'axios';
 const cx = classNames.bind(styles);
 
 function ModalUpdateStaff({ handleClose, show, selectedStaff, showNewImage, setShowNewImage, changeFormat }) {
@@ -23,7 +24,7 @@ function ModalUpdateStaff({ handleClose, show, selectedStaff, showNewImage, setS
         identify: selectedStaff.identify,
         sex: selectedStaff.sex,
         job: selectedStaff.job_type,
-        staff_img: selectedStaff.staffImg,
+        staffImg: selectedStaff.staffImg,
     });
 
     const handleChangeInput = (evt) => {
@@ -34,42 +35,38 @@ function ModalUpdateStaff({ handleClose, show, selectedStaff, showNewImage, setS
     };
 
     // Xử lý sự kiện cập nhật
-    const handleUpdate = (event) => {
-        // Tạo dữ liệu và dùng axios để put vào server: localhost:3001/staff
+    const handleUpdate = async (event) => {
         event.preventDefault();
         if (state.job === '' || state.sex === '') {
             setSelectionError('Chưa chọn');
             return;
         }
-        const dataContent = {
-            staff_id: state.staff_id,
-            fullname: state.fullname,
-            email: state.email,
-            address: state.address,
-            date: changeFormat(state.date),
-            birth: changeFormat(state.birth),
-            birthPlace: state.birthPlace,
-            dateOfPlace: state.dateOfPlace,
-            phoneNumber: state.phonenumber,
-            identify: state.identify,
-            sex: state.sex,
-            job_type: state.job,
-            staff_img: state.staffImg,
-        };
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataContent),
-        };
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/staff/${selectedStaff._id}`, requestOptions)
-            .then((res) => res.json())
-            .then(async (data) => {
-                console.log(data);
-                await window.location.replace('/docs/1');
-            })
-            .catch((err) => console.log(err));
+        const formData = new FormData();
+        formData.append('staff_id', state.staff_id);
+        formData.append('fullname', state.fullname);
+        formData.append('email', state.email);
+        formData.append('address', state.address);
+        formData.append('date', changeFormat(state.date));
+        formData.append('birth', changeFormat(state.birth));
+        formData.append('birthPlace', state.birthPlace);
+        formData.append('dateOfPlace', state.dateOfPlace);
+        formData.append('phoneNumber', state.phoneNumber);
+        formData.append('identify', state.identify);
+        formData.append('sex', state.sex);
+        formData.append('job_type', state.job);
+        formData.append('staffImg', state.staffImg);
+        formData.append('oldStaffImg', selectedStaff.staffImg);
+
+        try {
+            const res = await axios.put(`${process.env.REACT_APP_SERVER_URL}/staff/${selectedStaff._id}`, formData);
+            console.log(res.data);
+            await window.location.replace('/admin/4');
+        } catch (error) {
+            console.log(error);
+        }
     };
+
     return (
         <form onSubmit={handleUpdate}>
             <Modal show={show} onHide={handleClose}>
@@ -255,29 +252,32 @@ function ModalUpdateStaff({ handleClose, show, selectedStaff, showNewImage, setS
                         <input
                             id="file"
                             type="file"
-                            name="staff_img"
+                            name="staffImg"
                             onChange={(e) => {
-                                setState({ ...state, staff_img: e.target.files[0] });
+                                setState({ ...state, staffImg: e.target.files[0] });
                                 setShowNewImage(true);
                             }}
                         />
                     </div>
                     <div className={cx('row')}>
                         <div className={cx('wrap-img')}>
-                            {showNewImage && state.staff_img && (
+                            {showNewImage && state.staffImg instanceof File && (
                                 <div className={cx('row')}>
                                     <div className={cx('wrap-img')}>
                                         <img
                                             alt="not found"
                                             width={'350px'}
                                             height={'100%'}
-                                            src={URL.createObjectURL(state.staff_img)}
+                                            src={URL.createObjectURL(state.staffImg)}
                                         />
                                     </div>
                                 </div>
                             )}
                             {!showNewImage && selectedStaff.staffImg && (
-                                <img src={`http://localhost:3001/${selectedStaff?.staffImg}`} alt="Img not found" />
+                                <img
+                                    src={`https://website-restaurant.s3.ap-southeast-1.amazonaws.com/${selectedStaff.staffImg}`}
+                                    alt="Img not found"
+                                />
                             )}
                         </div>
                     </div>

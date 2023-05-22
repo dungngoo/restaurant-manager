@@ -4,6 +4,7 @@
 .text {
     font-size: 20px;
     font-weight: 700;
+    padding-right: 8px;
 }
 .btn {
     background-color: aquamarine;
@@ -12,4 +13,10 @@
 }
 .span {
     padding: 20px;
+}
+.input-month {
+    border: 1px solid black;
+    border-radius: 16px;
+    padding: 4px;
+    padding-left: 8px;
 }

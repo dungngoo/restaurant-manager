@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
-function ModalDelete({ show, handleClose, header, body, save }) {
+function ModalDelete({ show, handleClose, header, body, onDelete }) {
     return (
         <Modal show={show} onHide={handleClose} backdropClassName={cx('bd')} centered>
             <Modal.Header closeButton>{header}</Modal.Header>
@@ -15,7 +15,7 @@ function ModalDelete({ show, handleClose, header, body, save }) {
                 <h3 style={{ color: 'red' }}>{body}</h3>
             </Modal.Body>
             <Modal.Footer style={{ justifyContent: 'center' }}>
-                <Button lightgreen small onClick={save}>
+                <Button lightgreen small onClick={onDelete}>
                     Xóa
                 </Button>
                 <Button pink small onClick={handleClose} s>

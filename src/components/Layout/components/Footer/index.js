@@ -41,7 +41,7 @@ function Footer1() {
                         </div>
                         <div className={cx('col-md-5', 'footer-content-right')}>
                             <div classNames={cx('row', 'wrap-content-right')}>
-                                <div className={cx('email-contact')}>ngodung06vn@gmail.com</div>
+                                <div className={cx('email-contact')}>CSKHDHPALACE@gmail.com</div>
                                 <div className={cx('phone-contact')}>0328038817</div>
                                 <div className={cx('address')}>
                                     171 Nguyễn Thái Sơn, Phường 7, Q.Gò Vấp, Tp. Hồ Chí Minh

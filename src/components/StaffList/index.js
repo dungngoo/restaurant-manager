@@ -38,6 +38,10 @@ function StaffList() {
     useEffect(() => {
         console.log('all ' + isCheckedAll);
         console.log('item ' + isCheckedStaffs);
+
+        if (isCheckedStaffs.length === staffs.length && staffs.length > 0) {
+            setIsCheckedAll(true);
+        }
     }, [isCheckedStaffs]);
     // handle sự kiện nút sửa
     const handleShowUpdateStaff = (staff) => {
@@ -127,9 +131,8 @@ function StaffList() {
                 {deleteManyStaff && (
                     <ModalDelete
                         show={deleteManyStaff !== null}
+                        onDelete={() => handleDeleteMany(deleteManyStaff)}
                         handleClose={handleClose}
-                        onClick={() => setDeleteManyStaff(true)}
-                        save={handleDeleteMany}
                         header="Xóa các nhân viên đã chọn?"
                         body="Bạn có chắc chắn muốn xóa những nhân viên này không?"
                     />
@@ -244,12 +247,11 @@ function StaffList() {
                                         <Button small pink title="Xóa" onClick={() => handleShowDeleteStaff(staff._id)}>
                                             <i className="fas fa-trash-alt"></i>
                                         </Button>
-                                        {deleteStaff && (
+                                        {deleteStaff === staff._id && (
                                             <ModalDelete
                                                 show={deleteStaff !== null}
                                                 handleClose={handleClose}
-                                                onClick={() => setDeleteStaff(staff._id)}
-                                                save={handleDelete(staff._id)}
+                                                onDelete={() => handleDelete(deleteStaff)}
                                                 header="Xóa nhân viên?"
                                                 body="Bạn có chắc chắn muốn xóa nhân viên này không?"
                                             />

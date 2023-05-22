@@ -33,7 +33,7 @@ const publicRoutes = [
     { path: '/library', component: Library },
     { path: '/library-cat/:param/', component: EventsLibrary },
     { path: '/library-cat/hinh-am-thuc/', component: MonAn },
-    { path: '/libraries/:type', component: MenuItemsLibrary },
+    { path: '/libraries/:type', component: MenuItemsLibrary },  
     { path: '/events/:name', component: EventDetail },
     { path: '/news', component: News },
     { path: '/contact', component: Contact },

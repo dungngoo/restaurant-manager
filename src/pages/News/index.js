@@ -122,7 +122,7 @@ function News() {
             </div>
             <div className={cx('grid wide container')}>{renderNews()}</div>
             <div className={cx('row')}>
-                <Pagination pagination={pagination} onPageChange={handlePageChange} />
+                <Pagination pagination={pagination} onPageChange={handlePageChange} paginationKey="news" />
             </div>
         </div>
     );

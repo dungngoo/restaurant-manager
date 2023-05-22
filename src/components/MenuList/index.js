@@ -3,6 +3,7 @@ import styles from './MenuList.module.scss';
 import Button from '~/components/Button';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
+import { confirmAlert } from 'react-confirm-alert';
 const cx = classNames.bind(styles);
 
 function MenuList() {
@@ -42,7 +43,21 @@ function MenuList() {
     const handleNextPage = () => {
         setCurrentPage((prevPage) => prevPage + 1);
     };
-
+    async function handleClick(item) {
+        console.log(item);
+        const items = item.items;
+        const courses = items.map((item) => `${item.name} - ${item.price}`);
+        console.log(courses);
+        await confirmAlert({
+            title: `Các món ăn của ${item.name}`,
+            message: courses.map((i, index) => <li key={index}>{i}</li>),
+            buttons: [
+                {
+                    label: 'Tắt',
+                },
+            ],
+        });
+    }
     return (
         <div className={cx('content-doc')}>
             <div className={cx('wrap-btn')}>
@@ -106,7 +121,13 @@ function MenuList() {
                                             <p>{i + startIndex}</p>
                                         </td>
                                         <td>
-                                            <p className={cx('text-align-left')}>{item.name}</p>
+                                            <p
+                                                className={cx('text-align-left')}
+                                                style={{ cursor: 'pointer' }}
+                                                onClick={() => handleClick(item)}
+                                            >
+                                                {item.name}
+                                            </p>
                                         </td>
                                         <td>
                                             <p className={cx('text-align-left', 'text-solong')}>{item.description}</p>
