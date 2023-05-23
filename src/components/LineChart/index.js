@@ -1,36 +1,148 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import React from 'react';
+import ReactApexChart from 'react-apexcharts';
+import TimeRangeForm from '../TimeRangeForm';
 
-const data = [
-    { name: 'A', uv: 4000, pv: 2400, amt: 2400 },
-    { name: 'B', uv: 3000, pv: 1398, amt: 2210 },
-    { name: 'C', uv: 2000, pv: 9800, amt: 2290 },
-    { name: 'D', uv: 2780, pv: 3908, amt: 2000 },
-    { name: 'E', uv: 1890, pv: 4800, amt: 2181 },
-    { name: 'F', uv: 2390, pv: 3800, amt: 2500 },
-    { name: 'G', uv: 3490, pv: 4300, amt: 2100 },
-];
+class LineChart extends React.Component {
+    constructor(props) {
+        super(props);
 
-function LineChartExample() {
-    return (
-        <LineChart
-            width={1200}
-            height={500}
-            data={data}
-            margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-            }}
-        >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-        </LineChart>
-    );
+        this.state = {
+            options: {
+                chart: {
+                    id: 'basic-line',
+                },
+                xaxis: {
+                    categories: [],
+                },
+                tooltip: {
+                    enabled: true,
+                    x: {
+                        show: true,
+                        formatter: function (value) {
+                            return value.toString();
+                        },
+                    },
+                    y: {
+                        formatter: function (value) {
+                            return new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND',
+                            }).format(value);
+                        },
+                    },
+                },
+            },
+            series: [
+                {
+                    name: 'Doanh thu',
+                    data: [],
+                },
+            ],
+            year: '',
+            month: '',
+            error: null,
+            monthlyRevenueData: null,
+        };
+    }
+
+    componentDidMount() {
+        const { year, month } = this.state;
+
+        const startDate = new Date(year, month - 1, 1);
+        const endDate = new Date(year, month, 0);
+
+        const categories = [];
+        const seriesData = [];
+
+        let currentDate = startDate;
+        while (currentDate <= endDate) {
+            categories.push(currentDate.getDate());
+            seriesData.push(0);
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        // Gọi API endpoint trên backend để lấy dữ liệu doanh thu theo tháng
+        fetch(`${process.env.REACT_APP_SERVER_URL}/bookings/caculateMonth?year=${year}&month=${month}`)
+            .then((response) => response.json())
+            .then((data) => {
+                // Cập nhật mảng seriesData với dữ liệu doanh thu theo ngày
+                console.log(data);
+                Object.keys(data.dailyRevenueData).forEach((day) => {
+                    seriesData[day - 1] = data.dailyRevenueData[day];
+                });
+
+                this.setState({
+                    options: {
+                        xaxis: {
+                            categories: categories.map((day) => `${day}`),
+                        },
+                        annotations: {
+                            y: {
+                                formatter: function (value) {
+                                    // Định dạng giá trị hiển thị cho cột dọc (đơn vị VND)
+                                    return new Intl.NumberFormat('vi-VN', {
+                                        style: 'currency',
+                                        currency: 'VND',
+                                    }).format(value);
+                                },
+                            },
+                            x: {
+                                formatter: function (value) {
+                                    // Định dạng giá trị hiển thị cho cột x (đơn vị ngày)
+                                    return value.toString();
+                                },
+                            },
+                        },
+                    },
+                    series: [
+                        {
+                            data: seriesData,
+                        },
+                    ],
+                    error: null,
+                    monthlyRevenueData: data.monthlyRevenueData,
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                this.setState({ error: 'Chưa chọn tháng' });
+            });
+    }
+
+    handleTimeRangeSubmit = (startTime, endTime) => {
+        // Lấy thông tin year và month từ startTime (ngày đầu tháng)
+        const [year, month] = startTime.split('-');
+        this.setState({ year, month }, () => {
+            // Gọi lại phương thức componentDidMount để lấy dữ liệu doanh thu mới
+            this.componentDidMount();
+        });
+    };
+
+    render() {
+        const { options, series, error, monthlyRevenueData } = this.state;
+
+        return (
+            <>
+                <div>
+                    <TimeRangeForm onSubmit={this.handleTimeRangeSubmit} />
+                    <h2>Doanh thu theo tháng</h2>
+                    {error ? (
+                        <p>{error}</p>
+                    ) : (
+                        <ReactApexChart options={options} series={series} type="line" height={350} />
+                    )}
+                </div>
+                {monthlyRevenueData !== 0 && (
+                    <h3>
+                        Tổng doanh thu theo tháng:
+                        <span style={{ fontSize: '30px', color: 'red' }}>
+                            {monthlyRevenueData > 0 && monthlyRevenueData.toLocaleString()}
+                        </span>
+                    </h3>
+                )}
+            </>
+        );
+    }
 }
-export default LineChartExample;
+
+export default LineChart;

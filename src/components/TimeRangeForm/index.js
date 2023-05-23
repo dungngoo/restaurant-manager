@@ -1,55 +1,40 @@
 import React, { useState } from 'react';
+import classNames from 'classnames/bind';
+import styles from './TimeRangeForm.module.scss';
 import Button from '../Button';
 
-import styles from './TimeRangeForm.module.scss';
-import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 function TimeRangeForm(props) {
-    const [startTime, setStartTime] = useState('');
-    const [endTime, setEndTime] = useState('');
+    const [selectedMonth, setSelectedMonth] = useState('');
 
     function handleSubmit(event) {
         event.preventDefault();
-        // pass startTime and endTime to the parent component for further processing
-        props.onSubmit(startTime, endTime);
+        // Gọi hàm onSubmit từ props và truyền tháng đã chọn
+        props.onSubmit(selectedMonth);
     }
 
-    function handleStartTimeChange(event) {
-        setStartTime(event.target.value);
-    }
-
-    function handleEndTimeChange(event) {
-        setEndTime(event.target.value);
+    function handleMonthChange(event) {
+        setSelectedMonth(event.target.value);
     }
 
     return (
-        <p>
-            <form onSubmit={handleSubmit} className={cx('form')}>
-                <span className={cx('span')}>
-                    <label>
-                        <span className={cx('text')}> Từ ngày:</span>
-                        <input type="date" value={startTime} onChange={handleStartTimeChange} />
-                    </label>
-                </span>
-                <span className={cx('span')}>
-                    <label>
-                        <span className={cx('text')}> Đến ngày:</span>
-                        <input type="date" value={endTime} onChange={handleEndTimeChange} />
-                    </label>
-                </span>
-                <span className={cx('span')}>
-                    <Button className={cx('btn')}>Submit</Button>
-                </span>
-            </form>
-            <h4>Thống kê theo:</h4>
-            <select>
-                <option>Doanh thu</option>
-                <option>Tổng số hóa đơn</option>
-                <option>Số đơn đặt tiệc</option>
-                <option>Tổng số khách hàng</option>
-            </select>
-        </p>
+        <form onSubmit={handleSubmit} className={cx('form')}>
+            <div className={cx('span')}>
+                <label>
+                    <span className={cx('text')}>Chọn tháng:</span>
+                    <input
+                        type="month"
+                        value={selectedMonth}
+                        onChange={handleMonthChange}
+                        className={cx('input-month')}
+                    />
+                </label>
+            </div>
+            <span className={cx('span')}>
+                <Button className={cx('btn')}>Submit</Button>
+            </span>
+        </form>
     );
 }
 

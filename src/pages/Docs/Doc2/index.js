@@ -7,6 +7,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ExcelJS from 'exceljs';
 const cx = classNames.bind(styles);
 
 function Doc2() {
@@ -16,7 +17,40 @@ function Doc2() {
     const [pageSize, setPageSize] = useState(10);
     const [items, setItems] = useState([]);
     const [confirm, setConfirm] = useState(false);
+    const data = [];
     const [flag, setFlag] = useState(false);
+    const [selectAll, setSelectAll] = useState(false);
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [selectedItem, setSelectedItem] = useState('');
+
+    const handleCheckAll = () => {
+        setSelectAll(!selectAll);
+        setSelectedItems(selectAll ? [] : [...items]);
+    };
+
+    const handleCheckItem = (index, item) => {
+        const updatedSelectedItems = [...selectedItems];
+
+        if (updatedSelectedItems.includes(item)) {
+            updatedSelectedItems.splice(updatedSelectedItems.indexOf(item), 1);
+            setSelectedItem('');
+        } else {
+            updatedSelectedItems.push(item);
+            setSelectedItem(item);
+        }
+
+        setSelectedItems(updatedSelectedItems);
+    };
+
+    useEffect(() => {
+        console.log(selectedItems);
+        console.log(selectedItem);
+        if (selectedItems.length === items.length) {
+            setSelectAll(true);
+        } else {
+            setSelectAll(false);
+        }
+    }, [selectedItems, items]);
     useEffect(() => {
         async function deletePendingBookings() {
             try {
@@ -31,6 +65,109 @@ function Doc2() {
 
         deletePendingBookings();
     }, []);
+
+    const handleExportExcel = () => {
+        axios
+            .get(`${process.env.REACT_APP_SERVER_URL}/bookings/`)
+            .then((response) => {
+                const orders = response.data;
+
+                const workbook = new ExcelJS.Workbook();
+                const worksheet = workbook.addWorksheet('Danh sách đơn đặt tiệc');
+
+                // Add column headers
+                worksheet.addRow([
+                    'ID',
+                    'Tên khách hàng - SĐT',
+                    'Ngày đặt tiệc',
+                    'Tên sảnh',
+                    'Số bàn',
+                    'Tên thực đơn',
+                    'Loại dịch vụ',
+                    'Trạng thái',
+                ]);
+
+                // Add data rows
+                orders.forEach((order) => {
+                    worksheet.addRow([
+                        order._id, // Thứ tự
+                        `${order.customerId.name} - ${order.customerId.phone}`, // Tên khách hàng - SĐT
+                        order.eventDate, // Ngày đặt tiệc
+                        order.lobbyId.name, // Tên sảnh
+                        order.tableQuantity, // Số bàn
+                        order.menuId.name, // Tên thực đơn
+                        order.serviceTypeId.name, // Loại dịch vụ
+                        order.status, // Trạng thái
+                    ]);
+                });
+
+                // Generate Excel file
+                workbook.xlsx.writeBuffer().then((buffer) => {
+                    const blob = new Blob([buffer], {
+                        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                    });
+                    const fileName = 'danh_sach_don_dat_tiec.xlsx';
+
+                    if (navigator.msSaveBlob) {
+                        // For IE browser
+                        navigator.msSaveBlob(blob, fileName);
+                    } else {
+                        // For other browsers
+                        const link = document.createElement('a');
+                        if (link.download !== undefined) {
+                            const url = URL.createObjectURL(blob);
+                            link.setAttribute('href', url);
+                            link.setAttribute('download', fileName);
+                            link.style.visibility = 'hidden';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        }
+                    }
+                });
+            })
+            .catch((error) => {
+                console.error('Error fetching order data:', error);
+            });
+    };
+    const handleExportInvoice = () => {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/bookings/exportInvoiceToPDF`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(selectedItem), // Truyền dữ liệu booking dưới dạng JSON
+        })
+            .then((response) => {
+                // Kiểm tra mã trạng thái của response
+                if (!response.ok) {
+                    throw new Error('Error exporting invoice');
+                }
+                // Trả về dữ liệu PDF dưới dạng Blob
+                return response.blob();
+            })
+            .then((blob) => {
+                // Tạo URL đại diện cho Blob
+                console.log(blob);
+                const url = URL.createObjectURL(blob);
+
+                // Tạo một thẻ <a> để download file
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `invoice.pdf`;
+
+                // Simulate click vào thẻ <a> để bắt đầu tải xuống
+                link.click();
+
+                // Xóa URL và thẻ <a> sau khi tải xuống hoàn tất
+                URL.revokeObjectURL(url);
+                link.remove();
+            })
+            .catch((error) => {
+                // Xử lý lỗi (nếu có)
+                console.error('Error exporting invoice:', error);
+            });
+    };
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_SERVER_URL}/bookings?limit=${pageSize}&page=${currentPage}`)
@@ -107,13 +244,13 @@ function Doc2() {
             </div>
             <div className={cx('content-doc')}>
                 <div className={cx('wrap-btn')}>
-                    <Button purple>
+                    <Button purple onClick={handleExportInvoice}>
                         <i class="fa-solid fa-print"></i>
                         Xuất hóa đơn
                     </Button>
-                    <Button pink>
+                    <Button pink onClick={handleExportExcel}>
                         <i class="fa-solid fa-print"></i>
-                        Xóa tất cả
+                        Xuất file excel
                     </Button>
                 </div>
 
@@ -130,7 +267,7 @@ function Doc2() {
                             <thead>
                                 <tr>
                                     <th width="10">
-                                        <input type="checkbox" id="all" />
+                                        <input type="checkbox" id="all" onChange={handleCheckAll} checked={selectAll} />
                                     </th>
                                     <th>Thứ tự</th>
                                     <th width="400" className={cx('text-align-left')}>
@@ -156,6 +293,8 @@ function Doc2() {
                                                     type="checkbox"
                                                     name={`check${i}`}
                                                     value={i}
+                                                    onChange={() => handleCheckItem(i, item)}
+                                                    checked={selectedItems.includes(item)}
                                                 />
                                             </td>
                                             <td>
@@ -163,7 +302,7 @@ function Doc2() {
                                             </td>
                                             <td>
                                                 <p className={cx('text-align-left')}>
-                                                    {item.customerId.name} - {item.customerId.phone[0]}
+                                                    {item.customerId.name} - {item.customerId.phone}
                                                 </p>
                                             </td>
 

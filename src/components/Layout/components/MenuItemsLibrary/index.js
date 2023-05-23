@@ -2,28 +2,47 @@ import classNames from 'classnames/bind';
 import styles from './MenuItemsLibrary.module.scss';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Pagination from '~/components/Pagination';
+import queryString from 'query-string';
 
 const cx = classNames.bind(styles);
 
 function MenuItemsLibrary(props) {
-    const { header } = props;
-
     const { type } = useParams();
     const [menuItems, setMenuItems] = useState([]);
+    function handlePageChange(newPage) {
+        console.log('New page ' + newPage);
+        setFilters({
+            ...filters,
+            _page: newPage,
+        });
+    }
+    const [filters, setFilters] = useState({
+        _limit: 6,
+        _page: 1,
+    });
+    const [itemPagination, setItemPagination] = useState({
+        _page: 1,
+        _limit: 6,
+        _totalRows: 0,
+    });
     useEffect(() => {
         async function getMenuItemByType() {
             try {
-                const requestUrl = `${process.env.REACT_APP_SERVER_URL}/menuitems/${type}`;
+                const paramsString = queryString.stringify(filters);
+                const requestUrl = `${process.env.REACT_APP_SERVER_URL}/menuitems/${type}?${paramsString}`;
                 const response = await fetch(requestUrl);
-                const data = await response.json();
+                const { data, pagination } = await response.json();
                 console.log(data);
+                console.log(pagination);
                 setMenuItems(data);
+                setItemPagination(pagination);
             } catch (error) {
                 console.log(error.message);
             }
         }
         getMenuItemByType();
-    }, [type]);
+    }, [filters]);
 
     const libraryToPath = {
         monan: '/library-cat/hinh-am-thuc/',
@@ -43,6 +62,38 @@ function MenuItemsLibrary(props) {
                 </div>
             </div>
             <div className={cx('row')}>
+                {menuItems && type === 'Tráng miệng' && (
+                    <>
+                        <p>
+                            Món tráng miệng là một phần không thể thiếu trong bữa tiệc của Nhà hàng chúng tôi. Được chế
+                            biến từ các nguyên liệu tươi ngon và được trang trí đẹp mắt, món tráng miệng là món ăn hoàn
+                            hảo để kết thúc một bữa tiệc thật ngon miệng.
+                        </p>
+                        <p>
+                            Nhà hàng chúng tôi thường có rất nhiều lựa chọn cho món tráng miệng, từ các loại bánh ngọt,
+                            kem, trái cây cho đến các món tráng miệng mang phong cách Á Đông hoặc Âu Mỹ. Bánh ngọt
+                            thường được làm từ bột mì, đường, bơ, trứng và các nguyên liệu khác, được trang trí với các
+                            loại sốt, kem và hoa quả tươi. Kem thường được làm từ sữa tươi và các loại đường, và có thể
+                            được trang trí với nhiều loại hạt và sốt.
+                        </p>
+                        <p>
+                            Các món tráng miệng thường không chỉ ngon miệng mà còn rất giàu dinh dưỡng. Trong các món
+                            tráng miệng từ trái cây, chúng ta có thể tìm thấy nhiều vitamin và chất xơ cần thiết cho cơ
+                            thể. Các loại bánh ngọt và kem thường chứa nhiều đường và chất béo, do đó nên ăn với mức độ
+                            vừa phải để tránh tăng cân.
+                        </p>
+                        <p>
+                            Với sự đa dạng và hương vị tuyệt vời, món tráng miệng là một lựa chọn tuyệt vời để kết thúc
+                            bữa tiệc của bạn và làm hài lòng cả những thực khách khó tính nhất.
+                        </p>
+                        <p>
+                            Cuối cùng là món tráng miệng, thường là các món bánh ngọt hoặc trái cây tươi. Trái cây giúp
+                            bổ sung vitamin, khoáng chất và chất xơ, giúp cơ thể khỏe mạnh và tăng cường đề kháng. Các
+                            loại bánh ngọt thường chứa nhiều đường và calo, nên cần ăn vừa phải để không gây hại cho sức
+                            khỏe.
+                        </p>
+                    </>
+                )}
                 {menuItems && type === 'Món chính' && (
                     <>
                         <p>
@@ -101,39 +152,7 @@ function MenuItemsLibrary(props) {
                         </p>
                     </>
                 )}
-                {menuItems && type === 'Món tráng miệng' && (
-                    <>
-                        <p>
-                            Món tráng miệng là một phần không thể thiếu trong bữa tiệc của Nhà hàng chúng tôi. Được chế
-                            biến từ các nguyên liệu tươi ngon và được trang trí đẹp mắt, món tráng miệng là món ăn hoàn
-                            hảo để kết thúc một bữa tiệc thật ngon miệng.
-                        </p>
-                        <p>
-                            Nhà hàng chúng tôi thường có rất nhiều lựa chọn cho món tráng miệng, từ các loại bánh ngọt,
-                            kem, trái cây cho đến các món tráng miệng mang phong cách Á Đông hoặc Âu Mỹ. Bánh ngọt
-                            thường được làm từ bột mì, đường, bơ, trứng và các nguyên liệu khác, được trang trí với các
-                            loại sốt, kem và hoa quả tươi. Kem thường được làm từ sữa tươi và các loại đường, và có thể
-                            được trang trí với nhiều loại hạt và sốt.
-                        </p>
-                        <p>
-                            Các món tráng miệng thường không chỉ ngon miệng mà còn rất giàu dinh dưỡng. Trong các món
-                            tráng miệng từ trái cây, chúng ta có thể tìm thấy nhiều vitamin và chất xơ cần thiết cho cơ
-                            thể. Các loại bánh ngọt và kem thường chứa nhiều đường và chất béo, do đó nên ăn với mức độ
-                            vừa phải để tránh tăng cân.
-                        </p>
-                        <p>
-                            Với sự đa dạng và hương vị tuyệt vời, món tráng miệng là một lựa chọn tuyệt vời để kết thúc
-                            bữa tiệc của bạn và làm hài lòng cả những thực khách khó tính nhất.
-                        </p>
-                        <p>
-                            Cuối cùng là món tráng miệng, thường là các món bánh ngọt hoặc trái cây tươi. Trái cây giúp
-                            bổ sung vitamin, khoáng chất và chất xơ, giúp cơ thể khỏe mạnh và tăng cường đề kháng. Các
-                            loại bánh ngọt thường chứa nhiều đường và calo, nên cần ăn vừa phải để không gây hại cho sức
-                            khỏe.
-                        </p>
-                    </>
-                )}
-                {menuItems && type === 'Món khai vị' && (
+                {menuItems && type === 'Khai vị' && (
                     <>
                         <p>
                             Món khai vị là món ăn đầu tiên được phục vụ trong bữa tiệc cưới và có nhiều đặc trưng khác
@@ -162,6 +181,67 @@ function MenuItemsLibrary(props) {
                         </p>
                     </>
                 )}
+                {menuItems && type === 'Món canh' && (
+                    <>
+                        <p>
+                            Nhà hàng chúng tôi không chỉ chú trọng đến những món chính để khách hàng thưởng thức mà còn
+                            có những món canh đầy hương vị và giá trị dinh dưỡng cao.
+                        </p>
+                        <p>
+                            Đầu tiên là món canh, món ăn nóng hổi và bổ dưỡng trong thời tiết lạnh giá. Canh có thể được
+                            chế biến từ nhiều loại rau củ, thịt, cá hoặc hải sản, tùy theo sở thích của khách hàng. Canh
+                            chứa nhiều chất dinh dưỡng như vitamin, khoáng chất và chất đạm, giúp cải thiện sức khỏe và
+                            tăng cường miễn dịch.
+                        </p>
+                        <p>
+                            Tiếp theo là món salad, món ăn nhẹ với những nguyên liệu tươi ngon như rau củ quả, hạt điều,
+                            hạt dẻ, gia vị,... Salad giúp bổ sung vitamin và chất xơ cho cơ thể, đồng thời giúp tăng
+                            cường đề kháng và hỗ trợ quá trình tiêu hóa.
+                        </p>
+                        <p>
+                            Không thể bỏ qua món chả giò, món ăn rất được yêu thích trong các bữa tiệc. Chả giò được làm
+                            từ thịt, tôm, rau củ, nấm,... được cuộn trong bánh tráng và chiên giòn. Chả giò giúp cung
+                            cấp năng lượng và đạm cho cơ thể, tuy nhiên vì chứa nhiều chất béo và calo nên cần ăn vừa
+                            phải để không gây tăng cân.
+                        </p>
+                        <p>
+                            Cuối cùng là món tráng miệng, thường là các món bánh ngọt hoặc trái cây tươi. Trái cây giúp
+                            bổ sung vitamin, khoáng chất và chất xơ, giúp cơ thể khỏe mạnh và tăng cường đề kháng. Các
+                            loại bánh ngọt thường chứa nhiều đường và calo, nên cần ăn vừa phải để không gây hại cho sức
+                            khỏe.
+                        </p>
+                    </>
+                )}
+                {menuItems && type === 'Thức uống' && (
+                    <>
+                        <p>
+                            Nhà hàng chúng tôi không chỉ chú trọng đến những món ăn để khách hàng thưởng thức mà còn có
+                            những thức uống đa dạng và hấp dẫn.
+                        </p>
+                        <p>
+                            Đầu tiên là các loại nước ép trái cây tự nhiên, như nước cam, nước bưởi, nước chanh, nước
+                            táo, giúp cung cấp vitamin và chất chống oxy hóa cho cơ thể. Những loại nước ép này không
+                            chỉ ngon mà còn có lợi cho sức khỏe.
+                        </p>
+                        <p>
+                            Tiếp theo là các loại sinh tố và sữa chua trái cây, giúp bổ sung chất xơ, vitamin, và các
+                            chất dinh dưỡng quan trọng khác. Sinh tố và sữa chua trái cây có thể kết hợp nhiều loại trái
+                            cây khác nhau tạo ra một món uống thơm ngon và giàu dinh dưỡng.
+                        </p>
+                        <p>
+                            Không thể thiếu trong danh sách là các loại cà phê và trà. Cà phê có thể được pha chế theo
+                            nhiều cách khác nhau như cà phê đen, cappuccino, latte, espresso, mang đến cho khách hàng sự
+                            thưởng thức và cảm giác tỉnh táo. Trà cũng có nhiều loại và hương vị khác nhau, từ trà xanh,
+                            trà đen, trà hoa quả cho đến trà thảo mộc, giúp thư giãn và tạo cảm giác dễ chịu.
+                        </p>
+                        <p>
+                            Cuối cùng là các loại sinh tố trái cây, smoothie và cocktail. Những món uống này thường được
+                            làm từ các loại trái cây tươi, đá và các thành phần thêm vào để tạo hương vị độc đáo. Sinh
+                            tố trái cây và smoothie giúp cung cấp năng lượng và chất xơ, trong khi cocktail mang đến cảm
+                            giác thú vị và giải trí.
+                        </p>
+                    </>
+                )}
                 {menuItems &&
                     menuItems.slice(0, 6).map((menuItem, index) => (
                         <div className={cx('col6')} key={index}>
@@ -173,6 +253,7 @@ function MenuItemsLibrary(props) {
                             </div>
                         </div>
                     ))}
+                <Pagination pagination={itemPagination} onPageChange={handlePageChange} paginationKey="library" />
             </div>
         </div>
     );

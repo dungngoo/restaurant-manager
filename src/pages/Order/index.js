@@ -11,7 +11,6 @@ import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Order() {
@@ -140,12 +139,14 @@ function Order() {
     function handleSubmit(event) {
         event.preventDefault();
         setLoading(true);
-
+        console.log(new Date(formData.eventDate));
+        console.log(new Date());
         // check if formData is valid
         const isValidForm =
             formData.name !== '' &&
             formData.phone !== '' &&
             formData.eventDate !== '' &&
+            new Date(formData.eventDate) > new Date() &&
             formData.eventType !== '' &&
             formData.lobbyType !== '' &&
             formData.numbersTable !== '' &&
@@ -195,18 +196,32 @@ function Order() {
                         setSuccessCount(0);
                     }
                 } catch (error) {
-                    setError(error.response.data.message);
-                    setLoading(false);
-                    setErrorCount((prev) => prev + 1);
-                    setSuccessCount(0);
+                    if (error.response && error.response.status === 400) {
+                        setError(error.response.data.error);
+                        setLoading(false);
+                        setErrorCount((prev) => prev + 1);
+                        setSuccessCount(0);
+                    } else {
+                        setError(error.response.data.error);
+                        setLoading(false);
+                        setErrorCount((prev) => prev + 1);
+                        setSuccessCount(0);
+                    }
                 }
             }
             sendBookingAndEmail(formData);
         } else {
-            setError('Thông tin đơn đặt tiệc không hợp lệ!');
-            setLoading(false);
-            setErrorCount((prev) => prev + 1);
-            setSuccessCount(0);
+            if (new Date(formData.eventDate) < new Date()) {
+                setError('Ngày đặt tiệc không hợp lệ!');
+                setLoading(false);
+                setErrorCount((prev) => prev + 1);
+                setSuccessCount(0);
+            } else {
+                setError('Thông tin đơn đặt tiệc không hợp lệ!');
+                setLoading(false);
+                setErrorCount((prev) => prev + 1);
+                setSuccessCount(0);
+            }
         }
     }
 

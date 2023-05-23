@@ -36,9 +36,11 @@
 .wrap-img {
     padding-top: 4px;
     height: 60px;
+    max-width: 60px;
     margin: 0 !important;
     img {
         height: 100%;
+        width: 70px;
     }
 }
 .errors {
