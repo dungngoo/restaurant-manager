@@ -17,6 +17,7 @@ function Doc2() {
     const [pageSize, setPageSize] = useState(10);
     const [items, setItems] = useState([]);
     const [confirm, setConfirm] = useState(false);
+    const [error, setError] = useState('');
     const data = [];
     const [flag, setFlag] = useState(false);
     const [selectAll, setSelectAll] = useState(false);
@@ -141,9 +142,11 @@ function Doc2() {
             .then((response) => {
                 // Kiểm tra mã trạng thái của response
                 if (!response.ok) {
-                    throw new Error('Error exporting invoice');
+                    setError('Xin mời chọn đơn đặt tiệc!');
+                    return;
                 }
                 // Trả về dữ liệu PDF dưới dạng Blob
+                setError('');
                 return response.blob();
             })
             .then((blob) => {
@@ -256,7 +259,7 @@ function Doc2() {
 
                 <div className={cx('wrap-content')}>
                     <div className={cx('header')}>
-                        <div className={cx('wrap-select')}></div>
+                        <div className={cx('wrap-select')}>{error && <span style={{fontSize:'20px',color:'red'}}>{error}</span>}</div>
                         <div className={cx('search')}>
                             Tìm kiếm:
                             <input type="text" className={cx('input')} />
