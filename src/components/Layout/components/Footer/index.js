@@ -25,13 +25,13 @@ function Footer1() {
                                         <a href="/contact/">Liên Hệ</a>
                                     </li>
                                     <li className={cx('item-service')}>
-                                        <a href="/services/tiec-cuoi">Dịch Vụ</a>
+                                        <a href="/services/tiec-su-kien">Dịch Vụ</a>
                                     </li>
                                     <li className={cx('item-service')}>
-                                        <a href="/discover/ruby/">Sảnh Tiệc</a>
+                                        <a href="/discover/platinum/">Sảnh Tiệc</a>
                                     </li>
                                     <li className={cx('item-service')}>
-                                        <a href="/promotion-cat/tiec-cuoi/">Ưu đãi</a>
+                                        <a href="/promotion-cat/tiec-hoi-nghi/">Ưu đãi</a>
                                     </li>
                                     <li className={cx('item-service')}>
                                         <a href="/library/">Thư viện</a>
