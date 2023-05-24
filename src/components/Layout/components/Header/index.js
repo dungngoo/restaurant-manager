@@ -39,17 +39,17 @@ function Header() {
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/discover/ruby/">
+                    <Link className={cx('list-item-link')} to="/discover/platinum/">
                         Khám phá
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link')} to="/services/tiec-cuoi">
+                    <Link className={cx('list-item-link')} to="/services/tiec-su-kien">
                         Dịch vụ
                     </Link>
                 </li>
                 <li clasName={cx('list-item')}>
-                    <Link className={cx('list-item-link', 'promotion')} to="/promotion-cat/tiec-cuoi/">
+                    <Link className={cx('list-item-link', 'promotion')} to="/promotion-cat/tiec-hoi-nghi/">
                         Khuyến mãi
                     </Link>
                 </li>
