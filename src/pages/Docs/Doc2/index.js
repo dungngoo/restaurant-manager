@@ -80,7 +80,7 @@ function Doc2() {
                 worksheet.addRow([
                     'ID',
                     'Tên khách hàng - SĐT',
-                    'Ngày đặt tiệc',
+                    'Ngày tổ chức tiệc',
                     'Tên sảnh',
                     'Số bàn',
                     'Tên thực đơn',
