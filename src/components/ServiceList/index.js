@@ -7,11 +7,14 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ModalService from '../ModalService';
+import { Modal } from 'react-bootstrap';
 const cx = classNames.bind(styles);
 
 function ServiceList() {
     // const [table, setTable] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [showModal, setShowModal] = useState(false);
     const startIndex = (currentPage - 1) * 10 + 1;
     const [pageSize, setPageSize] = useState(10);
     const [items, setItems] = useState([]);
@@ -47,59 +50,24 @@ function ServiceList() {
     const handleNextPage = () => {
         setCurrentPage((prevPage) => prevPage + 1);
     };
-
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
     return (
         <div className={cx('content-doc')}>
-            <div className={cx('wrap-btn')}>
-                <Button green to="./create">
-                    <i className="fa-solid fa-plus"></i>
-                    Tạo dịch vụ
-                </Button>
-                <Button green>
-                    <i className="fa-solid fa-file-arrow-up"></i>
-                    Tải từ file
-                </Button>
-                <Button purple>
-                    <i className="fa-solid fa-print"></i>
-                    In dữ liệu
-                </Button>
-                <Button pink>
-                    <i className="fa-solid fa-clone"></i>
-                    Sao chép
-                </Button>
-                <Button yellow>
-                    <i className="fa-solid fa-file-pdf"></i>
-                    Xuất PDF
-                </Button>
-                <Button grey>
-                    <i className="fa-solid fa-file-excel"></i>
-                    Xóa tất cả
-                </Button>
-            </div>
-
+            {showModal && <ModalService show={showModal} handleClose={handleCloseModal} />}
             <div className={cx('wrap-content')}>
-                <div className={cx('header')}>
-                    <div className={cx('wrap-select')}></div>
-                    <div className={cx('search')}>
-                        Tìm kiếm:
-                        <input type="text" className={cx('input')} />
-                    </div>
-                </div>
                 <div className={cx('table')}>
                     <table className={cx('text-align')}>
                         <thead>
                             <tr>
-                                <th width="10">
-                                    <input type="checkbox" id="all" />
-                                </th>
                                 <th>Thứ tự</th>
-                                <th width="300" className={cx('text-align-left')}>
+                                <th width="350" className={cx('text-align-left')}>
                                     Tên dịch vụ
                                 </th>
-                                <th width="500">Mô tả</th>
+                                <th width="600">Mô tả</th>
                                 <th className={cx('text-align-center')}>Loại dịch vụ</th>
                                 <th className={cx('text-align-center')}>Giá tiền</th>
-                                <th width="140">Tính năng</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,14 +75,6 @@ function ServiceList() {
                             {items &&
                                 items.map((item, i) => (
                                     <tr key={i}>
-                                        <td>
-                                            <input
-                                                className={cx('checkbox')}
-                                                type="checkbox"
-                                                name={`check${i}`}
-                                                value={i}
-                                            />
-                                        </td>
                                         <td>
                                             <p>{i + startIndex}</p>
                                         </td>
@@ -129,22 +89,6 @@ function ServiceList() {
                                         </td>
                                         <td>
                                             <p className={cx('text-align-center')}>{item.price}</p>
-                                        </td>
-
-                                        <td className={cx('table-data')}>
-                                            <Button small pink title="Xóa">
-                                                <i className="fas fa-trash-alt"></i>
-                                            </Button>
-                                            <Button
-                                                small
-                                                lightorange
-                                                title="Sửa"
-                                                id="show-emp"
-                                                data-toggle="modal"
-                                                data-target="#ModalUP"
-                                            >
-                                                <i className="fas fa-edit"></i>
-                                            </Button>
                                         </td>
                                     </tr>
                                 ))}

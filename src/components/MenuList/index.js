@@ -60,63 +60,23 @@ function MenuList() {
     }
     return (
         <div className={cx('content-doc')}>
-            <div className={cx('wrap-btn')}>
-                <Button green to="./create">
-                    <i className="fa-solid fa-plus"></i>
-                    Tạo thực đơn
-                </Button>
-                <Button green>
-                    <i className="fa-solid fa-file-arrow-up"></i>
-                    Tải từ file
-                </Button>
-
-                <Button pink>
-                    <i className="fa-solid fa-clone"></i>
-                    Sao chép
-                </Button>
-
-                <Button grey>
-                    <i className="fa-solid fa-file-excel"></i>
-                    Xóa tất cả
-                </Button>
-            </div>
-
             <div className={cx('wrap-content')}>
-                <div className={cx('header')}>
-                    <div className={cx('wrap-select')}></div>
-                    <div className={cx('search')}>
-                        Tìm kiếm:
-                        <input type="text" className={cx('input')} />
-                    </div>
-                </div>
                 <div className={cx('table')}>
                     <table className={cx('text-align')}>
                         <thead>
                             <tr>
-                                <th width="10">
-                                    <input type="checkbox" id="all" />
-                                </th>
                                 <th>Thứ tự</th>
                                 <th width="400" className={cx('text-align-left')}>
                                     Tên thực đơn
                                 </th>
-                                <th width="500">Mô tả</th>
+                                <th width="800">Mô tả</th>
                                 <th className={cx('text-align-center')}>Tổng giá tiền</th>
-                                <th width="140">Tính năng</th>
                             </tr>
                         </thead>
                         <tbody>
                             {items &&
                                 items.map((item, i) => (
                                     <tr key={i}>
-                                        <td>
-                                            <input
-                                                className={cx('checkbox')}
-                                                type="checkbox"
-                                                name={`check${i}`}
-                                                value={i}
-                                            />
-                                        </td>
                                         <td>
                                             <p>{i + startIndex}</p>
                                         </td>
@@ -134,22 +94,6 @@ function MenuList() {
                                         </td>
                                         <td>
                                             <p className={cx('text-align-center')}>{itemsPrice[i]}</p>
-                                        </td>
-
-                                        <td className={cx('table-data')}>
-                                            <Button small pink title="Xóa">
-                                                <i className="fas fa-trash-alt"></i>
-                                            </Button>
-                                            <Button
-                                                small
-                                                lightorange
-                                                title="Sửa"
-                                                id="show-emp"
-                                                data-toggle="modal"
-                                                data-target="#ModalUP"
-                                            >
-                                                <i className="fas fa-edit"></i>
-                                            </Button>
                                         </td>
                                     </tr>
                                 ))}

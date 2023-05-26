@@ -2,7 +2,6 @@ import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import Button from '~/components/Button';
 import axios from 'axios';
-import Example from '~/components/Modal';
 import HeaderDoc from '../HeaderDoc';
 import styles from './FormCreateStaff.module.scss';
 const cx = classNames.bind(styles);
@@ -26,7 +25,6 @@ function FormCreateStaff() {
     // Error trùng lợp
     const [existErrors, setExistErrors] = useState('');
     const [isSubmit, setIsSubmit] = useState(false);
-    const [show, setShow] = useState(false);
 
     // Hàm formatDate đổi kiểu dữ liệu date
     function changeFormat(val) {
@@ -220,8 +218,6 @@ function FormCreateStaff() {
         return errors;
     };
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     return (
         <div className={cx('wrapper-doc')}>
             <div className={cx('header-clock')}>
@@ -229,13 +225,7 @@ function FormCreateStaff() {
             </div>
             <div className={cx('content-doc')}>
                 <h5 className={cx('h5')}>Tạo mới nhân viên</h5>
-                <div className={cx('wrap-btn', 'pt10')}>
-                    <Button green onClick={handleShow} variant="primary">
-                        <i className="fa-solid fa-plus"></i>
-                        Tạo chức vụ mới
-                    </Button>
-                    <Example show={show} handleClose={handleClose} keyboard={true} />
-                </div>
+
                 {existErrors && <h2 className={cx('errors', 'text-align')}>Dữ liệu đã tồn tại: {existErrors}</h2>}
                 <form className={cx('wrap-content')} onSubmit={handlesubbmitForm}>
                     <div className={cx('row')}>
