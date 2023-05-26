@@ -20,6 +20,8 @@
         "dotenv": "^16.0.3",
         "exceljs": "^4.3.0",
         "jsonwebtoken": "^9.0.0",
+        "jspdf": "^2.5.1",
+        "jspdf-autotable": "^3.5.29",
         "normalize.css": "^8.0.1",
         "prop-types": "^15.8.1",
         "query-string": "^8.1.0",

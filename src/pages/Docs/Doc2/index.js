@@ -80,7 +80,7 @@ function Doc2() {
                 worksheet.addRow([
                     'ID',
                     'Tên khách hàng - SĐT',
-                    'Ngày đặt tiệc',
+                    'Ngày tổ chức tiệc',
                     'Tên sảnh',
                     'Số bàn',
                     'Tên thực đơn',
@@ -259,10 +259,8 @@ function Doc2() {
 
                 <div className={cx('wrap-content')}>
                     <div className={cx('header')}>
-                        <div className={cx('wrap-select')}>{error && <span style={{fontSize:'20px',color:'red'}}>{error}</span>}</div>
-                        <div className={cx('search')}>
-                            Tìm kiếm:
-                            <input type="text" className={cx('input')} />
+                        <div className={cx('wrap-select')}>
+                            {error && <span style={{ fontSize: '20px', color: 'red' }}>{error}</span>}
                         </div>
                     </div>
                     <div className={cx('table')}>
@@ -273,7 +271,7 @@ function Doc2() {
                                         <input type="checkbox" id="all" onChange={handleCheckAll} checked={selectAll} />
                                     </th>
                                     <th>Thứ tự</th>
-                                    <th width="400" className={cx('text-align-left')}>
+                                    <th width="550" className={cx('text-align-left')}>
                                         Tên khách hàng - SĐT
                                     </th>
                                     <th className={cx('text-align-center')}>Ngày đặt tiệc</th>
@@ -282,7 +280,6 @@ function Doc2() {
                                     <th className={cx('text-align-center')}>Tên thực đơn</th>
                                     <th className={cx('text-align-center')}>Loại dịch vụ</th>
                                     <th className={cx('text-align-center')}>Trạng thái</th>
-                                    <th width="140">Tính năng</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -352,21 +349,6 @@ function Doc2() {
                                                         ></i>
                                                     )}
                                                 </p>
-                                            </td>
-                                            <td className={cx('table-data')}>
-                                                <Button small pink title="Xóa">
-                                                    <i className="fas fa-trash-alt"></i>
-                                                </Button>
-                                                <Button
-                                                    small
-                                                    lightorange
-                                                    title="Sửa"
-                                                    id="show-emp"
-                                                    data-toggle="modal"
-                                                    data-target="#ModalUP"
-                                                >
-                                                    <i className="fas fa-edit"></i>
-                                                </Button>
                                             </td>
                                         </tr>
                                     ))}

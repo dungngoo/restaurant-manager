@@ -7,6 +7,10 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ExcelJS from 'exceljs';
+import Modal1 from '../Modal';
+import 'jspdf-autotable';
+import jsPDF from 'jspdf';
 const cx = classNames.bind(styles);
 
 function PartyList() {
@@ -52,43 +56,84 @@ function PartyList() {
     const handleNextPage = () => {
         setCurrentPage((prevPage) => prevPage + 1);
     };
+    const handleExportPDF = () => {
+        axios
+            .get(`${process.env.REACT_APP_SERVER_URL}/parties/`)
+            .then(async (response) => {
+                const listParty = response.data;
 
+                // Create a new PDF document
+                const doc = new jsPDF();
+
+                // Set font size and style for the document
+                doc.setFontSize(12);
+                await doc.addFont('../fonts/tiengviet.ttf', 'SVN-Times New Roman 2', 'normal');
+                doc.setFont('SVN-Times New Roman 2');
+
+                // Define column headers
+                const headers = [
+                    'Tên khách hàng',
+                    'Số điện thoại',
+                    'Tên sảnh',
+                    'Số bàn',
+                    'Tên thực đơn',
+                    'Loại dịch vụ',
+                ];
+
+                // Define table data
+                const data = listParty.map((party) => [
+                    party.customerId.name,
+                    party.customerId.phone,
+                    party.lobbyId.name,
+                    party.tableQuantity,
+                    party.menuId.name,
+                    party.serviceTypeId.name,
+                ]);
+
+                // Set table column width
+                const columnWidths = [40, 40, 20, 40, 30, 30, 30];
+
+                // Add table to the document
+                doc.autoTable({
+                    head: [headers],
+                    body: data,
+                    startY: 20,
+                    columnStyles: {
+                        0: { cellWidth: columnWidths[0] },
+                        1: { cellWidth: columnWidths[1] },
+                        2: { cellWidth: columnWidths[2] },
+                        3: { cellWidth: columnWidths[3] },
+                        4: { cellWidth: columnWidths[4] },
+                        5: { cellWidth: columnWidths[5] },
+                        6: { cellWidth: columnWidths[6] },
+                    },
+                    theme: 'grid',
+                    styles: {
+                        fontSize: 10,
+                    },
+                });
+
+                // Save the PDF file
+                doc.save('danh_sach_don_dat_tiec.pdf');
+            })
+            .catch((error) => {
+                console.error('Error fetching staff data:', error);
+            });
+    };
     return (
         <div className={cx('content-doc')}>
             <div className={cx('wrap-btn')}>
-                <Button purple>
+                <Button purple onClick={handleExportPDF}>
                     <i className="fa-solid fa-print"></i>
                     In dữ liệu
-                </Button>
-                <Button pink>
-                    <i className="fa-solid fa-clone"></i>
-                    Sao chép
-                </Button>
-                <Button yellow>
-                    <i className="fa-solid fa-file-pdf"></i>
-                    Xuất PDF
-                </Button>
-                <Button grey>
-                    <i className="fa-solid fa-file-excel"></i>
-                    Xóa tất cả
                 </Button>
             </div>
 
             <div className={cx('wrap-content')}>
-                <div className={cx('header')}>
-                    <div className={cx('wrap-select')}></div>
-                    <div className={cx('search')}>
-                        Tìm kiếm:
-                        <input type="text" className={cx('input')} />
-                    </div>
-                </div>
                 <div className={cx('table')}>
                     <table className={cx('text-align')}>
                         <thead>
                             <tr>
-                                <th width="10">
-                                    <input type="checkbox" id="all" />
-                                </th>
                                 <th>Thứ tự</th>
                                 <th width="200" className={cx('text-align-left')}>
                                     Tên khách hàng - SĐT
@@ -107,7 +152,6 @@ function PartyList() {
                                 </th>
                                 <th className={cx('text-align-center')}>Loại dịch vụ</th>
                                 <th className={cx('text-align-center')}>Dịch vụ khác</th>
-                                <th width="140">Tính năng</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,14 +159,6 @@ function PartyList() {
                             {items &&
                                 items.map((item, i) => (
                                     <tr key={i}>
-                                        <td>
-                                            <input
-                                                className={cx('checkbox')}
-                                                type="checkbox"
-                                                name={`check${i}`}
-                                                value={i}
-                                            />
-                                        </td>
                                         <td>
                                             <p>{i + startIndex}</p>
                                         </td>
@@ -148,7 +184,7 @@ function PartyList() {
                                         </td>
                                         <td>
                                             <ul>
-                                                <p className={cx('text-align-center')}>
+                                                <p className={cx('text-align-left')}>
                                                     {item.services &&
                                                         item.services.map((service, j) => (
                                                             <li key={j} className={cx('li')}>
@@ -158,21 +194,6 @@ function PartyList() {
                                                 </p>
                                             </ul>
                                             {/* <p className={cx('text-align-center')}>{item.serviceTypeId.name}</p> */}
-                                        </td>
-                                        <td className={cx('table-data')}>
-                                            <Button small pink title="Xóa">
-                                                <i className="fas fa-trash-alt"></i>
-                                            </Button>
-                                            <Button
-                                                small
-                                                lightorange
-                                                title="Sửa"
-                                                id="show-emp"
-                                                data-toggle="modal"
-                                                data-target="#ModalUP"
-                                            >
-                                                <i className="fas fa-edit"></i>
-                                            </Button>
                                         </td>
                                     </tr>
                                 ))}
