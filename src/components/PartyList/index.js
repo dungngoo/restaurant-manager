@@ -11,11 +11,13 @@ import ExcelJS from 'exceljs';
 import Modal1 from '../Modal';
 import 'jspdf-autotable';
 import jsPDF from 'jspdf';
+import ComponentSearch from '../ComponentSearch';
 const cx = classNames.bind(styles);
 
 function PartyList() {
     // const [table, setTable] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+
     const startIndex = (currentPage - 1) * 10 + 1;
     const [pageSize, setPageSize] = useState(10);
     const [items, setItems] = useState([]);
@@ -120,6 +122,7 @@ function PartyList() {
                 console.error('Error fetching staff data:', error);
             });
     };
+
     return (
         <div className={cx('content-doc')}>
             <div className={cx('wrap-btn')}>
@@ -127,13 +130,28 @@ function PartyList() {
                     <i className="fa-solid fa-print"></i>
                     In dữ liệu
                 </Button>
+                <Button pink onClick={handleExportPDF}>
+                    <i className="fa-solid fa-print"></i>
+                    Sao chép
+                </Button>
+                <Button yellow onClick={handleExportPDF}>
+                    <i className="fa-solid fa-print"></i>
+                    Xuất PDF
+                </Button>
+                <Button grey onClick={handleExportPDF}>
+                    <i className="fa-solid fa-print"></i>
+                    Xóa tất cả
+                </Button>
             </div>
-
+            <ComponentSearch />
             <div className={cx('wrap-content')}>
                 <div className={cx('table')}>
                     <table className={cx('text-align')}>
                         <thead>
                             <tr>
+                                <th width="10">
+                                    <input type="checkbox" id="checkbox-all" />
+                                </th>
                                 <th>Thứ tự</th>
                                 <th width="200" className={cx('text-align-left')}>
                                     Tên khách hàng - SĐT
@@ -152,6 +170,7 @@ function PartyList() {
                                 </th>
                                 <th className={cx('text-align-center')}>Loại dịch vụ</th>
                                 <th className={cx('text-align-center')}>Dịch vụ khác</th>
+                                <th className={cx('text-align-center')} width="110">Tính năng</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -159,6 +178,9 @@ function PartyList() {
                             {items &&
                                 items.map((item, i) => (
                                     <tr key={i}>
+                                        <td>
+                                            <input className={cx('checkbox')} type="checkbox" name="checkBoxItem" />
+                                        </td>
                                         <td>
                                             <p>{i + startIndex}</p>
                                         </td>
@@ -194,6 +216,22 @@ function PartyList() {
                                                 </p>
                                             </ul>
                                             {/* <p className={cx('text-align-center')}>{item.serviceTypeId.name}</p> */}
+                                        </td>
+                                        <td className={cx('table-data')}>
+                                            <Button small pink title="Xóa">
+                                                <i className="fas fa-trash-alt"></i>
+                                            </Button>
+
+                                            <Button
+                                                small
+                                                lightorange
+                                                title="Sửa"
+                                                id="show-emp"
+                                                data-toggle="modal"
+                                                data-target="#ModalUP"
+                                            >
+                                                <i className="fas fa-edit"></i>
+                                            </Button>
                                         </td>
                                     </tr>
                                 ))}

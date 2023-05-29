@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ModalService from '../ModalService';
 import { Modal } from 'react-bootstrap';
+import ComponentSearch from '../ComponentSearch';
 const cx = classNames.bind(styles);
 
 function ServiceList() {
@@ -56,11 +57,41 @@ function ServiceList() {
     return (
         <div className={cx('content-doc')}>
             {showModal && <ModalService show={showModal} handleClose={handleCloseModal} />}
+            <div className={cx('wrap-btn')}>
+                <Button green>
+                    <i className="fa-solid fa-plus"></i>
+                    Tạo dịch vụ
+                </Button>
+                <Button green>
+                    <i className="fa-solid fa-file-excel"></i>
+                    Tải từ file
+                </Button>
+                <Button purple>
+                    <i className="fa-solid fa-clone"></i>
+                    In dữ liệu
+                </Button>
+                <Button pink>
+                    <i className="fa-solid fa-print"></i>
+                    Sao chép
+                </Button>
+                <Button yellow>
+                    <i className="fa-solid fa-file-pdf"></i>
+                    Xuất PDF
+                </Button>
+                <Button grey>
+                    <i className="fa-solid fa-file-excel"></i>
+                    Xóa tất cả
+                </Button>
+            </div>
+            <ComponentSearch />
             <div className={cx('wrap-content')}>
                 <div className={cx('table')}>
                     <table className={cx('text-align')}>
                         <thead>
                             <tr>
+                                <th width="10">
+                                    <input type="checkbox" id="checkbox-all" />
+                                </th>
                                 <th>Thứ tự</th>
                                 <th width="350" className={cx('text-align-left')}>
                                     Tên dịch vụ
@@ -68,6 +99,9 @@ function ServiceList() {
                                 <th width="600">Mô tả</th>
                                 <th className={cx('text-align-center')}>Loại dịch vụ</th>
                                 <th className={cx('text-align-center')}>Giá tiền</th>
+                                <th className={cx('text-align-center')} width="110">
+                                    Tính năng
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,6 +109,9 @@ function ServiceList() {
                             {items &&
                                 items.map((item, i) => (
                                     <tr key={i}>
+                                        <td>
+                                            <input className={cx('checkbox')} type="checkbox" name="checkBoxItem" />
+                                        </td>
                                         <td>
                                             <p>{i + startIndex}</p>
                                         </td>
@@ -89,6 +126,22 @@ function ServiceList() {
                                         </td>
                                         <td>
                                             <p className={cx('text-align-center')}>{item.price}</p>
+                                        </td>
+                                        <td className={cx('table-data')}>
+                                            <Button small pink title="Xóa">
+                                                <i className="fas fa-trash-alt"></i>
+                                            </Button>
+
+                                            <Button
+                                                small
+                                                lightorange
+                                                title="Sửa"
+                                                id="show-emp"
+                                                data-toggle="modal"
+                                                data-target="#ModalUP"
+                                            >
+                                                <i className="fas fa-edit"></i>
+                                            </Button>
                                         </td>
                                     </tr>
                                 ))}

@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ComponentSearch from '../ComponentSearch';
 const cx = classNames.bind(styles);
 
 function LobbyList() {
@@ -43,16 +44,45 @@ function LobbyList() {
 
     return (
         <div className={cx('content-doc')}>
+            <div className={cx('wrap-btn')}>
+                <Button green>
+                    <i className="fa-solid fa-plus"></i>
+                    Thêm sảnh mới
+                </Button>
+                <Button purple>
+                    <i className="fa-solid fa-clone"></i>
+                    In dữ liệu
+                </Button>
+                <Button pink>
+                    <i className="fa-solid fa-print"></i>
+                    Sao chép
+                </Button>
+                <Button yellow>
+                    <i className="fa-solid fa-file-pdf"></i>
+                    Xuất PDF
+                </Button>
+                <Button grey>
+                    <i className="fa-solid fa-file-excel"></i>
+                    Xóa tất cả
+                </Button>
+            </div>
+            <ComponentSearch />
             <div className={cx('wrap-content')}>
                 <div className={cx('table')}>
                     <table className={cx('text-align')}>
                         <thead>
                             <tr>
+                                <th width="10">
+                                    <input type="checkbox" id="checkbox-all" />
+                                </th>
                                 <th>Thứ tự</th>
                                 <th className={cx('text-align-left')}>Tên sảnh</th>
                                 <th width={1000}>Mô tả</th>
                                 <th className={cx('text-align-center')}>Sức chứa</th>
                                 <th className={cx('text-align-center')}>Giá tiền</th>
+                                <th className={cx('text-align-center')} width="120">
+                                    Tính năng
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,6 +90,9 @@ function LobbyList() {
                             {items &&
                                 items.map((item, i) => (
                                     <tr key={i}>
+                                        <td>
+                                            <input className={cx('checkbox')} type="checkbox" name="checkBoxItem" />
+                                        </td>
                                         <td>
                                             <p>{i + startIndex}</p>
                                         </td>
@@ -74,6 +107,22 @@ function LobbyList() {
                                         </td>
                                         <td>
                                             <p className={cx('text-align-center')}>{item.price}</p>
+                                        </td>
+                                        <td className={cx('table-data')}>
+                                            <Button small pink title="Xóa">
+                                                <i className="fas fa-trash-alt"></i>
+                                            </Button>
+
+                                            <Button
+                                                small
+                                                lightorange
+                                                title="Sửa"
+                                                id="show-emp"
+                                                data-toggle="modal"
+                                                data-target="#ModalUP"
+                                            >
+                                                <i className="fas fa-edit"></i>
+                                            </Button>
                                         </td>
                                     </tr>
                                 ))}
