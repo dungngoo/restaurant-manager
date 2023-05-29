@@ -8,6 +8,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ExcelJS from 'exceljs';
+import ComponentSearch from '~/components/ComponentSearch';
 const cx = classNames.bind(styles);
 
 function Doc2() {
@@ -256,13 +257,13 @@ function Doc2() {
                         Xuất file excel
                     </Button>
                 </div>
-
-                <div className={cx('wrap-content')}>
-                    <div className={cx('header')}>
-                        <div className={cx('wrap-select')}>
-                            {error && <span style={{ fontSize: '20px', color: 'red' }}>{error}</span>}
-                        </div>
+                <ComponentSearch />
+                <div className={cx('header')}>
+                    <div className={cx('wrap-select')}>
+                        {error && <span style={{ fontSize: '20px', color: 'red' }}>{error}</span>}
                     </div>
+                </div>
+                <div className={cx('wrap-content')}>
                     <div className={cx('table')}>
                         <table className={cx('text-align')}>
                             <thead>

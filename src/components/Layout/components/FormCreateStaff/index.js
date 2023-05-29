@@ -223,7 +223,14 @@ function FormCreateStaff() {
             <div className={cx('header-clock')}>
                 <HeaderDoc text="Danh sách nhân viên / Thêm nhân viên" />
             </div>
+
             <div className={cx('content-doc')}>
+                <div className={cx('wrap-btn')}>
+                    <Button green to="./create">
+                        <i className="fa-solid fa-plus"></i>
+                       Thêm chức vụ mới
+                    </Button>
+                </div>
                 <h5 className={cx('h5')}>Tạo mới nhân viên</h5>
 
                 {existErrors && <h2 className={cx('errors', 'text-align')}>Dữ liệu đã tồn tại: {existErrors}</h2>}

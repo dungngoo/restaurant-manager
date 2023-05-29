@@ -11,6 +11,7 @@ import Modal1 from '../Modal';
 import axios from 'axios';
 import 'jspdf-autotable';
 import jsPDF from 'jspdf';
+import ComponentSearch from '../ComponentSearch';
 
 const cx = classNames.bind(styles);
 
@@ -321,13 +322,12 @@ function StaffList() {
                     />
                 )}
             </div>
-
+            <ComponentSearch />
+            <div className={cx('header')}>
+                {deleteManyError && <p style={{ color: 'red' }}>{deleteManyError}</p>}
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+            </div>
             <div className={cx('wrap-content')}>
-                <div className={cx('header')}>
-                    <div className={cx('wrap-select')}></div>
-                    {deleteManyError && <p style={{ color: 'red' }}>{deleteManyError}</p>}
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
-                </div>
                 <div className={cx('table')}>
                     <table className={cx('text-align')}>
                         <thead>
